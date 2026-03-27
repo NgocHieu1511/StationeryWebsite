@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <title>Cửa hàng dụng cụ học tập</title>
+    <link rel="icon" href="../image/logo_icon.png" />
+    <link rel="stylesheet" href="../CSS/TrangChu.css" />
+    <link rel="stylesheet" href="../CSS/Thongtinnguoidung.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- link thu vien icon Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+    <div id="scale-wrapper">
+        <!-- Phần header -->
+        <div class="header">
+            <div class="header-dkdn container">
+                <p class="welcome">Chào bạn đến với cửa hàng dụng cụ học tập School Supplies Store</p>
+                <div class="dangki-dangnhap" id="userArea"></div>
+            </div>
+            <hr class="hr-hd" />
+            <div class="header-top container">
+                <!-- Logo của cửa hàng -->
+                <div class="logo">
+                    <img src="../image/logo_store.svg" alt="logo_store" />
+                </div>
+                <!-- Thanh tìm kiếm -->
+                <form class="search-box">
+                    <input type="text" placeholder="Tìm sản phẩm........." />
+                    <button><i class="fa fa-search"></i></button>
+                </form>
+                <!-- Hotline với Giỏ hàng -->
+                <div class="right-box">
+                    <div class="hotline-box-head">
+                        <i class="fa-solid fa-phone-volume"></i>
+                        <div class="hotline-text">
+                            <span class="title">Hotline</span>
+                            <span class="number">076 299 0875</span>
+                        </div>
+                    </div>
+                    <a class="GioHang" href="../Html/TrangGioHang.html">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                </div>
+            </div>
+            <!--Thanh menu -->
+            <nav class="menu">
+                <ul>
+                    <li><a href="../Html/TrangChu.html">Trang chủ</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="../Html/SanPhamChung.html" id="Dropdown-SP">Sản phẩm</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../Html/TrangSanPham.html">Dụng cụ viết</a></li>
+                            <li><a class="dropdown-item" href="../Html/SPDungVoHocSinh.html">Vở học sinh</a></li>
+                            <li><a class="dropdown-item" href="../Html/SPDungCuDo_TinhToan.html">Dụng cụ đo, tính toán</a></li>
+                            <li><a class="dropdown-item" href="../Html/SPHoaPham.html">Họa phẩm</a></li>
+                            <li><a class="dropdown-item" href="../Html/SPBalo.html">Balo</a></li>
+                            <li><a class="dropdown-item" href="../Html/SPCacSanPhamKhac.html">Các sản phẩm khác</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../Html/TrangYeuThich.html">Yêu thích</a></li>
+                    <li><a href="../Html/TrangLienHe.html" class="active">Liên hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Phần Content -->
+        <main class="container">
+            <div class="container-user">
+                <h3>THÔNG TIN NGƯỜI DÙNG</h3>
+
+                <div class="form-group">
+                    <label>Tên hiển thị</label>
+                    <input type="text" id="hoten" />
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" readonly />
+                </div>
+
+                <h3>THAY ĐỔI MẬT KHẨU</h3>
+
+                <div class="form-group">
+                    <label>Mật khẩu hiện tại</label>
+                    <input type="password" id="oldPassword" />
+                </div>
+
+                <div class="form-group">
+                    <label>Mật khẩu mới</label>
+                    <input type="password" id="newPassword" />
+                </div>
+
+                <div class="form-group">
+                    <label>Xác nhận mật khẩu mới</label>
+                    <input type="password" id="confirmPassword" />
+                </div>
+
+                <button onclick="luuThongTin()">Lưu thay đổi</button>
+            </div>
+            <div class="thongke-box">
+                <h3>CHI TIÊU THEO DANH MỤC VÀ HỌC KỲ</h3>
+                <canvas id="bieuDoHocKy" height="120"></canvas>
+            </div>
+        </main>
+        <!-- Phần footer -->
+        <footer class="footer">
+            <div class="container container-footer">
+                <div class="row">
+                    <!-- CỘT 1: THÔNG TIN -->
+                    <div class="col-lg-4 col-md-6 col-12 footer-col">
+                        <h3>THÔNG TIN CHUNG</h3>
+                        <p>
+                            SchoolSuppliesStore là cửa hàng bán dụng cụ học tập,
+                            <br />
+                            luôn cập nhật các sản phẩm mới theo xu thế thị trường.
+                        </p>
+
+                        <p>
+                            <i class="fa-solid fa-envelope"></i>
+                            SchoolSuppliesStore@gmail.com
+                        </p>
+
+                        <p>
+                            <i class="fa-solid fa-location-dot"></i>
+                            243 Trần Văn Giàu, Phường Hòa Thuận,
+                            <br />
+                            Tỉnh Vĩnh Long
+                        </p>
+
+                        <div class="hotline-box-end">
+                            <i class="fa-solid fa-phone-volume phone-icon"></i>
+                            <div>
+                                <p class="hotline-number">076.299.0875</p>
+                                <p class="hotline-time">7h00 - 18h00 (T2 - T7)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CỘT 2: HỖ TRỢ + CHÍNH SÁCH -->
+                    <div class="col-lg-4 col-md-6 col-12 footer-col">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3>HỖ TRỢ</h3>
+                                <ul>
+                                    <li>Mua hàng</li>
+                                    <li>Đổi trả</li>
+                                    <li>Tư vấn sản phẩm</li>
+                                    <li>Kiểm tra đơn hàng</li>
+                                </ul>
+                            </div>
+
+                            <div class="col-6">
+                                <h3>CHÍNH SÁCH</h3>
+                                <ul>
+                                    <li>Về chúng tôi</li>
+                                    <li>Thanh toán</li>
+                                    <li>Bảo mật</li>
+                                    <li>Bảo hành</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CỘT 3: NEWSLETTER + SOCIAL -->
+                    <div class="col-lg-4 col-md-6 col-12 footer-col">
+                        <h3>NHẬN TIN KHUYẾN MÃI</h3>
+                        <p class="support-text">Hỗ trợ khách hàng 24/7</p>
+
+                        <div class="newsletter">
+                            <input type="email" placeholder="Nhập Email của bạn" />
+                            <button>Đăng ký</button>
+                        </div>
+
+                        <h3 class="follow-title">THEO DÕI CHÚNG TÔI</h3>
+                        <div class="social-icons">
+                            <img src="../image/icon/icon-fb.svg" />
+                            <img src="../image/icon/icon-ista.svg" />
+                            <img src="../image/icon/icon-ytb.svg" />
+                            <img src="../image/icon/icon-tt.svg" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">© Bản quyền thuộc về School Supplies Store</div>
+        </footer>
+        <button id="backToTop" title="Lên đầu trang">
+            <i class="fa-solid fa-chevron-up"></i>
+        </button>
+    </div>
+    <script src="../jjs/Trangchu.js"></script>
+    <script src="../jjs/Thongtinnguoidung.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+.container {
+    padding: 20px;
+    border: 1px solid #006e37;
+    border-radius: 5px;
+}
+.tieude {
+    color: #006e37;
+}
+.btn-dk {
+    background: #006e37;
+    border: 1px solid #006e37;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 8px;
+}
+.btn-dk:hover {
+    background: #b4ffb6;
+    border: 1px solid #b4ffb6;
+    color: rgb(0, 54, 23);
+    border-radius: 5px;
+    padding: 5px 8px;
+    transition: 0.25s ease;
+    transform: translateY(-5%);
+}
+.text-chuyentrang {
+    color: #00b85c;
+    text-decoration: none;
+}

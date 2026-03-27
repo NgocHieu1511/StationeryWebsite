@@ -1,0 +1,332 @@
+/* Reset lại cơ bản*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    color: #333;
+    background-color: #f4f6fa;
+    line-height: 1.6;
+}
+/* Phần header */
+.header {
+    background-color: #015936;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 10px 0;
+}
+/* Logo */
+.logo img {
+    max-height: 55px;
+}
+/* Tìm kiếm */
+.search-box {
+    flex: 1;
+    max-width: 550px;
+    position: relative;
+}
+.search-box input {
+    width: 100%;
+    padding: 10px 45px 10px 15px;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+}
+.search-box button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #004422;
+}
+/* Hotline */
+.right-box {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+.hotline-box-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 5px;
+}
+.hotline-box-head i {
+    font-size: 24px;
+    color: white;
+}
+.hotline-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+.hotline-text .title {
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+}
+.hotline-text .number {
+    font-size: 15px;
+    color: #ffffff;
+}
+/* Giỏ hàng*/
+.GioHang {
+    width: 45px;
+    height: 45px;
+    background: white;
+    color: #015936;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 22px;
+}
+.GioHang:hover {
+    color: #00bf63;
+}
+/* Menu */
+.menu {
+    background-color: #e6fff2;
+    text-align: center;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    padding: 10px 0;
+}
+
+.menu a {
+    font-size: 18px;
+    font-weight: bold;
+    color: #015936;
+    text-decoration: none;
+}
+
+.menu a.active,
+.menu a:hover {
+    color: #00bf63;
+}
+/* Ẩn menu con mặc định ở phần sản phẩm*/
+.nav-item .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #00b46b;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    z-index: 999;
+}
+/* Hiện menu con khi rê chuột vào mục sản phẩm */
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+/* Căn dọc các mục trong dropdown */
+.dropdown-menu li {
+    display: block;
+    text-align: left;
+    padding: 4px 15px;
+}
+/* Tùy chỉnh màu item con */
+.dropdown-item {
+    color: #015936;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.dropdown-item:hover {
+    background-color: #e6fff2;
+    color: #00bf63;
+}
+
+/* Thiết lập responsive trên thiết bị điện thoại */
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .right-box {
+        justify-content: center;
+    }
+}
+/* phần nội dung */
+
+.LienHe {
+    padding: 30px 0;
+    font-family: "Arial", sans-serif;
+}
+
+/* liên hệ ở trên */
+.ThongTinLienHe {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.ThongTinLienHe .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.ThongTinLienHe .col-4 {
+    flex: 1 1 250px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.ThongTinLienHe .col-4:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ThongTinLienHe i {
+    color: #00a651;
+    margin-bottom: 10px;
+}
+
+.ThongTinLienHe h4 {
+    margin: 10px 0;
+    color: #045330;
+    font-weight: bold;
+}
+
+.ThongTinLienHe p {
+    color: #045330;
+}
+
+/* Form liên hệ */
+.FormLienHe {
+    margin-top: 20px;
+}
+
+.FormLienHe h2 {
+    color: #39b54a;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.FormLienHe p {
+    margin-bottom: 25px;
+    color: #045330;
+}
+
+.LienHeForm {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.LienHeForm .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.LienHeForm .col-6 {
+    flex: 1 1 48%;
+}
+
+.LienHeForm .col-12 {
+    flex: 1 1 100%;
+}
+
+.LienHeForm label {
+    display: block;
+    margin-bottom: 6px;
+    color: #045330;
+}
+
+.LienHeForm input,
+.LienHeForm textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #00a651;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    outline: none;
+    font-size: 15px;
+    transition: all 0.3s;
+}
+
+.LienHeForm input:focus,
+.LienHeForm textarea:focus {
+    box-shadow: 0 0 5px #00a651;
+}
+
+.btn-gui {
+    background-color: #bb0000;
+    color: white;
+    border: none;
+    padding: 10px 35px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-gui:hover {
+    background-color: #e60000;
+}
+
+.camon {
+    margin-top: 20px;
+    color: #bb0000 !important;
+}
+
+.text-center {
+    text-align: center;
+}
+.text-success {
+    color: #00a651;
+}
+.hr {
+    color: #00bf63;
+}
+
+/* Phần responsive*/
+@media (max-width: 768px) {
+    .LienHeForm .col-6 {
+        flex: 1 1 100%;
+    }
+
+    .ThongTinLienHe .col-4 {
+        flex: 1 1 100%;
+    }
+}
+/* ẩn phần cảm ơn */
+.camon {
+    display: none;
+    color: green;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 20px;
+}

@@ -1,0 +1,103 @@
+.container-user {
+    max-width: 900px;
+    margin: 10px auto;
+    background: #f6f8f9;
+    padding: 20px 0px;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+}
+
+/* tiêu đề */
+.container-user h3 {
+    color: #1aa34a;
+    font-weight: bold;
+    border-bottom: 2px solid #9adbb3;
+    padding-bottom: 8px;
+    margin-bottom: 25px;
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.container-user h3:first-child {
+    margin-top: 0;
+}
+
+/*form*/
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    width: 200px;
+    font-size: 15px;
+    color: #333;
+}
+
+.form-group input {
+    flex: 1;
+    height: 38px;
+    border-radius: 4px;
+    border: 1px solid #7ad4a5;
+    padding: 0 12px;
+    font-size: 14px;
+    background: #f9fbfc;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #2fbf71;
+    background: #ffffff;
+}
+
+.form-group input[readonly] {
+    background: #eef2f3;
+    color: #555;
+    cursor: not-allowed;
+}
+
+.container-user button {
+    margin-top: 20px;
+    margin-left: auto;
+    display: block;
+    background: #0b6b3a;
+    color: white;
+    border: none;
+    padding: 10px 26px;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.container-user button:hover {
+    background: #095c31;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-group label {
+        width: 100%;
+        margin-bottom: 6px;
+    }
+
+    .container-user button {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+/* biểu đồ */
+.thongke-box {
+    border-top: 1px solid #2fbf71;
+    padding: 10px;
+    margin: 10px;
+}
+.thongke-box h3 {
+    text-align: center;
+}

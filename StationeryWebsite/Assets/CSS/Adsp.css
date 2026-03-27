@@ -1,0 +1,30 @@
+.phantrang {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.phantrang .nut {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background-color: #00341d;
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.phantrang .nut:hover {
+    background-color: #39b54a;
+}
+
+.phantrang .nut.active {
+    background-color: #39b54a;
+}

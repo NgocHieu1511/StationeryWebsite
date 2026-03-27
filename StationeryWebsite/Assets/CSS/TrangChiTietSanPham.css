@@ -1,0 +1,456 @@
+/* Reset lại cơ bản*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    color: #333;
+    background-color: #f4f6fa;
+    line-height: 1.6;
+}
+/* Phần header */
+.header {
+    background-color: #015936;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 10px 0;
+}
+/* Logo */
+.logo img {
+    max-height: 55px;
+}
+/* Tìm kiếm */
+.search-box {
+    flex: 1;
+    max-width: 550px;
+    position: relative;
+}
+.search-box input {
+    width: 100%;
+    padding: 10px 45px 10px 15px;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+}
+.search-box button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #004422;
+}
+/* Hotline */
+.right-box {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+.hotline-box-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 5px;
+}
+.hotline-box-head i {
+    font-size: 24px;
+    color: white;
+}
+.hotline-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+.hotline-text .title {
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+}
+.hotline-text .number {
+    font-size: 15px;
+    color: #ffffff;
+}
+/* Giỏ hàng*/
+.GioHang {
+    width: 45px;
+    height: 45px;
+    background: white;
+    color: #015936;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 22px;
+}
+.GioHang:hover {
+    color: #00bf63;
+}
+/* Menu */
+.menu {
+    background-color: #e6fff2;
+    text-align: center;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    padding: 10px 0;
+}
+
+.menu a {
+    font-size: 18px;
+    font-weight: bold;
+    color: #015936;
+    text-decoration: none;
+}
+
+.menu a.active,
+.menu a:hover {
+    color: #00bf63;
+}
+/* Ẩn menu con mặc định ở phần sản phẩm*/
+.nav-item .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #00b46b;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    z-index: 999;
+}
+/* Hiện menu con khi rê chuột vào mục sản phẩm */
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+/* Căn dọc các mục trong dropdown */
+.dropdown-menu li {
+    display: block;
+    text-align: left;
+    padding: 4px 15px;
+}
+/* Tùy chỉnh màu item con */
+.dropdown-item {
+    color: #015936;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.dropdown-item:hover {
+    background-color: #e6fff2;
+    color: #00bf63;
+}
+
+/* Thiết lập responsive trên thiết bị điện thoại */
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .right-box {
+        justify-content: center;
+    }
+}
+/* Phần Content */
+.Bang-SP {
+    width: 100%;
+    border: 2px solid #b2ffdd;
+    border-radius: 8px;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+.Bang-SP td {
+    vertical-align: top;
+    padding: 15px;
+    border: 2px solid #b2ffdd;
+}
+
+.product-img {
+    width: 40%;
+    text-align: center;
+}
+
+.product-img img {
+    width: 90%;
+    border-radius: 6px;
+}
+.favorite-icon {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    color: gold;
+    font-size: 22px;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+}
+.favorite-icon:hover {
+    transform: scale(1.1);
+    color: orange;
+}
+.product-top,
+.product-bottom {
+    color: #000000;
+    background-color: #f3fffa;
+}
+.product-top h4 {
+    color: #00bf63;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.product-top p {
+    margin: 4px 0;
+}
+.GiaSP-chitiet {
+    font-weight: bold;
+    color: #ff3131;
+    font-size: x-large;
+}
+.product-bottom ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+.quantity-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+.quantity-control {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.quantity-control button {
+    background-color: #e2fff2;
+    border: none;
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.quantity-control button:hover {
+    background-color: #00bf63;
+}
+.quantity-control input {
+    width: 45px;
+    height: 35px;
+    text-align: center;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+.add-cart {
+    background-color: #bb0000;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.add-cart:hover {
+    background-color: #da0000;
+}
+
+.add-cart {
+    background-color: #bb0000;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.consult-section {
+    display: flex;
+    gap: 6px;
+}
+
+.consult-section input {
+    flex: 1;
+    padding: 7px;
+    border: 1px solid #b2ffdd;
+    border-radius: 4px;
+}
+
+.btn-consult {
+    background-color: #39b54a;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 12px;
+    cursor: pointer;
+}
+.btn-consult:hover {
+    background-color: #44d457;
+}
+
+/* San pham tuong tu */
+.spttchung {
+    margin-bottom: 30px;
+    margin-top: 15px;
+}
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.card-sanpham {
+    width: 160px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 8px;
+    transition: 0.3s;
+    text-align: center;
+    border: 1px solid #b2ffdd;
+    font-size: 13px;
+}
+
+.card-sanpham:hover {
+    transform: translateY(-4px);
+}
+
+.anh-sp {
+    width: 80%;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+}
+
+.ten-sp {
+    margin: 6px 0 4px;
+    font-weight: 500;
+    color: #00341d;
+    font-size: 13px;
+}
+
+.gia-sp {
+    color: #ff0000;
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 13px;
+}
+
+.nut-xem {
+    display: inline-block;
+    background-color: #006633;
+    color: white;
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+.nut-xem:hover {
+    background-color: #00994c;
+}
+
+/* Phần định dạng nội dung responsive */
+/*Màn hình tablet (dưới 992px) */
+@media (max-width: 992px) {
+    .Bang-SP td {
+        display: block;
+        width: 100%;
+    }
+
+    .product-img {
+        width: 100%;
+        text-align: center;
+    }
+
+    .product-img img {
+        width: 70%;
+    }
+
+    .product-top h4 {
+        font-size: 20px;
+    }
+
+    .product-bottom ul {
+        font-size: 15px;
+    }
+
+    .quantity-section {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .spttchung .product-card {
+        width: 45%;
+    }
+}
+
+/*Màn hình mobile (dưới 576px) */
+@media (max-width: 576px) {
+    .product-img img {
+        width: 90%;
+    }
+
+    .product-top p {
+        font-size: 14px;
+    }
+
+    .quantity-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .add-cart {
+        width: 100%;
+        text-align: center;
+    }
+
+    .consult-section {
+        flex-direction: column;
+    }
+
+    .consult-section input,
+    .consult-section button {
+        width: 100%;
+    }
+    .spttchung .product-card {
+        width: 100%;
+    }
+}
+
+/* ẩn cái nút số lượng lên xuống */
+/* Chrome, Edge, Safari */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

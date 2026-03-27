@@ -1,33 +1,207 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+<!-- Phần Content -->
+<section class="container">
+    <!-- Chỗ Banner -->
+    <div class="banner_dau">
+        <div id="banner" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="5000">
+                    <img src="~/Assets/image/banner1.svg" alt="banner1" class="d-block" style="width: 100%" />
+                </div>
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="~/Assets/image/banner2.svg" alt="banner2" class="d-block" style="width: 100%" />
+                </div>
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="~/Assets/image/banner3.svg" alt="banner3" class="d-block" style="width: 100%" />
+                </div>
+            </div>
+            <!--Nút qua phải và trái trong carousel-->
+            <button class="carousel-control-prev" type="button" data-bs-target="#banner" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#banner" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+    <!-- Thông tin giao hàng nhanh,... -->
+    <div class="giaohangnhanh">
+        <div class="marquee">
+            <div class="marquee-track">
+                <div class="item">
+                    <img src="~/Assets/image/bannergiaohang/ghn.svg" />
+                </div>
+                <div class="item">
+                    <img src="~/Assets/image/bannergiaohang/gud.svg" />
+                </div>
+                <div class="item">
+                    <img src="~/Assets/image/bannergiaohang/dtmp.svg" />
+                </div>
+                <div class="item">
+                    <img src="~/Assets/image/bannergiaohang/ht247.svg" />
+                </div>
+
+                <!-- NHÂN ĐÔI ĐỂ xoay VÒNG TRÒN -->
+                <div class="item">
+                    <img src="~/Assets/image/bannergiaohang/ghn.svg" />
+                </div>
+                <div class="item">
+                    <img src="~/Assets/image/bannergiaohang/gud.svg" />
+                </div>
+                <div class="item">
+                    <img src="~/Assets/image/bannergiaohang/dtmp.svg" />
+                </div>
+                <div class="item">
+                    <img src="~/Assets/image/bannergiaohang/ht247.svg" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sản phẩm nổi bậc -->
+    <div class="SanPhamNoiBac">
+        <div class="chuspnb">
+            <img src="~/Assets/image/tenspnb.svg" class="tieude" alt="SẢN PHẨM NỔI BẬC" />
+        </div>
+        <div id="spnb" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+            <div class="carousel-inner">
+                <!-- tung trang san pham noi bac 1 -->
+
+                <div class="carousel-item active" data-bs-interval="3000">
+                    <section class="sanpham-noibat">
+                        <div class="hang-sp" id="spNoiBac1"></div>
+                    </section>
+                </div>
+                <!-- tung trang san pham noi bac 2 -->
+                <div class="carousel-item">
+                    <section class="sanpham-noibat">
+                        <div class="hang-sp" id="spNoiBac2"></div>
+                    </section>
+                </div>
+                <!-- tung trang san pham noi bac 3 -->
+                <div class="carousel-item">
+                    <section class="sanpham-noibat">
+                        <div class="hang-sp" id="spNoiBac3"></div>
+                    </section>
+                </div>
+            </div>
+            <!--Nút qua phải và trái trong carousel-->
+            <button class="carousel-control-prev" type="button" data-bs-target="#spnb" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#spnb" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Danh mục sản phẩm -->
+    <section class="container khungdmsp">
+        <h3 class="text-center fw-bold mb-4 dmsp">DANH MỤC SẢN PHẨM</h3>
+
+        <div class="row g-4 justify-content-center">
+            <!-- Mục 1 -->
+            <div class="col-4 col-md-3 col-lg-2 text-center">
+                <a href="~/Assets/Html/SPDungVoHocSinh.html" class="category-box d-block">
+                    <div class="thumb">
+                        <img src="~/Assets/image/dmvohs.svg" alt="Vở học sinh" />
+                    </div>
+                    <p class="fw-semibold mt-2">Vở học sinh</p>
+                </a>
+            </div>
+
+            <!-- Mục 2 -->
+            <div class="col-4 col-md-3 col-lg-2 text-center">
+                <a href="~/Assets/Html/TrangSanPham.html" class="category-box d-block">
+                    <div class="thumb">
+                        <img src="~/Assets/image/dmvieths.svg" alt="Dụng cụ viết" />
+                    </div>
+                    <p class="fw-semibold mt-2">Dụng cụ viết</p>
+                </a>
+            </div>
+
+            <!-- Mục 3 -->
+            <div class="col-4 col-md-3 col-lg-2 text-center">
+                <a href="~/Assets/Html/SPDungCuDo_TinhToan.html" class="category-box d-block">
+                    <div class="thumb">
+                        <img src="~/Assets/image/dmdungcudo.svg" alt="Dụng cụ đo, tính toán" />
+                    </div>
+                    <p class="fw-semibold mt-2">Dụng cụ đo, tính toán</p>
+                </a>
+            </div>
+
+            <!-- Mục 4 -->
+            <div class="col-4 col-md-3 col-lg-2 text-center">
+                <a href="~/Assets/Html/SPHoaPham.html" class="category-box d-block">
+                    <div class="thumb">
+                        <img src="~/Assets/image/dmhospham.svg" alt="Họa phẩm" />
+                    </div>
+                    <p class="fw-semibold mt-2">Họa phẩm</p>
+                </a>
+            </div>
+
+            <!-- Mục 5 -->
+            <div class="col-4 col-md-3 col-lg-2 text-center">
+                <a href="~/Assets/Html/SPBalo.html" class="category-box d-block">
+                    <div class="thumb">
+                        <img src="~/Assets/image/dmbalo.svg" alt="Balo" />
+                    </div>
+                    <p class="fw-semibold mt-2">Balo</p>
+                </a>
+            </div>
+
+            <!-- Mục 6 -->
+            <div class="col-4 col-md-3 col-lg-2 text-center">
+                <a href="~/Assets/Html/SPCacSanPhamKhac.html" class="category-box d-block">
+                    <div class="thumb">
+                        <img src="~/Assets/image/dmkhac.svg" alt="Các sản phẩm khác" />
+                    </div>
+                    <p class="fw-semibold mt-2">Các sản phẩm khác</p>
+                </a>
+            </div>
+        </div>
     </section>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
-    </div>
-</main>
+    <!-- Dụng cụ viết -->
+    <section class="dungcuviet">
+        <h2 class="tieude">DỤNG CỤ VIẾT</h2>
+        <div class="hang-sp" id="spDungCuViet"></div>
+        <a href="~/Assets/Html/TrangSanPham.html" class="nut-xemtatca">XEM TẤT CẢ</a>
+    </section>
+    <!-- Vở học sinh -->
+    <section class="vohocsinh">
+        <h2 class="tieude">VỞ HỌC SINH</h2>
+        <div class="hang-sp" id="spVoHocSinh"></div>
+        <a href="~/Assets/Html/SPDungVoHocSinh.html" class="nut-xemtatca">XEM TẤT CẢ</a>
+    </section>
+    <!-- Dụng cụ đo, tính toán -->
+    <section class="dungcudotinhtoan">
+        <h2 class="tieude">DỤNG CỤ ĐO, TÍNH TOÁN</h2>
+        <div class="hang-sp" id="spDoTinhToan"></div>
+        <a href="#" class="nut-xemtatca">XEM TẤT CẢ</a>
+    </section>
+    <!-- Họa phẩm -->
+    <section class="hoapham">
+        <h2 class="tieude">HỌA PHẨM</h2>
+        <div class="hang-sp" id="spHoaPham"></div>
+        <a href="~/Assets/Html/SPHoaPham.html" class="nut-xemtatca">XEM TẤT CẢ</a>
+    </section>
+    <!-- Balo -->
+    <section class="balo">
+        <h2 class="tieude">BALO</h2>
+        <div class="hang-sp" id="spBalo"></div>
+        <a href="~/Assets/Html/SPBalo.html" class="nut-xemtatca">XEM TẤT CẢ</a>
+    </section>
+    <!-- Các sản phẩm khác -->
+    <section class="cacsanphamkhac">
+        <h2 class="tieude">CÁC SẢN PHẨM KHÁC</h2>
+        <div class="hang-sp" id="spKhac"></div>
+        <a href="~/Assets/Html/SPCacSanPhamKhac.html" class="nut-xemtatca">XEM TẤT CẢ</a>
+    </section>
+</section>
+
