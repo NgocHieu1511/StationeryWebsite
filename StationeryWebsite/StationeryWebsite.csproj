@@ -130,13 +130,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdChitietdonhangController.cs" />
-    <Compile Include="Areas\Admin\Controllers\AddonhangController.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdlienheController.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdsanphamController.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdtaikhoanController.cs" />
-    <Compile Include="Areas\Admin\Controllers\adThemsanphamController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginAdminController.cs" />
     <Compile Include="Controllers\ChitietdonhangController.cs" />
     <Compile Include="Controllers\ChiTietSanPhamController.cs" />
     <Compile Include="Controllers\DonhangController.cs" />
@@ -158,219 +153,209 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Address.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Brand.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>QLBanDoDungHocTap.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>QLBanDoDungHocTap.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\District.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>QLBanDoDungHocTap.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Feedback.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>QLBanDoDungHocTap.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>QLBanDoDungHocTap.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order_detail.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>QLBanDoDungHocTap.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order_status.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Permission.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Poster.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>QLBanDoDungHocTap.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>QLBanDoDungHocTap.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Province.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Models\QLBanDoDungHocTap.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBanDoDungHocTap.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QLBanDoDungHocTap.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBanDoDungHocTap.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QLBanDoDungHocTap.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBanDoDungHocTap.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>QLBanDoDungHocTap.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Ward.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>QLBanDoDungHocTap.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\CSS\admin.css" />
-    <Content Include="Assets\CSS\Adsp.css" />
-    <Content Include="Assets\CSS\Adtaikhoan.css" />
-    <Content Include="Assets\CSS\AdThemsanpham.css" />
-    <Content Include="Assets\CSS\DK-DN.css" />
-    <Content Include="Assets\CSS\Donhang.css" />
-    <Content Include="Assets\CSS\Thongtinnguoidung.css" />
-    <Content Include="Assets\CSS\TrangChiTietSanPham.css" />
-    <Content Include="Assets\CSS\Trangchu.css" />
-    <Content Include="Assets\CSS\TrangGioHang.css" />
-    <Content Include="Assets\CSS\TrangLienHe.css" />
-    <Content Include="Assets\CSS\TrangSanPham.css" />
-    <Content Include="Assets\CSS\TrangYeuThich.css" />
-    <Content Include="Assets\image\balo\bl1.svg" />
-    <Content Include="Assets\image\balo\bl10.svg" />
-    <Content Include="Assets\image\balo\bl11.svg" />
-    <Content Include="Assets\image\balo\bl12.svg" />
-    <Content Include="Assets\image\balo\bl13.svg" />
-    <Content Include="Assets\image\balo\bl14.svg" />
-    <Content Include="Assets\image\balo\bl15.svg" />
-    <Content Include="Assets\image\balo\bl16.svg" />
-    <Content Include="Assets\image\balo\bl2.svg" />
-    <Content Include="Assets\image\balo\bl3.svg" />
-    <Content Include="Assets\image\balo\bl4.svg" />
-    <Content Include="Assets\image\balo\bl5.svg" />
-    <Content Include="Assets\image\balo\bl6.svg" />
-    <Content Include="Assets\image\balo\bl7.svg" />
-    <Content Include="Assets\image\balo\bl8.svg" />
-    <Content Include="Assets\image\balo\bl9.svg" />
-    <Content Include="Assets\image\banner1.svg" />
-    <Content Include="Assets\image\banner2.svg" />
-    <Content Include="Assets\image\banner3.svg" />
-    <Content Include="Assets\image\bannergiaohang\dtmp.svg" />
-    <Content Include="Assets\image\bannergiaohang\ghn.svg" />
-    <Content Include="Assets\image\bannergiaohang\gud.svg" />
-    <Content Include="Assets\image\bannergiaohang\ht247.svg" />
-    <Content Include="Assets\image\bannersp.svg" />
-    <Content Include="Assets\image\buths\but1.svg" />
-    <Content Include="Assets\image\buths\but10.svg" />
-    <Content Include="Assets\image\buths\but11.svg" />
-    <Content Include="Assets\image\buths\but12.svg" />
-    <Content Include="Assets\image\buths\but13.svg" />
-    <Content Include="Assets\image\buths\but14.svg" />
-    <Content Include="Assets\image\buths\but15.svg" />
-    <Content Include="Assets\image\buths\but16.svg" />
-    <Content Include="Assets\image\buths\but2.svg" />
-    <Content Include="Assets\image\buths\but3.svg" />
-    <Content Include="Assets\image\buths\but4.svg" />
-    <Content Include="Assets\image\buths\but5.svg" />
-    <Content Include="Assets\image\buths\but6.svg" />
-    <Content Include="Assets\image\buths\but7.svg" />
-    <Content Include="Assets\image\buths\but8.svg" />
-    <Content Include="Assets\image\buths\but9.svg" />
-    <Content Include="Assets\image\Dcdo_tinhtoan\dott1.svg" />
-    <Content Include="Assets\image\Dcdo_tinhtoan\dott2.svg" />
-    <Content Include="Assets\image\Dcdo_tinhtoan\dott3.svg" />
-    <Content Include="Assets\image\Dcdo_tinhtoan\dott4.svg" />
-    <Content Include="Assets\image\Dcdo_tinhtoan\dott5.svg" />
-    <Content Include="Assets\image\Dcdo_tinhtoan\dott6.svg" />
-    <Content Include="Assets\image\Dcdo_tinhtoan\dott7.svg" />
-    <Content Include="Assets\image\Dcdo_tinhtoan\dott8.svg" />
-    <Content Include="Assets\image\dmbalo.svg" />
-    <Content Include="Assets\image\dmdungcudo.svg" />
-    <Content Include="Assets\image\dmhospham.svg" />
-    <Content Include="Assets\image\dmkhac.svg" />
-    <Content Include="Assets\image\dmvieths.svg" />
-    <Content Include="Assets\image\dmvohs.svg" />
-    <Content Include="Assets\image\dungcukhac\dck1.svg" />
-    <Content Include="Assets\image\dungcukhac\dck10.svg" />
-    <Content Include="Assets\image\dungcukhac\dck11.svg" />
-    <Content Include="Assets\image\dungcukhac\dck12.svg" />
-    <Content Include="Assets\image\dungcukhac\dck13.svg" />
-    <Content Include="Assets\image\dungcukhac\dck14.svg" />
-    <Content Include="Assets\image\dungcukhac\dck15.svg" />
-    <Content Include="Assets\image\dungcukhac\dck16.svg" />
-    <Content Include="Assets\image\dungcukhac\dck17.svg" />
-    <Content Include="Assets\image\dungcukhac\dck18.svg" />
-    <Content Include="Assets\image\dungcukhac\dck19.svg" />
-    <Content Include="Assets\image\dungcukhac\dck2.svg" />
-    <Content Include="Assets\image\dungcukhac\dck20.svg" />
-    <Content Include="Assets\image\dungcukhac\dck21.svg" />
-    <Content Include="Assets\image\dungcukhac\dck22.svg" />
-    <Content Include="Assets\image\dungcukhac\dck23.svg" />
-    <Content Include="Assets\image\dungcukhac\dck24.svg" />
-    <Content Include="Assets\image\dungcukhac\dck25.svg" />
-    <Content Include="Assets\image\dungcukhac\dck26.svg" />
-    <Content Include="Assets\image\dungcukhac\dck3.svg" />
-    <Content Include="Assets\image\dungcukhac\dck4.svg" />
-    <Content Include="Assets\image\dungcukhac\dck5.svg" />
-    <Content Include="Assets\image\dungcukhac\dck6.svg" />
-    <Content Include="Assets\image\dungcukhac\dck7.svg" />
-    <Content Include="Assets\image\dungcukhac\dck8.svg" />
-    <Content Include="Assets\image\dungcukhac\dck9.svg" />
-    <Content Include="Assets\image\hoapham\hp1.svg" />
-    <Content Include="Assets\image\hoapham\hp10.svg" />
-    <Content Include="Assets\image\hoapham\hp2.svg" />
-    <Content Include="Assets\image\hoapham\hp3.svg" />
-    <Content Include="Assets\image\hoapham\hp4.svg" />
-    <Content Include="Assets\image\hoapham\hp5.svg" />
-    <Content Include="Assets\image\hoapham\hp6.svg" />
-    <Content Include="Assets\image\hoapham\hp7.svg" />
-    <Content Include="Assets\image\hoapham\hp8.svg" />
-    <Content Include="Assets\image\hoapham\hp9.svg" />
-    <Content Include="Assets\image\icon\icon-fb.svg" />
-    <Content Include="Assets\image\icon\icon-ista.svg" />
-    <Content Include="Assets\image\icon\icon-tt.svg" />
-    <Content Include="Assets\image\icon\icon-ytb.svg" />
-    <Content Include="Assets\image\logo_admin.svg" />
-    <Content Include="Assets\image\logo_store.svg" />
-    <Content Include="Assets\image\qrthanhtoan.svg" />
-    <Content Include="Assets\image\tenspnb.svg" />
-    <Content Include="Assets\image\vohs\vo1.svg" />
-    <Content Include="Assets\image\vohs\vo10.svg" />
-    <Content Include="Assets\image\vohs\vo11.svg" />
-    <Content Include="Assets\image\vohs\vo12.svg" />
-    <Content Include="Assets\image\vohs\vo14.svg" />
-    <Content Include="Assets\image\vohs\vo15.svg" />
-    <Content Include="Assets\image\vohs\vo16.svg" />
-    <Content Include="Assets\image\vohs\vo17.svg" />
-    <Content Include="Assets\image\vohs\vo2.svg" />
-    <Content Include="Assets\image\vohs\vo3.svg" />
-    <Content Include="Assets\image\vohs\vo4.svg" />
-    <Content Include="Assets\image\vohs\vo5.svg" />
-    <Content Include="Assets\image\vohs\vo6.svg" />
-    <Content Include="Assets\image\vohs\vo7.svg" />
-    <Content Include="Assets\image\vohs\vo8.svg" />
-    <Content Include="Assets\image\vohs\vo9.svg" />
-    <Content Include="Assets\jjs\AdChitietdonhang.js" />
-    <Content Include="Assets\jjs\AdDonhang.js" />
-    <Content Include="Assets\jjs\AdLienhe.js" />
-    <Content Include="Assets\jjs\Admin.js" />
-    <Content Include="Assets\jjs\AdSanpham.js" />
-    <Content Include="Assets\jjs\AdTaikhoan.js" />
-    <Content Include="Assets\jjs\AdThemsanpham.js" />
-    <Content Include="Assets\jjs\Chitietdonhang.js" />
-    <Content Include="Assets\jjs\ChiTietSP.js" />
-    <Content Include="Assets\jjs\dangki.js" />
-    <Content Include="Assets\jjs\dangnhap.js" />
-    <Content Include="Assets\jjs\data.js" />
-    <Content Include="Assets\jjs\Donhang.js" />
-    <Content Include="Assets\jjs\Giohang.js" />
-    <Content Include="Assets\jjs\lienhe.js" />
-    <Content Include="Assets\jjs\SPChung.js" />
-    <Content Include="Assets\jjs\Thongtinnguoidung.js" />
-    <Content Include="Assets\jjs\Timkiem.js" />
-    <Content Include="Assets\jjs\Trangchu.js" />
-    <Content Include="Assets\jjs\Trangsp.js" />
-    <Content Include="Assets\jjs\YeuThich.js" />
+    <Content Include="Assets\Admin\assets\demo\chart-area-demo.js" />
+    <Content Include="Assets\Admin\assets\demo\chart-bar-demo.js" />
+    <Content Include="Assets\Admin\assets\demo\chart-pie-demo.js" />
+    <Content Include="Assets\Admin\assets\demo\datatables-demo.js" />
+    <Content Include="Assets\Admin\assets\img\error-404-monochrome.svg" />
+    <Content Include="Assets\Admin\css\styles.css" />
+    <Content Include="Assets\Admin\js\datatables-simple-demo.js" />
+    <Content Include="Assets\Admin\js\scripts.js" />
+    <Content Include="Assets\Client\CSS\admin.css" />
+    <Content Include="Assets\Client\CSS\Adsp.css" />
+    <Content Include="Assets\Client\CSS\Adtaikhoan.css" />
+    <Content Include="Assets\Client\CSS\AdThemsanpham.css" />
+    <Content Include="Assets\Client\CSS\DK-DN.css" />
+    <Content Include="Assets\Client\CSS\Donhang.css" />
+    <Content Include="Assets\Client\CSS\Thongtinnguoidung.css" />
+    <Content Include="Assets\Client\CSS\TrangChiTietSanPham.css" />
+    <Content Include="Assets\Client\CSS\Trangchu.css" />
+    <Content Include="Assets\Client\CSS\TrangGioHang.css" />
+    <Content Include="Assets\Client\CSS\TrangLienHe.css" />
+    <Content Include="Assets\Client\CSS\TrangSanPham.css" />
+    <Content Include="Assets\Client\CSS\TrangYeuThich.css" />
+    <Content Include="Assets\Client\image\balo\bl1.svg" />
+    <Content Include="Assets\Client\image\balo\bl10.svg" />
+    <Content Include="Assets\Client\image\balo\bl11.svg" />
+    <Content Include="Assets\Client\image\balo\bl12.svg" />
+    <Content Include="Assets\Client\image\balo\bl13.svg" />
+    <Content Include="Assets\Client\image\balo\bl14.svg" />
+    <Content Include="Assets\Client\image\balo\bl15.svg" />
+    <Content Include="Assets\Client\image\balo\bl16.svg" />
+    <Content Include="Assets\Client\image\balo\bl2.svg" />
+    <Content Include="Assets\Client\image\balo\bl3.svg" />
+    <Content Include="Assets\Client\image\balo\bl4.svg" />
+    <Content Include="Assets\Client\image\balo\bl5.svg" />
+    <Content Include="Assets\Client\image\balo\bl6.svg" />
+    <Content Include="Assets\Client\image\balo\bl7.svg" />
+    <Content Include="Assets\Client\image\balo\bl8.svg" />
+    <Content Include="Assets\Client\image\balo\bl9.svg" />
+    <Content Include="Assets\Client\image\banner1.svg" />
+    <Content Include="Assets\Client\image\banner2.svg" />
+    <Content Include="Assets\Client\image\banner3.svg" />
+    <Content Include="Assets\Client\image\bannergiaohang\dtmp.svg" />
+    <Content Include="Assets\Client\image\bannergiaohang\ghn.svg" />
+    <Content Include="Assets\Client\image\bannergiaohang\gud.svg" />
+    <Content Include="Assets\Client\image\bannergiaohang\ht247.svg" />
+    <Content Include="Assets\Client\image\bannersp.svg" />
+    <Content Include="Assets\Client\image\buths\but1.svg" />
+    <Content Include="Assets\Client\image\buths\but10.svg" />
+    <Content Include="Assets\Client\image\buths\but11.svg" />
+    <Content Include="Assets\Client\image\buths\but12.svg" />
+    <Content Include="Assets\Client\image\buths\but13.svg" />
+    <Content Include="Assets\Client\image\buths\but14.svg" />
+    <Content Include="Assets\Client\image\buths\but15.svg" />
+    <Content Include="Assets\Client\image\buths\but16.svg" />
+    <Content Include="Assets\Client\image\buths\but2.svg" />
+    <Content Include="Assets\Client\image\buths\but3.svg" />
+    <Content Include="Assets\Client\image\buths\but4.svg" />
+    <Content Include="Assets\Client\image\buths\but5.svg" />
+    <Content Include="Assets\Client\image\buths\but6.svg" />
+    <Content Include="Assets\Client\image\buths\but7.svg" />
+    <Content Include="Assets\Client\image\buths\but8.svg" />
+    <Content Include="Assets\Client\image\buths\but9.svg" />
+    <Content Include="Assets\Client\image\Dcdo_tinhtoan\dott1.svg" />
+    <Content Include="Assets\Client\image\Dcdo_tinhtoan\dott2.svg" />
+    <Content Include="Assets\Client\image\Dcdo_tinhtoan\dott3.svg" />
+    <Content Include="Assets\Client\image\Dcdo_tinhtoan\dott4.svg" />
+    <Content Include="Assets\Client\image\Dcdo_tinhtoan\dott5.svg" />
+    <Content Include="Assets\Client\image\Dcdo_tinhtoan\dott6.svg" />
+    <Content Include="Assets\Client\image\Dcdo_tinhtoan\dott7.svg" />
+    <Content Include="Assets\Client\image\Dcdo_tinhtoan\dott8.svg" />
+    <Content Include="Assets\Client\image\dmbalo.svg" />
+    <Content Include="Assets\Client\image\dmdungcudo.svg" />
+    <Content Include="Assets\Client\image\dmhospham.svg" />
+    <Content Include="Assets\Client\image\dmkhac.svg" />
+    <Content Include="Assets\Client\image\dmvieths.svg" />
+    <Content Include="Assets\Client\image\dmvohs.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck1.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck10.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck11.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck12.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck13.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck14.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck15.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck16.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck17.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck18.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck19.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck2.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck20.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck21.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck22.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck23.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck24.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck25.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck26.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck3.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck4.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck5.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck6.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck7.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck8.svg" />
+    <Content Include="Assets\Client\image\dungcukhac\dck9.svg" />
+    <Content Include="Assets\Client\image\hoapham\hp1.svg" />
+    <Content Include="Assets\Client\image\hoapham\hp10.svg" />
+    <Content Include="Assets\Client\image\hoapham\hp2.svg" />
+    <Content Include="Assets\Client\image\hoapham\hp3.svg" />
+    <Content Include="Assets\Client\image\hoapham\hp4.svg" />
+    <Content Include="Assets\Client\image\hoapham\hp5.svg" />
+    <Content Include="Assets\Client\image\hoapham\hp6.svg" />
+    <Content Include="Assets\Client\image\hoapham\hp7.svg" />
+    <Content Include="Assets\Client\image\hoapham\hp8.svg" />
+    <Content Include="Assets\Client\image\hoapham\hp9.svg" />
+    <Content Include="Assets\Client\image\icon\icon-fb.svg" />
+    <Content Include="Assets\Client\image\icon\icon-ista.svg" />
+    <Content Include="Assets\Client\image\icon\icon-tt.svg" />
+    <Content Include="Assets\Client\image\icon\icon-ytb.svg" />
+    <Content Include="Assets\Client\image\logo_admin.svg" />
+    <Content Include="Assets\Client\image\logo_store.svg" />
+    <Content Include="Assets\Client\image\qrthanhtoan.svg" />
+    <Content Include="Assets\Client\image\tenspnb.svg" />
+    <Content Include="Assets\Client\image\vohs\vo1.svg" />
+    <Content Include="Assets\Client\image\vohs\vo10.svg" />
+    <Content Include="Assets\Client\image\vohs\vo11.svg" />
+    <Content Include="Assets\Client\image\vohs\vo12.svg" />
+    <Content Include="Assets\Client\image\vohs\vo14.svg" />
+    <Content Include="Assets\Client\image\vohs\vo15.svg" />
+    <Content Include="Assets\Client\image\vohs\vo16.svg" />
+    <Content Include="Assets\Client\image\vohs\vo17.svg" />
+    <Content Include="Assets\Client\image\vohs\vo2.svg" />
+    <Content Include="Assets\Client\image\vohs\vo3.svg" />
+    <Content Include="Assets\Client\image\vohs\vo4.svg" />
+    <Content Include="Assets\Client\image\vohs\vo5.svg" />
+    <Content Include="Assets\Client\image\vohs\vo6.svg" />
+    <Content Include="Assets\Client\image\vohs\vo7.svg" />
+    <Content Include="Assets\Client\image\vohs\vo8.svg" />
+    <Content Include="Assets\Client\image\vohs\vo9.svg" />
+    <Content Include="Assets\Client\jjs\AdChitietdonhang.js" />
+    <Content Include="Assets\Client\jjs\AdDonhang.js" />
+    <Content Include="Assets\Client\jjs\AdLienhe.js" />
+    <Content Include="Assets\Client\jjs\Admin.js" />
+    <Content Include="Assets\Client\jjs\AdSanpham.js" />
+    <Content Include="Assets\Client\jjs\AdTaikhoan.js" />
+    <Content Include="Assets\Client\jjs\AdThemsanpham.js" />
+    <Content Include="Assets\Client\jjs\Chitietdonhang.js" />
+    <Content Include="Assets\Client\jjs\ChiTietSP.js" />
+    <Content Include="Assets\Client\jjs\dangki.js" />
+    <Content Include="Assets\Client\jjs\dangnhap.js" />
+    <Content Include="Assets\Client\jjs\data.js" />
+    <Content Include="Assets\Client\jjs\Donhang.js" />
+    <Content Include="Assets\Client\jjs\Giohang.js" />
+    <Content Include="Assets\Client\jjs\lienhe.js" />
+    <Content Include="Assets\Client\jjs\SPChung.js" />
+    <Content Include="Assets\Client\jjs\Thongtinnguoidung.js" />
+    <Content Include="Assets\Client\jjs\Timkiem.js" />
+    <Content Include="Assets\Client\jjs\Trangchu.js" />
+    <Content Include="Assets\Client\jjs\Trangsp.js" />
+    <Content Include="Assets\Client\jjs\YeuThich.js" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -390,15 +375,15 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Model1.Context.tt">
+    <Content Include="Models\QLBanDoDungHocTap.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>QLBanDoDungHocTap.edmx</DependentUpon>
+      <LastGenOutput>QLBanDoDungHocTap.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model1.tt">
+    <Content Include="Models\QLBanDoDungHocTap.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>QLBanDoDungHocTap.edmx</DependentUpon>
+      <LastGenOutput>QLBanDoDungHocTap.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -407,29 +392,26 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Assets\CSS\a" />
-    <Content Include="Assets\jjs\a" />
-    <Content Include="Assets\image\bannergiaohang\a" />
-    <Content Include="Assets\image\buths\a" />
-    <Content Include="Assets\image\Dcdo_tinhtoan\a" />
-    <Content Include="Assets\image\dungcukhac\a" />
-    <Content Include="Assets\image\hoapham\a" />
-    <Content Include="Assets\image\icon\a" />
-    <Content Include="Assets\image\vohs\a" />
-    <EntityDeploy Include="Models\Model1.edmx">
+    <Content Include="Assets\Client\CSS\a" />
+    <Content Include="Assets\Client\jjs\a" />
+    <Content Include="Assets\Client\image\bannergiaohang\a" />
+    <Content Include="Assets\Client\image\buths\a" />
+    <Content Include="Assets\Client\image\Dcdo_tinhtoan\a" />
+    <Content Include="Assets\Client\image\dungcukhac\a" />
+    <Content Include="Assets\Client\image\hoapham\a" />
+    <Content Include="Assets\Client\image\icon\a" />
+    <Content Include="Assets\Client\image\vohs\a" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LoginAdmin\Login.cshtml" />
+    <EntityDeploy Include="Models\QLBanDoDungHocTap.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>QLBanDoDungHocTap.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <Content Include="Models\QLBanDoDungHocTap.edmx.diagram">
+      <DependentUpon>QLBanDoDungHocTap.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\Admin\Admin.cshtml" />
-    <Content Include="Areas\Admin\Views\AdChitietdonhang\AdChitietdonhang.cshtml" />
-    <Content Include="Areas\Admin\Views\Addonhang\Addonhang.cshtml" />
-    <Content Include="Areas\Admin\Views\Adlienhe\Adlienhe.cshtml" />
-    <Content Include="Areas\Admin\Views\Adsanpham\Adsanpham.cshtml" />
-    <Content Include="Areas\Admin\Views\Adtaikhoan\Adtaikhoan.cshtml" />
-    <Content Include="Areas\Admin\Views\adThemsanpham\adThemsanpham.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\AdminLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\SideBar.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -450,7 +432,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_UserLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
@@ -473,7 +454,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Admin\Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

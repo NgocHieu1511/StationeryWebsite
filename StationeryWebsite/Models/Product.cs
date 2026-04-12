@@ -18,7 +18,6 @@ namespace StationeryWebsite.Models
         public Product()
         {
             this.Carts = new HashSet<Cart>();
-            this.Feedbacks = new HashSet<Feedback>();
             this.Order_detail = new HashSet<Order_detail>();
         }
     
@@ -33,15 +32,13 @@ namespace StationeryWebsite.Models
         public Nullable<int> sold_quantity { get; set; }
         public int quantity { get; set; }
         public int category_id { get; set; }
-        public int brand_id { get; set; }
-        public int status { get; set; }
+        public string brand { get; set; }
+        public bool status { get; set; }
+        public System.DateTime created_at { get; set; }
     
-        public virtual Brand Brand { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Carts { get; set; }
         public virtual Category Category { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Feedback> Feedbacks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_detail> Order_detail { get; set; }
     }

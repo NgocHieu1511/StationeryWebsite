@@ -22,7 +22,7 @@ namespace StationeryWebsite.Models
     
         public int order_id { get; set; }
         public System.DateTime date { get; set; }
-        public decimal total_prince { get; set; }
+        public decimal total_price { get; set; }
         public int status_id { get; set; }
         public int user_id { get; set; }
     

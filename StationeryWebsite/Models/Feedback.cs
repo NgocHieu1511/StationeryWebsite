@@ -20,7 +20,6 @@ namespace StationeryWebsite.Models
         public string comment { get; set; }
         public Nullable<int> vote { get; set; }
     
-        public virtual Product Product { get; set; }
         public virtual User User { get; set; }
     }
 }

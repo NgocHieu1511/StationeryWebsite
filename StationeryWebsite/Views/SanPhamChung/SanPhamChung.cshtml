@@ -7,9 +7,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
     <title>Cửa hàng dụng cụ học tập</title>
-    <link rel="icon" href="../image/logo_icon.png" />
-    <link rel="stylesheet" href="../CSS/TrangSanPham.css" />
-    <link rel="stylesheet" href="../CSS/TrangChu.css" />
+    <link rel="icon" href="~/Assets/image/logo_icon.png" />
+    <link rel="stylesheet" href="~/Assets/CSS/TrangSanPham.css" />
+    <link rel="stylesheet" href="~/Assets/CSS/TrangChu.css" />
     <!-- link thu vien icon Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
@@ -25,7 +25,7 @@
             <div class="header-top container">
                 <!-- Logo của cửa hàng -->
                 <div class="logo">
-                    <img src="../image/logo_store.svg" alt="logo_store" />
+                    <img src="~/Assets/image/logo_store.svg" alt="logo_store" />
                 </div>
                 <!-- Thanh tìm kiếm -->
                 <form class="search-box">
@@ -41,7 +41,7 @@
                             <span class="number">076 299 0875</span>
                         </div>
                     </div>
-                    <a class="GioHang" href="../Html/TrangGioHang.html">
+                    <a class="GioHang" href="/GioHang/GioHang">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </a>
                 </div>
@@ -49,20 +49,20 @@
             <!--Thanh menu -->
             <nav class="menu">
                 <ul>
-                    <li><a href="../Html/TrangChu.html">Trang chủ</a></li>
+                    <li><a href="/Home/Index">Trang chủ</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="../Html/SanPhamChung.html" id="Dropdown-SP">Sản phẩm</a>
-                        <ul class="dropdown-menu rd-menu">
-                            <li><a class="dropdown-item" href="../Html/TrangSanPham.html">Dụng cụ viết</a></li>
-                            <li><a class="dropdown-item" href="../Html/SPDungVoHocSinh.html">Vở học sinh</a></li>
-                            <li><a class="dropdown-item" href="../Html/SPDungCuDo_TinhToan.html">Dụng cụ đo, tính toán</a></li>
-                            <li><a class="dropdown-item" href="../Html/SPHoaPham.html">Họa phẩm</a></li>
-                            <li><a class="dropdown-item" href="../Html/SPBalo.html">Balo</a></li>
-                            <li><a class="dropdown-item" href="../Html/SPCacSanPhamKhac.html">Các sản phẩm khác</a></li>
+                        <a class="nav-link dropdown-toggle" href='SanPhamChung/SanPhamChung'</a>Sản phẩm</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/SanPham/SanPham">Dụng cụ viết</a></li>
+                            <li><a class="dropdown-item" href="/SPVoHocSinh/SPVoHocSinh"</a>Vở học sinh</a></li>
+                            <li><a class="dropdown-item" href="/SPDungCuDo_TinhToan/SPDungCuDo_TinhToan">Dụng cụ đo, tính toán</a></li>
+                            <li><a class="dropdown-item" href="/HoaPham/HoaPham">Họa phẩm</a></li>
+                            <li><a class="dropdown-item" href="/SPBalo/SPBalo">Balo</a></li>
+                            <li><a class="dropdown-item" href="/SPCacSanPhamKhac/SPCacSanPhamKhac">Các sản phẩm khác</a></li>
                         </ul>
                     </li>
-                    <li><a href="../Html/TrangYeuThich.html">Yêu thích</a></li>
-                    <li><a href="../Html/TrangLienHe.html">Liên hệ</a></li>
+                    <li><a href="/YeuThich/YeuThich">Yêu thích</a></li>
+                    <li><a href="/LienHe/LienHe" class="active">Liên hệ</a></li>
                 </ul>
             </nav>
         </div>
@@ -77,27 +77,27 @@
                         <ul class="sidebar-menu">
                             <li>
                                 <i class="fa-solid fa-pencil"></i>
-                                <a href="../Html/TrangSanPham.html">Dụng cụ viết</a>
+                                <a href="~/Assets/Html/TrangSanPham.html">Dụng cụ viết</a>
                             </li>
                             <li>
                                 <i class="fa-solid fa-book"></i>
-                                <a href="../Html/SPDungVoHocSinh.html">Vở học sinh</a>
+                                <a href="~/Assets/Html/SPDungVoHocSinh.html">Vở học sinh</a>
                             </li>
                             <li>
                                 <i class="fa-solid fa-calculator"></i>
-                                <a href="../Html/SPDungCuDo_TinhToan.html">Dụng cụ đo, tính toán</a>
+                                <a href="~/Assets/Html/SPDungCuDo_TinhToan.html">Dụng cụ đo, tính toán</a>
                             </li>
                             <li>
                                 <i class="fa-solid fa-palette"></i>
-                                <a href="../Html/SPHoaPham.html">Họa phẩm</a>
+                                <a href="~/Assets/Html/SPHoaPham.html">Họa phẩm</a>
                             </li>
                             <li>
                                 <i class="fa-solid fa-briefcase"></i>
-                                <a href="../Html/SPBalo.html">Balo</a>
+                                <a href="~/Assets/Html/SPBalo.html">Balo</a>
                             </li>
                             <li>
                                 <i class="fa-solid fa-box"></i>
-                                <a href="../Html/SPCacSanPhamKhac.html">Các sản phẩm khác</a>
+                                <a href="~/Assets/Html/SPCacSanPhamKhac.html">Các sản phẩm khác</a>
                             </li>
                         </ul>
                     </div>
@@ -142,7 +142,7 @@
 
                     <!-- Banner -->
                     <div class="sidebar-banner">
-                        <img src="../image/bannersp.svg" alt="" />
+                        <img src="~/Assets/image/bannersp.svg" alt="" />
                     </div>
                 </div>
                 <!-- Phần sản phẩm bên phải -->
@@ -225,10 +225,10 @@
 
                         <h3 class="follow-title">THEO DÕI CHÚNG TÔI</h3>
                         <div class="social-icons">
-                            <img src="../image/icon/icon-fb.svg" />
-                            <img src="../image/icon/icon-ista.svg" />
-                            <img src="../image/icon/icon-ytb.svg" />
-                            <img src="../image/icon/icon-tt.svg" />
+                            <img src="~/Assets/image/icon/icon-fb.svg" />
+                            <img src="~/Assets/image/icon/icon-ista.svg" />
+                            <img src="~/Assets/image/icon/icon-ytb.svg" />
+                            <img src="~/Assets/image/icon/icon-tt.svg" />
                         </div>
                     </div>
                 </div>
@@ -240,9 +240,9 @@
             <i class="fa-solid fa-chevron-up"></i>
         </button>
     </div>
-    <script src="../jjs/Trangchu.js"></script>
-    <script src="../jjs/data.js"></script>
-    <script src="../jjs/SPChung.js"></script>
-    <script src="../jjs/Timkiem.js"></script>
+    <script src="~/Assets/jjs/Trangchu.js"></script>
+    <script src="~/Assets/jjs/data.js"></script>
+    <script src="~/Assets/jjs/SPChung.js"></script>
+    <script src="~/Assets/jjs/Timkiem.js"></script>
 </body>
 </html>

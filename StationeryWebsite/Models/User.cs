@@ -17,6 +17,7 @@ namespace StationeryWebsite.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.Addresses = new HashSet<Address>();
             this.Carts = new HashSet<Cart>();
             this.Feedbacks = new HashSet<Feedback>();
             this.Orders = new HashSet<Order>();
@@ -30,18 +31,17 @@ namespace StationeryWebsite.Models
         public string image { get; set; }
         public string email { get; set; }
         public string phone { get; set; }
-        public System.DateTime create_at { get; set; }
-        public int permission_id { get; set; }
-        public int status { get; set; }
-        public int address_id { get; set; }
+        public Nullable<System.DateTime> created_at { get; set; }
+        public bool status { get; set; }
+        public bool role { get; set; }
     
-        public virtual Address Address { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Address> Addresses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Carts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Feedback> Feedbacks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
-        public virtual Permission Permission { get; set; }
     }
 }

@@ -14,18 +14,13 @@ namespace StationeryWebsite.Models
     
     public partial class Address
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Address()
-        {
-            this.Users = new HashSet<User>();
-        }
-    
         public int address_id { get; set; }
-        public int ward_id { get; set; }
+        public string ward_name { get; set; }
+        public string district_name { get; set; }
+        public string province_name { get; set; }
         public string specific_address { get; set; }
+        public int user_id { get; set; }
     
-        public virtual Ward Ward { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual User User { get; set; }
     }
 }

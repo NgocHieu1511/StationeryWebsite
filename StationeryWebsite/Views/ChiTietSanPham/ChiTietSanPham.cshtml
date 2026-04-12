@@ -7,9 +7,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
     <title>Cửa hàng dụng cụ học tập</title>
-    <link rel="icon" href="../image/logo_icon.png" />
-    <link rel="stylesheet" href="../CSS/TrangChiTietSanPham.css" />
-    <link rel="stylesheet" href="../CSS/TrangChu.css" />
+    <link rel="icon" href="~/Assets/image/logo_icon.png" />
+    <link rel="stylesheet" href="~/Assets/CSS/TrangChiTietSanPham.css" />
+    <link rel="stylesheet" href="~/Assets/CSS/TrangChu.css" />
     <!-- link thu vien icon Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
@@ -25,7 +25,7 @@
             <div class="header-top container">
                 <!-- Logo của cửa hàng -->
                 <div class="logo">
-                    <img src="../image/logo_store.svg" alt="logo_store" />
+                    <img src="~/Assets/image/logo_store.svg" alt="logo_store" />
                 </div>
                 <!-- Thanh tìm kiếm -->
                 <form class="search-box">
@@ -41,7 +41,7 @@
                             <span class="number">076 299 0875</span>
                         </div>
                     </div>
-                    <a class="GioHang" href="../Html/TrangGioHang.html">
+                    <a class="GioHang" href="/GioHang/GioHang">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </a>
                 </div>
@@ -49,20 +49,20 @@
             <!--Thanh menu -->
             <nav class="menu">
                 <ul>
-                    <li><a href="../Html/TrangChu.html">Trang chủ</a></li>
+                    <li><a href="/Home/Index">Trang chủ</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="../Html/SanPhamChung.html" id="Dropdown-SP">Sản phẩm</a>
+                        <a class="nav-link dropdown-toggle active" href="SanPhamChung/SanPhamChung" id="Dropdown-SP">Sản phẩm</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../Html/TrangSanPham.html">Dụng cụ viết</a></li>
-                            <li><a class="dropdown-item" href="../Html/SPDungVoHocSinh.html">Vở học sinh</a></li>
-                            <li><a class="dropdown-item" href="../Html/SPDungCuDo_TinhToan.html">Dụng cụ đo, tính toán</a></li>
-                            <li><a class="dropdown-item" href="../Html/SPHoaPham.html">Họa phẩm</a></li>
-                            <li><a class="dropdown-item" href="../Html/SPBalo.html">Balo</a></li>
-                            <li><a class="dropdown-item" href="../Html/SPCacSanPhamKhac.html">Các sản phẩm khác</a></li>
+                            <li><a class="dropdown-item" href="/SanPham/SanPham">Dụng cụ viết</a></li>
+                            <li><a class="dropdown-item" href="/SPVoHocSinh/SPVoHocSinh"</a>Vở học sinh</a></li>
+                            <li><a class="dropdown-item" href="/SPDungCuDo_TinhToan/SPDungCuDo_TinhToan">Dụng cụ đo, tính toán</a></li>
+                            <li><a class="dropdown-item" href="/HoaPham/HoaPham">Họa phẩm</a></li>
+                            <li><a class="dropdown-item" href="/SPBalo/SPBalo">Balo</a></li>
+                            <li><a class="dropdown-item" href="/SPCacSanPhamKhac/SPCacSanPhamKhac">Các sản phẩm khác</a></li>
                         </ul>
                     </li>
-                    <li><a href="../Html/TrangYeuThich.html">Yêu thích</a></li>
-                    <li><a href="../Html/TrangLienHe.html">Liên hệ</a></li>
+                    <li><a href="/YeuThich/YeuThich">Yêu thích</a></li>
+                    <li><a href="/LienHe/LienHe" class="active">Liên hệ</a></li>
                 </ul>
             </nav>
         </div>
@@ -188,10 +188,10 @@
 
                         <h3 class="follow-title">THEO DÕI CHÚNG TÔI</h3>
                         <div class="social-icons">
-                            <img src="../image/icon/icon-fb.svg" />
-                            <img src="../image/icon/icon-ista.svg" />
-                            <img src="../image/icon/icon-ytb.svg" />
-                            <img src="../image/icon/icon-tt.svg" />
+                            <img src="~/Assets/image/icon/icon-fb.svg" />
+                            <img src="~/Assets/image/icon/icon-ista.svg" />
+                            <img src="~/Assets/image/icon/icon-ytb.svg" />
+                            <img src="~/Assets/image/icon/icon-tt.svg" />
                         </div>
                     </div>
                 </div>
@@ -203,13 +203,13 @@
             <i class="fa-solid fa-chevron-up"></i>
         </button>
     </div>
-    <script src="../jjs/Trangchu.js"></script>
-    <script src="../jjs/data.js"></script>
-    <script src="../jjs/Trangsp.js"></script>
+    <script src="~/Assets/jjs/Trangchu.js"></script>
+    <script src="~/Assets/jjs/data.js"></script>
+    <script src="~/Assets/jjs/Trangsp.js"></script>
     <!-- dsSanPham -->
-    <script src="../jjs/Giohang.js"></script>
+    <script src="~/Assets/jjs/Giohang.js"></script>
     <!-- chứa hàm themGioHang() -->
-    <script src="../jjs/ChiTietSP.js"></script>
-    <script src="../jjs/Timkiem.js"></script>
+    <script src="~/Assets/jjs/ChiTietSP.js"></script>
+    <script src="~/Assets/jjs/Timkiem.js"></script>
 </body>
 </html>
