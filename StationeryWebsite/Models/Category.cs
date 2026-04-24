@@ -11,7 +11,8 @@ namespace StationeryWebsite.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,7 @@ namespace StationeryWebsite.Models
         }
     
         public int category_id { get; set; }
+        [Required(ErrorMessage = "Please enter category name")]
         public string name { get; set; }
         public string image { get; set; }
         public string note { get; set; }

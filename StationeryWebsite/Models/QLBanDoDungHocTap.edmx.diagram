@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="632e0dcfbd4f4cdcb016e75379e88ead" Name="Diagram1">
+      <Diagram DiagramId="632e0dcfbd4f4cdcb016e75379e88ead" Name="Diagram1" ZoomLevel="67">
         <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Address" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Cart" Width="1.5" PointX="6" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Category" Width="1.5" PointX="3.75" PointY="15.125" IsExpanded="true" />

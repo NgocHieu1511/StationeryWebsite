@@ -1,0 +1,135 @@
+﻿@model IEnumerable<StationeryWebsite.Models.User>
+
+@{
+    ViewBag.Title = "Quản lý người dùng";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container-fluid px-4">
+
+    <div class="page-header">
+        <h2 class="header-title">Danh sách tài khoản </h2>
+
+        <div class="header-sub-title">
+            <nav class="breadcrumb breadcrumb-dash">
+                <a href="@Url.Action("Index","HomeAdmin", new { area = "Admin" })" class="breadcrumb-item">
+                    <i class="anticon anticon-home m-r-5"></i>Trang chủ
+                </a>
+                
+                <span class="breadcrumb-item active">Danh sách tài khoản</span>
+            </nav>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="row mb-3">
+
+            <div class="col-md-3">
+                <label>Filter Role</label>
+                <select id="filterRole" class="form-select">
+                    <option value="" disabled selected>-- All Role --</option>
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label>Filter Status</label>
+                <select id="filterStatus" class="form-select">
+                    <option value="" disabled selected>-- All Status --</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="card-header d-flex justify-content-between align-items-center">
+
+
+            <div>
+                <i class="fas fa-users me-1"></i>
+                User List
+            </div>
+            <div>
+                @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-sm" })
+            </div>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-bordered table-hover table-striped">
+                <thead class="table-dark text-center">
+                    <tr>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Image</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Created At</th>
+                        <th>Status</th>
+                        <th>Role</th>
+                        <th width="180">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.username</td>
+                            <td>@item.password</td>
+                            <td>@item.first_name</td>
+                            <td>@item.last_name</td>
+
+                            <td class="text-center">
+                                <img src="~/Content/images/@item.image"
+                                     width="50"
+                                     height="50"
+                                     class="rounded-circle" />
+                            </td>
+
+                            <td>@item.email</td>
+                            <td>@item.phone</td>
+                            <td>@item.created_at</td>
+
+                            <td class="text-center">
+                                @if (item.status == true)
+                                {
+                                    <span class="badge bg-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Inactive</span>
+                                }
+                            </td>
+
+                            <td class="text-center">
+                                @if (item.role == true)
+                                {
+                                    <span class="badge bg-warning text-dark">Admin</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-info">User</span>
+                                }
+                            </td>
+
+                            <td class="text-center">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.user_id },
+                                new { @class = "btn btn-warning btn-sm" })
+
+                                @Html.ActionLink("Details", "Details", new { id = item.user_id },
+                                new { @class = "btn btn-info btn-sm" })
+
+                                @Html.ActionLink("Delete", "Delete", new { id = item.user_id },
+                                new { @class = "btn btn-danger btn-sm" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

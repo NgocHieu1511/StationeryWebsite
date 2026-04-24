@@ -1,0 +1,133 @@
+﻿@model StationeryWebsite.Models.User
+
+@{
+    ViewBag.Title = "Thông tin người dùng";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">User Details</h1>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-user me-1"></i>
+            User Information
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-4 text-center">
+                    <img src="~/Content/images/@Model.image"
+                         class="rounded-circle border mb-3"
+                         width="150"
+                         height="150" />
+
+                    <h5>@Model.first_name @Model.last_name</h5>
+                    <p class="text-muted">@Model.username</p>
+
+                    @if (Model.status == true)
+                    {
+                        <span class="badge bg-success">Active</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Inactive</span>
+                    }
+
+                    <br /><br />
+
+                    @if (Model.role == true)
+                    {
+                        <span class="badge bg-warning text-dark">Admin</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-info">User</span>
+                    }
+                </div>
+
+                <div class="col-md-8">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th width="200">Username</th>
+                            <td>@Model.username</td>
+                        </tr>
+
+                        <tr>
+                            <th>Password</th>
+                            <td>@Model.password</td>
+                        </tr>
+
+                        <tr>
+                            <th>First Name</th>
+                            <td>@Model.first_name</td>
+                        </tr>
+
+                        <tr>
+                            <th>Last Name</th>
+                            <td>@Model.last_name</td>
+                        </tr>
+
+                        <tr>
+                            <th>Email</th>
+                            <td>@Model.email</td>
+                        </tr>
+
+                        <tr>
+                            <th>Phone</th>
+                            <td>@Model.phone</td>
+                        </tr>
+
+                        <tr>
+                            <th>Created At</th>
+                            <td>@Model.created_at</td>
+                        </tr>
+
+                        <tr>
+                            <th>Status</th>
+                            <td>
+                                @if (Model.status == true)
+                                {
+                                    <span class="badge bg-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Inactive</span>
+                                }
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Role</th>
+                            <td>
+                                @if (Model.role == true)
+                                {
+                                    <span class="badge bg-warning text-dark">Admin</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-info">User</span>
+                                }
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="mt-3">
+                <a href="@Url.Action("Edit", new { id = Model.user_id })" class="btn btn-warning">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+
+                <a href="@Url.Action("Index")" class="btn btn-secondary">
+                    Back to List
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>

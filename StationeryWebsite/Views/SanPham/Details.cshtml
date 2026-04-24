@@ -1,0 +1,59 @@
+﻿@model StationeryWebsite.Models.Product
+
+@{
+    ViewBag.Title = Model.name;
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+<!-- phan noi dung -->
+<div class="container mt-4">
+    <table class="Bang-SP" id="sp2">
+        <tr>
+            <td rowspan="2" class="product-img">
+                <img id="ct-img" src="" alt="ảnh sản phẩm" />
+            </td>
+
+            <td class="product-top position-relative">
+                <h4 id="ct-ten"></h4>
+
+                <p>
+                    Giá:
+                    <span class="GiaSP-chitiet" id="ct-gia"></span>
+                </p>
+
+                <p id="ct-ma"></p>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="product-bottom">
+                <ul id="ct-thongso"></ul>
+
+                <!-- Nút mua hàng  -->
+                <div class="quantity-section">
+                    <div class="quantity-control">
+                        <button class="btn-minus">-</button>
+                        <input id="ct-sl" type="number" value="1" min="1" />
+                        <button class="btn-plus">+</button>
+                    </div>
+
+                    <button id="btn-add-cart" class="add-cart">Thêm vào giỏ hàng</button>
+                </div>
+
+                <!-- Phần nhận tư vấn -->
+                <div class="consult-section">
+                    <input type="text" placeholder="Số điện thoại của bạn" />
+                    <button class="btn-consult">NHẬN TƯ VẤN</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Các sp tương tự -->
+    <div class="spttchung mt-4">
+        <h5 class="text-success fw-bold mb-3">CÁC SẢN PHẨM TƯƠNG TỰ</h5>
+
+        <div class="product-list" id="spTuongTu"></div>
+    </div>
+</div>

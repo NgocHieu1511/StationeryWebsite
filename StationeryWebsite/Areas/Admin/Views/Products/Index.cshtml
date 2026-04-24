@@ -1,0 +1,142 @@
+﻿@using X.PagedList.Mvc
+@using X.PagedList
+@model X.PagedList.IPagedList<StationeryWebsite.Models.Product>
+@{
+    ViewBag.Title = "Quản lý sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Quản lý sản phẩm</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Quản lý sản phẩm</li>
+        </ol>
+        @*<div class="card mb-4">
+                <div class="card-body">
+                    DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
+                    <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
+                    .
+                </div>
+            </div>*@
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Danh sách sản phẩm
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Ảnh</th>
+                            <th>Tên sản phẩm </th>
+                            <th>Danh mục </th>
+                            <th>Giá</th>
+                            <th>Giảm giá</th>
+                            <th>Tồn kho</th>
+                            <th>Đã bán</th>
+                            <th>Danh mục</th>
+                            <th>Trạng thái</th>
+                            <th width="180">Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Ảnh</th>
+                            <th>Tên sản phẩm </th>
+                            <th>Danh mục </th>
+                            <th>Giá</th>
+                            <th>Giảm giá</th>
+                            <th>Tồn kho</th>
+                            <th>Đã bán</th>
+                            <th>Danh mục</th>
+                            <th>Trạng thái</th>
+                            <th width="180">Chức năng</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="@Url.Content("~/Content/images/" + item.image)"
+                                             width="60"
+                                             class="img-thumbnail" />
+                                    </td>
+
+                                    <td>
+                                        <strong>@item.name</strong>
+                                    </td>
+                                    <td>
+                                        <strong>@item.Category.name</strong>
+                                    </td>
+
+                                    <td>
+                                        @String.Format("{0:N0} đ", item.price)
+                                    </td>
+
+                                    <td>
+                                        @item.discount %
+                                    </td>
+
+                                    <td>
+                                        <span class="badge bg-info">
+                                            @item.quantity
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <span class="badge bg-success">
+                                            @item.sold_quantity
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        @item.Category.name
+                                    </td>
+
+                                    <td>
+                                        @if (item.status == true)
+                                        {
+                                            <span class="badge bg-success">Hiển thị</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger">Ẩn</span>
+                                        }
+                                    </td>
+
+                                    <td>
+                                        <a href="@Url.Action("Edit", new { id = item.product_id })"
+                                           class="btn btn-warning btn-sm">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+
+                                        <a href="@Url.Action("Details", new { id = item.product_id })"
+                                           class="btn btn-info btn-sm">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+
+                                        <a href="@Url.Action("Delete", new { id = item.product_id })"
+                                           class="btn btn-danger btn-sm">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+
+
+                    </tbody>
+                </table>
+                <div class="mt-3">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

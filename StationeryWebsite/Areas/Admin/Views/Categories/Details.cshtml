@@ -1,0 +1,81 @@
+﻿@model StationeryWebsite.Models.Category
+
+@{
+    ViewBag.Title = "Chi tiết danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container-fluid mt-4">
+
+    <!-- Breadcrumb -->
+    <div class="header-sub-title mb-3">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a href="@Url.Action("Index","HomeAdmin", new { area = "Admin" })" class="breadcrumb-item">
+                <i class="anticon anticon-home m-r-5"></i>Trang chủ
+            </a>
+
+            <a href="@Url.Action("Index","Categories")" class="breadcrumb-item">
+                Quản lý danh mục
+            </a>
+
+            <span class="breadcrumb-item active">Chi tiết danh mục</span>
+        </nav>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0">
+                <i class="fa fa-info-circle"></i> Chi tiết danh mục
+            </h4>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <th width="150">Tên danh mục</th>
+                            <td>@Html.DisplayFor(model => model.name)</td>
+                        </tr>
+
+                        <tr>
+                            <th>Hình ảnh</th>
+                            <td>
+                                <img src="@Url.Content("~/Content/images/" + Model.image)"
+                                     width="120"
+                                     class="img-thumbnail" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Mô tả</th>
+                            <td>@Html.DisplayFor(model => model.note)</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <hr />
+
+            <div class="d-flex justify-content-between">
+
+                <a href="@Url.Action("Index")" class="btn btn-secondary">
+                    <i class="fa fa-arrow-left"></i> Quay lại
+                </a>
+
+                <a href="@Url.Action("Edit", new { id = Model.category_id })" class="btn btn-warning">
+                    <i class="fa fa-edit"></i> Chỉnh sửa
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<StationeryWebsite.Models.Category>
+
+@{
+    ViewBag.Title = "Quản lý danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container-fluid mt-4">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a href="HomeAdmin/Index" class="breadcrumb-item">
+                <i class="anticon anticon-home m-r-5"></i>Trang chủ
+            </a>
+
+            <span class="breadcrumb-item active">Quản lý danh mục</span>
+        </nav>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Quản lý danh mục</h4>
+
+            @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-light btn-sm" })
+        </div>
+
+        <div class="card-body">
+            <table class="table table-bordered table-hover table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>
+                           Tên danh mục
+                        </th>
+                        <th>
+                            Hình ảnh
+                        </th>
+                        <th>
+                            Ghi chú
+                        </th>
+                        <th class="text-center" width="200px">Chức năng</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </td>
+
+                                <td>
+                                    <img src="~/Content/images/@item.image" width="80" class="img-thumbnail" />
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.note)
+                                </td>
+
+                                <td class="text-center">
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.category_id }, new { @class = "btn btn-warning btn-sm" })
+                                    @Html.ActionLink("Details", "Details", new { id = item.category_id }, new { @class = "btn btn-info btn-sm" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.category_id }, new { @class = "btn btn-danger btn-sm" })
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center">Không có bản ghi nào </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>

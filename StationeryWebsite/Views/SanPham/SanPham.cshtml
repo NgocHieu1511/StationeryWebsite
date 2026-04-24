@@ -1,252 +1,103 @@
-﻿<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-    <title>Cửa hàng dụng cụ học tập</title>
-    <link rel="icon" href="~/Assets/image/logo_icon.png" />
-    <link rel="stylesheet" href="~/Assets/CSS/TrangSanPham.css" />
-    <link rel="stylesheet" href="~/Assets/CSS/TrangChu.css" />
-    <!-- link thu vien icon Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-</head>
-<body>
-    <div id="scale-wrapper">
-        <!-- Phần header -->
-        <div class="header">
-            <div class="header-dkdn container">
-                <p class="welcome">Chào bạn đến với cửa hàng dụng cụ học tập School Supplies Store</p>
-                <div class="dangki-dangnhap" id="userArea"></div>
-            </div>
-            <hr class="hr-hd" />
-            <div class="header-top container">
-                <!-- Logo của cửa hàng -->
-                <div class="logo">
-                    <img src="~/Assets/image/logo_store.svg" alt="logo_store" />
-                </div>
-                <!-- Thanh tìm kiếm -->
-                <form class="search-box">
-                    <input type="text" placeholder="Tìm sản phẩm........." />
-                    <button><i class="fa fa-search"></i></button>
-                </form>
-                <!-- Hotline với Giỏ hàng -->
-                <div class="right-box">
-                    <div class="hotline-box-head">
-                        <i class="fa-solid fa-phone-volume"></i>
-                        <div class="hotline-text">
-                            <span class="title">Hotline</span>
-                            <span class="number">076 299 0875</span>
-                        </div>
-                    </div>
-                    <a class="GioHang" href="/GioHang/GioHang">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                </div>
-            </div>
-            <!--Thanh menu -->
-            <nav class="menu">
-                <ul>
-                    <li><a href="/Home/Index">Trang chủ</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href='SanPhamChung/SanPhamChung'</a>Sản phẩm</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/SanPham/SanPham">Dụng cụ viết</a></li>
-                            <li><a class="dropdown-item" href="/SPVoHocSinh/SPVoHocSinh"</a>Vở học sinh</a></li>
-                            <li><a class="dropdown-item" href="/SPDungCuDo_TinhToan/SPDungCuDo_TinhToan">Dụng cụ đo, tính toán</a></li>
-                            <li><a class="dropdown-item" href="/HoaPham/HoaPham">Họa phẩm</a></li>
-                            <li><a class="dropdown-item" href="/SPBalo/SPBalo">Balo</a></li>
-                            <li><a class="dropdown-item" href="/SPCacSanPhamKhac/SPCacSanPhamKhac">Các sản phẩm khác</a></li>
-                        </ul>
+﻿@model IEnumerable<StationeryWebsite.Models.Product>
+
+@{
+    ViewBag.Title = "SanPham";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+@{
+    ViewBag.Title = "SanPham";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<main class="container my-4">
+    <div class="row">
+        <!-- Danh mục bên trái -->
+        <div id="sidebar" class="col-md-3 sidebar">
+            <!-- Danh mục -->
+            <div class="sidebar-box">
+                <h3 class="sidebar-title">DANH MỤC</h3>
+                <ul class="sidebar-menu">
+                    <li>
+                        <i class="fa-solid fa-pencil"></i>
+                        <a href="~/Assets/Html/TrangSanPham.html" class="active">Dụng cụ viết</a>
                     </li>
-                    <li><a href="/YeuThich/YeuThich">Yêu thích</a></li>
-                    <li><a href="/LienHe/LienHe" class="active">Liên hệ</a></li>
+                    <li>
+                        <i class="fa-solid fa-book"></i>
+                        <a href="~/Assets/Html/SPDungVoHocSinh.html">Vở học sinh</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-calculator"></i>
+                        <a href="~/Assets/Html/SPDungCuDo_TinhToan.html">Dụng cụ đo, tính toán</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-palette"></i>
+                        <a href="~/Assets/Html/SPHoaPham.html">Họa phẩm</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-briefcase"></i>
+                        <a href="~/Assets/Html/SPBalo.html">Balo</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-box"></i>
+                        <a href="~/Assets/Html/SPCacSanPhamKhac.html">Các sản phẩm khác</a>
+                    </li>
                 </ul>
-            </nav>
+            </div>
+
+            <!-- Sản phẩm nổi bật -->
+            <div class="sidebar-box">
+                <h3 class="sidebar-title">SẢN PHẨM NỔI BẬT</h3>
+
+                <ul class="sidebar-product-list" id="sanPhamNoiBat">
+                    <!-- JS sẽ render vào đây -->
+                </ul>
+            </div>
+            <div class="sidebar-box">
+                <h5 class="sidebar-title">GIÁ SẢN PHẨM</h5>
+
+                <label>
+                    <input type="checkbox" class="loc-gia" data-min="0" data-max="20000" />
+                    Giá dưới 20.000 đ
+                </label>
+
+                <label>
+                    <input type="checkbox" class="loc-gia" data-min="20000" data-max="50000" />
+                    20.000 đ - 50.000 đ
+                </label>
+
+                <label>
+                    <input type="checkbox" class="loc-gia" data-min="50000" data-max="100000" />
+                    50.000 đ - 100.000 đ
+                </label>
+
+                <label>
+                    <input type="checkbox" class="loc-gia" data-min="100000" data-max="200000" />
+                    100.000 đ - 200.000 đ
+                </label>
+
+                <label>
+                    <input type="checkbox" class="loc-gia" data-min="200000" data-max="999999999" />
+                    Giá trên 200.000 đ
+                </label>
+            </div>
+            <!-- Banner -->
+            <div class="sidebar-banner">
+                <img src="~/Assets/image/bannersp.svg" alt="" />
+            </div>
         </div>
-        <!-- phần nội dung -->
-        <main class="container my-4">
-            <div class="row">
-                <!-- Danh mục bên trái -->
-                <div id="sidebar" class="col-md-3 sidebar">
-                    <!-- Danh mục -->
-                    <div class="sidebar-box">
-                        <h3 class="sidebar-title">DANH MỤC</h3>
-                        <ul class="sidebar-menu">
-                            <li>
-                                <i class="fa-solid fa-pencil"></i>
-                                <a href="~/Assets/Html/TrangSanPham.html" class="active">Dụng cụ viết</a>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-book"></i>
-                                <a href="~/Assets/Html/SPDungVoHocSinh.html">Vở học sinh</a>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-calculator"></i>
-                                <a href="~/Assets/Html/SPDungCuDo_TinhToan.html">Dụng cụ đo, tính toán</a>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-palette"></i>
-                                <a href="~/Assets/Html/SPHoaPham.html">Họa phẩm</a>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-briefcase"></i>
-                                <a href="~/Assets/Html/SPBalo.html">Balo</a>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-box"></i>
-                                <a href="~/Assets/Html/SPCacSanPhamKhac.html">Các sản phẩm khác</a>
-                            </li>
-                        </ul>
-                    </div>
 
-                    <!-- Sản phẩm nổi bật -->
-                    <div class="sidebar-box">
-                        <h3 class="sidebar-title">SẢN PHẨM NỔI BẬT</h3>
+        <!-- Phần sản phẩm bên phải -->
+        <div class="col-md-9">
+            <h2 class="txtdungcuviet mb-4">DỤNG CỤ VIẾT</h2>
+            <hr />
 
-                        <ul class="sidebar-product-list" id="sanPhamNoiBat">
-                            <!-- JS sẽ render vào đây -->
-                        </ul>
-                    </div>
-                    <div class="sidebar-box">
-                        <h5 class="sidebar-title">GIÁ SẢN PHẨM</h5>
-
-                        <label>
-                            <input type="checkbox" class="loc-gia" data-min="0" data-max="20000" />
-                            Giá dưới 20.000 đ
-                        </label>
-
-                        <label>
-                            <input type="checkbox" class="loc-gia" data-min="20000" data-max="50000" />
-                            20.000 đ - 50.000 đ
-                        </label>
-
-                        <label>
-                            <input type="checkbox" class="loc-gia" data-min="50000" data-max="100000" />
-                            50.000 đ - 100.000 đ
-                        </label>
-
-                        <label>
-                            <input type="checkbox" class="loc-gia" data-min="100000" data-max="200000" />
-                            100.000 đ - 200.000 đ
-                        </label>
-
-                        <label>
-                            <input type="checkbox" class="loc-gia" data-min="200000" data-max="999999999" />
-                            Giá trên 200.000 đ
-                        </label>
-                    </div>
-                    <!-- Banner -->
-                    <div class="sidebar-banner">
-                        <img src="~/Assets/image/bannersp.svg" alt="" />
-                    </div>
-                </div>
-
-                <!-- Phần sản phẩm bên phải -->
-                <div class="col-md-9">
-                    <h2 class="txtdungcuviet mb-4">DỤNG CỤ VIẾT</h2>
-                    <hr />
-
-                    <div class="row g-3" id="listSanPham"></div>
-                    <!-- Nút chuyển trang -->
-                    <div class="phantrang" id="pagination"></div>
-                </div>
-            </div>
-        </main>
-        <!-- Phần footer -->
-        <footer class="footer">
-            <div class="container container-footer">
-                <div class="row">
-                    <!-- CỘT 1: THÔNG TIN -->
-                    <div class="col-lg-4 col-md-6 col-12 footer-col">
-                        <h3>THÔNG TIN CHUNG</h3>
-                        <p>
-                            SchoolSuppliesStore là cửa hàng bán dụng cụ học tập,
-                            <br />
-                            luôn cập nhật các sản phẩm mới theo xu thế thị trường.
-                        </p>
-
-                        <p>
-                            <i class="fa-solid fa-envelope"></i>
-                            SchoolSuppliesStore@gmail.com
-                        </p>
-
-                        <p>
-                            <i class="fa-solid fa-location-dot"></i>
-                            243 Trần Văn Giàu, Phường Hòa Thuận,
-                            <br />
-                            Tỉnh Vĩnh Long
-                        </p>
-
-                        <div class="hotline-box-end">
-                            <i class="fa-solid fa-phone-volume phone-icon"></i>
-                            <div>
-                                <p class="hotline-number">076.299.0875</p>
-                                <p class="hotline-time">7h00 - 18h00 (T2 - T7)</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- CỘT 2: HỖ TRỢ + CHÍNH SÁCH -->
-                    <div class="col-lg-4 col-md-6 col-12 footer-col">
-                        <div class="row">
-                            <div class="col-6">
-                                <h3>HỖ TRỢ</h3>
-                                <ul>
-                                    <li>Mua hàng</li>
-                                    <li>Đổi trả</li>
-                                    <li>Tư vấn sản phẩm</li>
-                                    <li>Kiểm tra đơn hàng</li>
-                                </ul>
-                            </div>
-
-                            <div class="col-6">
-                                <h3>CHÍNH SÁCH</h3>
-                                <ul>
-                                    <li>Về chúng tôi</li>
-                                    <li>Thanh toán</li>
-                                    <li>Bảo mật</li>
-                                    <li>Bảo hành</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- CỘT 3: NEWSLETTER + SOCIAL -->
-                    <div class="col-lg-4 col-md-6 col-12 footer-col">
-                        <h3>NHẬN TIN KHUYẾN MÃI</h3>
-                        <p class="support-text">Hỗ trợ khách hàng 24/7</p>
-
-                        <div class="newsletter">
-                            <input type="email" placeholder="Nhập Email của bạn" />
-                            <button>Đăng ký</button>
-                        </div>
-
-                        <h3 class="follow-title">THEO DÕI CHÚNG TÔI</h3>
-                        <div class="social-icons">
-                            <img src="~/Assets/image/icon/icon-fb.svg" />
-                            <img src="~/Assets/image/icon/icon-ista.svg" />
-                            <img src="~/Assets/image/icon/icon-ytb.svg" />
-                            <img src="~/Assets/image/icon/icon-tt.svg" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">© Bản quyền thuộc về School Supplies Store</div>
-        </footer>
-        <button id="backToTop" title="Lên đầu trang">
-            <i class="fa-solid fa-chevron-up"></i>
-        </button>
-        <script>
-                const DANH_MUC = "Bút học sinh";
-        </script>
+            <div class="row g-3" id="listSanPham"></div>
+            <!-- Nút chuyển trang -->
+            <div class="phantrang" id="pagination"></div>
+        </div>
     </div>
-    <script src="~/Assets/jjs/Trangchu.js"></script>
-    <script src="~/Assets/jjs/data.js"></script>
-    <script src="~/Assets/jjs/Trangsp.js"></script>
-    <script src="~/Assets/jjs/Timkiem.js"></script>
-</body>
-</html>
+</main>
+
+

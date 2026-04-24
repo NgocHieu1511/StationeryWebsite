@@ -1,0 +1,90 @@
+﻿@model StationeryWebsite.Models.Category
+
+@{
+    ViewBag.Title = "Xóa danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container-fluid mt-4">
+
+    <!-- Breadcrumb -->
+    <div class="header-sub-title mb-3">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a href="@Url.Action("Index","HomeAdmin", new { area = "Admin" })" class="breadcrumb-item">
+                <i class="anticon anticon-home m-r-5"></i>Trang chủ
+            </a>
+
+            <a href="@Url.Action("Index","Categories")" class="breadcrumb-item">
+                Quản lý danh mục
+            </a>
+
+            <span class="breadcrumb-item active">Xóa danh mục</span>
+        </nav>
+    </div>
+
+    <div class="card shadow border-danger">
+        <div class="card-header bg-danger text-white">
+            <h4 class="mb-0">
+                <i class="fa fa-trash"></i> Xóa danh mục
+            </h4>
+        </div>
+
+        <div class="card-body">
+
+            <div class="alert alert-warning">
+                <strong>Cảnh báo!</strong> Bạn có chắc chắn muốn xóa danh mục này không?
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <th width="150">Tên danh mục</th>
+                            <td>@Html.DisplayFor(model => model.name)</td>
+                        </tr>
+
+                        <tr>
+                            <th>Hình ảnh</th>
+                            <td>
+                                <img src="@Url.Content("~/Content/images/" + Model.image)"
+                                     width="120"
+                                     class="img-thumbnail" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Mô tả</th>
+                            <td>@Html.DisplayFor(model => model.note)</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <hr />
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="d-flex justify-content-between">
+
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Quay lại
+                    </a>
+
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fa fa-trash"></i> Xóa danh mục
+                    </button>
+
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>

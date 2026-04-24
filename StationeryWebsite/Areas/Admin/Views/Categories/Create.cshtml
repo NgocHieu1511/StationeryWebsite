@@ -1,0 +1,78 @@
+﻿@model StationeryWebsite.Models.Category
+
+@{
+    ViewBag.Title = "Thêm mới danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container-fluid mt-4">
+
+    <!-- Breadcrumb -->
+    <div class="header-sub-title mb-3">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a href="@Url.Action("Index","HomeAdmin", new { area = "Admin" })" class="breadcrumb-item">
+                <i class="anticon anticon-home m-r-5"></i>Trang chủ
+            </a>
+            <a href="@Url.Action("Index","Categories")" class="breadcrumb-item">
+                Quản lý danh mục
+            </a>
+            <span class="breadcrumb-item active">Thêm mới</span>
+        </nav>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Thêm mới danh mục</h4>
+        </div>
+
+        <div class="card-body">
+
+            @using (Html.BeginForm("Create", "Categories", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                <div class="row">
+
+                    <!-- Name -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Tên danh mục</label>
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập tên danh mục" } })
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Image -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Hình ảnh</label>
+                        @Html.EditorFor(model => model.image, new { htmlAttributes = new { @class = "form-control", placeholder = "Tên file ảnh" } })
+                        @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- note -->
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label">Ghi chú</label>
+                        @Html.TextAreaFor(model => model.note, new { @class = "form-control", rows = 4 })
+                        @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+                <hr />
+
+                <div class="d-flex justify-content-between">
+                    <a href="Admin/Categories" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Quay lại
+                    </a>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save"></i> Thêm mới
+                    </button>
+                </div>
+
+            }
+
+        </div>
+    </div>
+
+</div>
