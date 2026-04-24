@@ -16,7 +16,7 @@
 
                 <div class="collapse" id="collapseOrder" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="#">Danh sách đơn hàng</a>
+                        <a class="nav-link" href="#">Quản lý đơn hàng</a>
                         <a class="nav-link" href="#">Đơn hàng đã hủy</a>
                     </nav>
                 </div>
@@ -35,13 +35,15 @@
 
                 <div class="collapse" id="collapseProduct" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="#">Danh mục sản phẩm</a>
-                        <a class="nav-link" href="#">Thêm sản phẩm</a>
+                        <a class="nav-link" href="@Url.Action("Index", "Products", new { area = "Admin" })">
+                            Quản lý sản phẩm
+                        </a>
+                        
                     </nav>
                 </div>
 
 
-                @* Quản lý khách hàng *@
+                @* Quản lý tài khoản *@
                 <a class="nav-link collapsed" href="#"
                    data-bs-toggle="collapse"
                    data-bs-target="#collapseCustomer">
@@ -54,8 +56,10 @@
 
                 <div class="collapse" id="collapseCustomer" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="#">Danh sách khách hàng</a>
-                        <a class="nav-link" href="#">Khách hàng VIP</a>
+                        <a class="nav-link" href="@Url.Action("Index", "Users", new { area = "Admin" })">
+                            Quản lý tài khoản
+                        </a>
+                        
                     </nav>
                 </div>
 
@@ -92,14 +96,17 @@
 
                 <div class="collapse" id="collapseSystem" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="Categories/Index">Quản lý danh mục</a>
-                        <a class="nav-link" href="Users/Index">Quản lý quyền truy cập</a>
+                        <a class="nav-link" href="@Url.Action("Index", "Categories", new { area = "Admin" })">
+                            Quản lý danh mục
+                        </a>
+
+                        
                     </nav>
                 </div>
 
 
                 @* Quản lý tin tức *@
-                <a class="nav-link collapsed" href="#"
+                @*<a class="nav-link collapsed" href="#"
                    data-bs-toggle="collapse"
                    data-bs-target="#collapseNews">
                     <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
@@ -114,7 +121,7 @@
                         <a class="nav-link" href="#">Danh sách tin</a>
                         <a class="nav-link" href="#">Thêm tin</a>
                     </nav>
-                </div>
+                </div>*@
 
             </div>
         </div>

@@ -1,12 +1,13 @@
-﻿using System;
+﻿using StationeryWebsite.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using StationeryWebsite.Models;
 
 namespace StationeryWebsite.Areas.Admin.Controllers
 {
@@ -46,10 +47,33 @@ namespace StationeryWebsite.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "category_id,name,image,note")] Category category)
+        public ActionResult Create(
+      [Bind(Include = "category_id,name,image,note")] Category category,
+      HttpPostedFileBase imageFile
+  )
         {
             if (ModelState.IsValid)
             {
+                // Nếu có upload ảnh
+                if (imageFile != null && imageFile.ContentLength > 0)
+                {
+                    // Lấy tên file gốc
+                    string fileName = System.IO.Path.GetFileName(imageFile.FileName);
+
+                    // Tạo tên mới tránh trùng
+                    string newFileName = Guid.NewGuid().ToString() +
+                                         System.IO.Path.GetExtension(fileName);
+
+                    // Đường dẫn lưu
+                    string path = Server.MapPath("~/Content/images/" + newFileName);
+
+                    // Lưu file
+                    imageFile.SaveAs(path);
+
+                    // Lưu đường dẫn vào DB
+                    category.image = "/Content/images/" + newFileName;
+                }
+
                 db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,15 +102,48 @@ namespace StationeryWebsite.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "category_id,name,image,note")] Category category)
+        public ActionResult Edit(
+    [Bind(Include = "category_id,name,image,note")] Category model,
+    HttpPostedFileBase imageFile
+)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
+                var category = db.Categories.Find(model.category_id);
+
+                if (category == null)
+                {
+                    return HttpNotFound();
+                }
+
+                category.name = model.name;
+                category.note = model.note;
+
+                // 👉 Nếu có upload ảnh mới
+                if (imageFile != null && imageFile.ContentLength > 0)
+                {
+                    string fileName = Guid.NewGuid() + Path.GetExtension(imageFile.FileName);
+
+                    string folder = Server.MapPath("~/Content/images");
+
+                    if (!Directory.Exists(folder))
+                    {
+                        Directory.CreateDirectory(folder);
+                    }
+
+                    string fullPath = Path.Combine(folder, fileName);
+
+                    imageFile.SaveAs(fullPath);
+
+                    // 👉 Cập nhật ảnh mới
+                    category.image = "/Content/images/" + fileName;
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(category);
+
+            return View(model);
         }
 
         // GET: Admin/Categories/Delete/5
