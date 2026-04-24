@@ -14,7 +14,7 @@
                 <i class="anticon anticon-home m-r-5"></i>Trang chủ
             </a>
 
-            <a href="@Url.Action("Index","Categories")" class="breadcrumb-item">
+            <a href="@Url.Action("Index", "Categories", new { area = "Admin" })" class="breadcrumb-item">
                 Quản lý danh mục
             </a>
 
@@ -73,7 +73,7 @@
 
                 <div class="d-flex justify-content-between">
 
-                    <a href="@Url.Action("Index")" class="btn btn-secondary">
+                    <a href="@Url.Action("Index", "Categories", new { area = "Admin" })" class="btn btn-secondary">
                         <i class="fa fa-arrow-left"></i> Quay lại
                     </a>
 

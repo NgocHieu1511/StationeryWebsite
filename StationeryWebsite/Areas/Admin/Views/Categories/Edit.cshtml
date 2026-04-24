@@ -14,7 +14,7 @@
                 <i class="anticon anticon-home m-r-5"></i>Trang chủ
             </a>
 
-            <a href="@Url.Action("Index","Categories")" class="breadcrumb-item">
+            <a href="@Url.Action("Index", "Categories", new { area = "Admin" })" class="breadcrumb-item">
                 Quản lý danh mục
             </a>
 
@@ -48,14 +48,14 @@
                     <!-- Image -->
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Hình ảnh</label>
-                        @Html.EditorFor(model => model.image, new { htmlAttributes = new { @class = "form-control" } })
+                      <input type="file" name="imageFile" class="form-control" />
                         @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
 
                         <div class="mt-2">
                             <label>Ảnh hiện tại:</label><br />
-                            <img src="@Url.Content("~/Content/images/" + Model.image)"
-                                 width="120"
-                                 class="img-thumbnail" />
+                                                        <img src="@Url.Content(Model.image)"
+                                                             width="120"
+                                                             class="img-thumbnail" />
                         </div>
                     </div>
 
@@ -71,7 +71,7 @@
                 <hr />
 
                 <div class="d-flex justify-content-between">
-                    <a href="@Url.Action("Index")" class="btn btn-secondary">
+                    <a href="@Url.Action("Index", "Categories", new { area = "Admin" })" class="btn btn-secondary">
                         <i class="fa fa-arrow-left"></i> Quay lại
                     </a>
 

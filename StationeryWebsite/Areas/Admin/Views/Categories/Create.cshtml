@@ -13,7 +13,7 @@
             <a href="@Url.Action("Index","HomeAdmin", new { area = "Admin" })" class="breadcrumb-item">
                 <i class="anticon anticon-home m-r-5"></i>Trang chủ
             </a>
-            <a href="@Url.Action("Index","Categories")" class="breadcrumb-item">
+            <a href="@Url.Action("Index", "Categories", new { area = "Admin" })" class="breadcrumb-item">
                 Quản lý danh mục
             </a>
             <span class="breadcrumb-item active">Thêm mới</span>
@@ -45,7 +45,7 @@
                     <!-- Image -->
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Hình ảnh</label>
-                        @Html.EditorFor(model => model.image, new { htmlAttributes = new { @class = "form-control", placeholder = "Tên file ảnh" } })
+                        <input type="file" name="imageFile" class="form-control" />
                         @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
                     </div>
 
@@ -61,7 +61,7 @@
                 <hr />
 
                 <div class="d-flex justify-content-between">
-                    <a href="Admin/Categories" class="btn btn-secondary">
+                    <a href="@Url.Action("Index", "Categories", new { area = "Admin" })" class="btn btn-secondary">
                         <i class="fa fa-arrow-left"></i> Quay lại
                     </a>
 

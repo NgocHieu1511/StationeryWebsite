@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace StationeryWebsite.Areas.Admin
 {
@@ -52,35 +53,35 @@ namespace StationeryWebsite.Areas.Admin
 User user,
 HttpPostedFileBase UploadImage)
         {
-            if (ModelState.IsValid)
-            {
-                user.created_at = DateTime.Now;
-
-                // Upload ảnh
-                if (UploadImage != null && UploadImage.ContentLength > 0)
+                if (ModelState.IsValid)
                 {
-                    string fileName = Path.GetFileName(UploadImage.FileName);
-
-                    string folder = Server.MapPath("~/Assets/images/");
-
-                    
-                    if (!Directory.Exists(folder))
+                    user.created_at = DateTime.Now;
+                    // Nếu có upload ảnh
+                    if (UploadImage != null && UploadImage.ContentLength > 0)
                     {
-                        Directory.CreateDirectory(folder);
-                    }
+                        // Lấy tên file gốc
+                        string fileName = System.IO.Path.GetFileName(UploadImage.FileName);
 
-                    string path = Path.Combine(folder, fileName);
+                        // Tạo tên mới tránh trùng
+                        string newFileName = Guid.NewGuid().ToString() +
+                                             System.IO.Path.GetExtension(fileName);
 
+                        // Đường dẫn lưu
+                        string path = Server.MapPath("~/Content/images/" + newFileName);
+
+                    // Lưu file
                     UploadImage.SaveAs(path);
 
-                    user.image = fileName;
+                        // Lưu đường dẫn vào DB
+                        user.image = "/Content/images/" + newFileName;
+                    }
+
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
 
-                db.Users.Add(user);
-                db.SaveChanges();
-
-                return RedirectToAction("Index");
-            }
+           
 
             return View(user);
         }

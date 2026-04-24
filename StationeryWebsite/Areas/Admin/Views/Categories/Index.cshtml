@@ -1,34 +1,52 @@
-﻿@model IEnumerable<StationeryWebsite.Models.Category>
+﻿
+@model IEnumerable<StationeryWebsite.Models.Category>
 
 @{
     ViewBag.Title = "Quản lý danh mục";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 
-<div class="container-fluid mt-4">
-    <div class="header-sub-title">
-        <nav class="breadcrumb breadcrumb-dash">
-            <a href="HomeAdmin/Index" class="breadcrumb-item">
-                <i class="anticon anticon-home m-r-5"></i>Trang chủ
-            </a>
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Quản lý danh mục</h1>
+       
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Quản lý danh mục</li>
+        </ol>
+        @*<div class="card mb-4">
+            <div class="card-body">
+                DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
+                <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
+                .
+            </div>
+        </div>*@
+    <div class="card mb-4">
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
 
-            <span class="breadcrumb-item active">Quản lý danh mục</span>
-        </nav>
-    </div>
+                <!-- Tiêu đề -->
+                <h5 class="mb-0 fw-semibold">
+                    
+                    Danh sách danh mục
+                </h5>
 
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-            <h4 class="mb-0">Quản lý danh mục</h4>
+                <!-- Nút thêm -->
+                <a href="@Url.Action("Create", "Categories", new { area = "Admin" })"
+                   class="btn btn-primary d-flex align-items-center gap-2 px-3">
+                    <i class="fa fa-plus"></i>
+                    <span>Thêm sản phẩm</span>
+                </a>
 
-            @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-light btn-sm" })
+            </div>
         </div>
-
+        
         <div class="card-body">
-            <table class="table table-bordered table-hover table-striped">
-                <thead class="table-dark">
+            <table id="datatablesSimple">
+                <thead>
                     <tr>
                         <th>
-                           Tên danh mục
+                            Tên danh mục
                         </th>
                         <th>
                             Hình ảnh
@@ -39,10 +57,24 @@
                         <th class="text-center" width="200px">Chức năng</th>
                     </tr>
                 </thead>
-
+                <tfoot>
+                    <tr>
+                        <th>
+                            Tên danh mục
+                        </th>
+                        <th>
+                            Hình ảnh
+                        </th>
+                        <th>
+                            Ghi chú
+                        </th>
+                        <th class="text-center" width="200px">Chức năng</th>
+                    </tr>
+                </tfoot>
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
+                        var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
                         foreach (var item in Model)
                         {
                             <tr>
@@ -51,7 +83,7 @@
                                 </td>
 
                                 <td>
-                                    <img src="~/Content/images/@item.image" width="80" class="img-thumbnail" />
+                                    <img src="@item.image" width="100" class="img-thumbnail" />
                                 </td>
 
                                 <td>
@@ -72,10 +104,14 @@
                             <td colspan="4" class="text-center">Không có bản ghi nào </td>
                         </tr>
                     }
-                </tbody>
 
+
+
+
+                </tbody>
             </table>
+
         </div>
     </div>
-
-</div>
+    </div>
+</main>
