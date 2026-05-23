@@ -33,7 +33,10 @@
             {
                 @Html.AntiForgeryToken()
 
-                @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+                if (!ViewData.ModelState.IsValid)
+                {
+                    @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
+                }
                 @Html.HiddenFor(model => model.user_id)
 
                 <div class="row">
@@ -76,8 +79,13 @@
 
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Created At</label>
-                        @Html.TextBoxFor(model => model.created_at, new { @class = "form-control", type = "date" })
-                        @Html.ValidationMessageFor(model => model.created_at, "", new { @class = "text-danger" })
+
+                        <input type="text"
+                               class="form-control"
+                               value="@(Model.created_at.HasValue
+                    ? Model.created_at.Value.ToString("dd/MM/yyyy HH:mm")
+                    : "")"
+                               readonly />
                     </div>
 
                     <div class="col-md-6 mb-3">
@@ -85,8 +93,8 @@
                         @Html.DropDownListFor(model => model.status,
                             new List<SelectListItem>
                             {
-                                new SelectListItem { Text = "Active", Value = "1" },
-                                new SelectListItem { Text = "Inactive", Value = "0" }
+                                new SelectListItem { Text = "Active", Value ="true" },
+                                new SelectListItem { Text = "Inactive", Value ="false" }
                             },
                             "Select Status",
                             new { @class = "form-select" })
@@ -97,8 +105,8 @@
                         @Html.DropDownListFor(model => model.role,
                             new List<SelectListItem>
                             {
-                                new SelectListItem { Text = "Admin", Value = "admin" },
-                                new SelectListItem { Text = "User", Value = "user" }
+                                new SelectListItem { Text = "Admin", Value = "true" },
+                                new SelectListItem { Text = "User", Value = "false" }
                             },
                             "Select Role",
                             new { @class = "form-select" })
@@ -111,7 +119,7 @@
 
                     <div class="col-md-6 mb-3 text-center">
                         <label class="form-label d-block">Current Image</label>
-                        <img src="~/Content/images/@Model.image"
+                        <img src="@Model.image"
                              width="100"
                              height="100"
                              class="rounded-circle border" />

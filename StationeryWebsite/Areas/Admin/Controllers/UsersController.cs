@@ -56,8 +56,9 @@ HttpPostedFileBase UploadImage)
                 if (ModelState.IsValid)
                 {
                     user.created_at = DateTime.Now;
-                    // Nếu có upload ảnh
-                    if (UploadImage != null && UploadImage.ContentLength > 0)
+                user.status = true; // Mặc định kích hoạt tài khoản mới
+                                    // Nếu có upload ảnh
+                if (UploadImage != null && UploadImage.ContentLength > 0)
                     {
                         // Lấy tên file gốc
                         string fileName = System.IO.Path.GetFileName(UploadImage.FileName);
@@ -106,14 +107,46 @@ HttpPostedFileBase UploadImage)
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "user_id,username,password,first_name,last_name,image,email,phone,created_at,status,role")] User user)
+        public ActionResult Edit(User user, HttpPostedFileBase UploadImage)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                var oldUser = db.Users.Find(user.user_id);
+
+                if (oldUser == null)
+                    return HttpNotFound();
+
+                oldUser.username = user.username;
+                oldUser.first_name = user.first_name;
+                oldUser.last_name = user.last_name;
+                oldUser.email = user.email;
+                oldUser.phone = user.phone;
+                oldUser.status = user.status;
+                oldUser.role = user.role;
+
+                // giữ nguyên password cũ nếu bỏ trống
+                if (!string.IsNullOrWhiteSpace(user.password))
+                {
+                    oldUser.password = user.password;
+                }
+
+                // upload ảnh mới nếu có
+                if (UploadImage != null && UploadImage.ContentLength > 0)
+                {
+                    string fileName = Guid.NewGuid().ToString() +
+                                      Path.GetExtension(UploadImage.FileName);
+
+                    string path = Server.MapPath("~/Content/images/" + fileName);
+                    UploadImage.SaveAs(path);
+
+                    oldUser.image = "/Content/images/" + fileName;
+                }
+
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
+
             return View(user);
         }
 

@@ -14,8 +14,9 @@ namespace StationeryWebsite.Models
     
     public partial class Cart
     {
-        public int product_id { get; set; }
+        public int cart_id { get; set; }
         public int user_id { get; set; }
+        public int product_id { get; set; }
         public int quantity { get; set; }
     
         public virtual Product Product { get; set; }

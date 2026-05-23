@@ -6,54 +6,489 @@
 }
 
 
-<!-- phan noi dung -->
-<div class="container mt-4">
-    <table class="Bang-SP" id="sp2">
-        <tr>
-            <td rowspan="2" class="product-img">
-                <img id="ct-img" src="" alt="ảnh sản phẩm" />
-            </td>
+<!-- PRODUCT DETAIL START -->
 
-            <td class="product-top position-relative">
-                <h4 id="ct-ten"></h4>
 
-                <p>
-                    Giá:
-                    <span class="GiaSP-chitiet" id="ct-gia"></span>
-                </p>
+<section class="product-detail-sec py-80">
+    <div class="container-2">
+        <div class="row row-gap-4">
 
-                <p id="ct-ma"></p>
-            </td>
-        </tr>
+            <!-- PRODUCT IMAGE -->
+            <div class="col-lg-6">
 
-        <tr>
-            <td class="product-bottom">
-                <ul id="ct-thongso"></ul>
+                <div class="product-image-container bg-white">
 
-                <!-- Nút mua hàng  -->
-                <div class="quantity-section">
-                    <div class="quantity-control">
-                        <button class="btn-minus">-</button>
-                        <input id="ct-sl" type="number" value="1" min="1" />
-                        <button class="btn-plus">+</button>
+                    <div class="product-detail-slider slider-2">
+
+                        <div class="detail-image">
+                            <img src="@Url.Content(Model.image)"
+                                 alt="@Model.name"
+                                 class="img-fluid">
+                        </div>
+
                     </div>
 
-                    <button id="btn-add-cart" class="add-cart">Thêm vào giỏ hàng</button>
+                    <div class="product-slider-asnav asnav-2">
+
+                        <div class="nav-image">
+                            <img src="@Url.Content(Model.image)"
+                                 alt="@Model.name"
+                                 class="img-fluid">
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <!-- Phần nhận tư vấn -->
-                <div class="consult-section">
-                    <input type="text" placeholder="Số điện thoại của bạn" />
-                    <button class="btn-consult">NHẬN TƯ VẤN</button>
+            </div>
+
+            <!-- PRODUCT INFO -->
+            <div class="col-lg-6">
+
+                <div class="product-text-container bg-white">
+
+                    <!-- PRODUCT NAME -->
+                    <h3 class="medium-black fw-600 mb-16">
+                        @Model.name
+                    </h3>
+
+                    <!-- RATING -->
+                    <div class="rating-star mb-16">
+
+                        <h6 class="color-primary">
+                            ★★★★★
+
+                            <span class="dark-gray text-16 fw-400 font-primary text-decoration-underline">
+                                (5 Reviews)
+                            </span>
+
+                        </h6>
+
+                    </div>
+
+                    <!-- PRICE -->
+                    <div class="d-flex align-items-center gap-16 mb-24">
+
+                        @if (Model.discount.HasValue && Model.discount > 0)
+                        {
+                            var newPrice = Model.price - (Model.price * Model.discount.Value / 100);
+
+                            <h5 class="medium-black fw-700 text-danger">
+                                @String.Format("{0:N0} đ", newPrice)
+                            </h5>
+
+                            <del class="text-muted">
+                                @String.Format("{0:N0} đ", Model.price)
+                            </del>
+                        }
+                        else
+                        {
+                            <h5 class="medium-black fw-700">
+                                @String.Format("{0:N0} đ", Model.price)
+                            </h5>
+                        }
+
+                    </div>
+
+                    <!-- DESCRIPTION -->
+                    <p class="quick-view-text mb-24">
+                        @Model.description
+                    </p>
+
+                    <!-- STOCK -->
+                    <p class="fw-500 mb-16">
+
+                        Còn lại:
+
+                        <span class="color-primary">
+                            @Model.quantity sản phẩm
+                        </span>
+
+                    </p>
+
+                    <!-- QUANTITY -->
+                    <p class="fw-500 medium-black mb-8">
+                        Quantity:
+                    </p>
+
+                    <div class="quantity mb-24">
+
+                        <div class="input-area quantity-wrap">
+
+                            <button class="decrement" type="button">
+                                -
+                            </button>
+
+                            <input type="text"
+                                   name="quantity"
+                                   value="1"
+                                   maxlength="2"
+                                   size="1"
+                                   class="number">
+
+                            <button class="increment" type="button">
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- PRODUCT INFO -->
+                    <p class="medium-black fw-500 mb-8">
+                        Brand:
+                        <span class="dark-gray fw-400">
+                            @Model.brand
+                        </span>
+                    </p>
+
+                    <p class="medium-black fw-500 mb-8">
+                        Category:
+                        <span class="dark-gray fw-400">
+                            @Model.Category.name
+                        </span>
+                    </p>
+
+                    <p class="medium-black fw-500 mb-24">
+                        Unit:
+                        <span class="dark-gray fw-400">
+                            @Model.calculation_unit
+                        </span>
+                    </p>
+
+                    <!-- BUTTON -->
+                    <div class="row row-gap-2 mb-24">
+
+                        <div class="col-sm-6">
+
+                            <a href="@Url.Action("AddToCart", "GioHang", new { id = Model.product_id })"
+                               class="w-100 text-center cus-btn-2">
+
+                                <span class="btn-text">
+                                    Add to Cart
+                                </span>
+
+                                <span>
+                                    Add to Cart
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                        <div class="col-sm-6">
+
+                            <a href="@Url.Action("Checkout", "Cart")"
+                               class="w-100 text-center cus-btn">
+
+                                <span class="btn-text">
+                                    Buy It Now
+                                </span>
+
+                                <span>
+                                    Buy It Now
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <!-- BADGES -->
+                    <div class="info-container">
+
+                        <!-- FREE SHIPPING -->
+                        <div class="more-info mb-24">
+
+                            <div class="icon">
+                                <i class="fa-light fa-truck"></i>
+                            </div>
+
+                            <div>
+
+                                <p class="fw-600 medium-black">
+                                    Free Shipping
+                                </p>
+
+                                <p class="light-gray">
+                                    Đơn hàng từ 500.000đ
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="hr-line line-2 mb-16"></div>
+
+                        <!-- WARRANTY -->
+                        <div class="more-info">
+
+                            <div class="icon">
+                                <i class="fa-light fa-shield-check"></i>
+                            </div>
+
+                            <div>
+
+                                <p class="fw-600 medium-black">
+                                    Cam kết chất lượng
+                                </p>
+
+                                <p class="light-gray">
+                                    Sản phẩm chính hãng 100%
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
-            </td>
-        </tr>
-    </table>
 
-    <!-- Các sp tương tự -->
-    <div class="spttchung mt-4">
-        <h5 class="text-success fw-bold mb-3">CÁC SẢN PHẨM TƯƠNG TỰ</h5>
+            </div>
 
-        <div class="product-list" id="spTuongTu"></div>
+        </div>
     </div>
-</div>
+</section>
+<!-- PRODUCT DETAIL END -->
+<!-- Product Description Start -->
+
+
+<section class="product-description py-40">
+
+    <div class="container-2">
+
+        <div class="description-wrapper">
+
+            <!-- TABS -->
+            <nav class="mb-32">
+
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+
+                    <!-- DESCRIPTION TAB -->
+                    <button class="nav-link active"
+                            id="nav-desc-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#nav-desc"
+                            type="button"
+                            role="tab">
+
+                        <span>Description</span>
+
+                    </button>
+
+                    <!-- REVIEW TAB -->
+                    <button class="nav-link"
+                            id="nav-review-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#nav-review"
+                            type="button"
+                            role="tab">
+
+                        <span>Reviews</span>
+
+                    </button>
+
+                </div>
+
+            </nav>
+
+            <!-- TAB CONTENT -->
+            <div class="tab-content" id="nav-tabContent">
+
+                <!-- DESCRIPTION -->
+                <div class="tab-pane fade show active"
+                     id="nav-desc"
+                     role="tabpanel">
+
+                    <h5 class="mb-16 fw-600 black">
+                        Description:
+                    </h5>
+
+                    <p class="mb-12">
+                        @Model.description
+                    </p>
+
+                    @if (!string.IsNullOrEmpty(Model.specification))
+                    {
+                        <h5 class="mb-16 mt-32 fw-600 black">
+                            Specification:
+                        </h5>
+
+                        <p>
+                            @Model.specification
+                        </p>
+                    }
+
+                </div>
+
+                <!-- REVIEW -->
+                <div class="tab-pane fade"
+                     id="nav-review"
+                     role="tabpanel">
+
+                    <!-- REVIEW LIST -->
+                    <div class="comments-sec mb-48">
+
+                        <h5 class="mb-32 medium-black fw-600">
+                            Reviews
+                        </h5>
+
+                        <!-- DEMO REVIEW -->
+                        <div class="comment-box mb-24">
+
+                            <img src="@Url.Content("~/Assets/Client/assets/media/users/user-2.png")"
+                                 alt="User"
+                                 class="br-4">
+
+                            <div class="block">
+
+                                <div class="top-row mb-16">
+
+                                    <div class="info">
+
+                                        <h6 class="fw-600 medium-black">
+                                            Nguyễn Văn A
+                                        </h6>
+
+                                    </div>
+
+                                    <div class="rating-star mb-12">
+
+                                        <p class="color-star">
+                                            ★★★★★
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                                <p>
+                                    Sản phẩm đẹp, đóng gói cẩn thận và giao hàng nhanh.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- REVIEW FORM -->
+                    <div class="review-form">
+
+                        <h5 class="medium-black fw-600 mb-16">
+                            Write a Review
+                        </h5>
+
+                        <p class="mb-24">
+                            Your email address will not be published.
+                        </p>
+
+                        <!-- RATING -->
+                        <p class="mb-8">
+                            Your Rating
+                        </p>
+
+                        <div class="star-rating mb-32">
+
+                            <input type="radio" id="1-star" name="rating" value="1">
+                            <label for="1-star" class="star">&#9733;</label>
+
+                            <input type="radio" id="2-stars" name="rating" value="2">
+                            <label for="2-stars" class="star">&#9733;</label>
+
+                            <input type="radio" id="3-stars" name="rating" value="3">
+                            <label for="3-stars" class="star">&#9733;</label>
+
+                            <input type="radio" id="4-stars" name="rating" value="4">
+                            <label for="4-stars" class="star">&#9733;</label>
+
+                            <input type="radio" id="5-stars" name="rating" value="5">
+                            <label for="5-stars" class="star">&#9733;</label>
+
+                        </div>
+
+                        <!-- FORM -->
+                        @using (Html.BeginForm("AddReview", "SanPham", FormMethod.Post))
+                        {
+                            @Html.Hidden("productId", Model.product_id)
+
+                            <div class="row">
+
+                                <!-- COMMENT -->
+                                <div class="col-sm-12">
+
+                                    <div class="input-block mb-24">
+
+                                        <textarea class="form-control"
+                                                  name="message"
+                                                  rows="4"
+                                                  placeholder="Write Your Review here..."></textarea>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- NAME -->
+                                <div class="col-sm-6">
+
+                                    <div class="input-block mb-24">
+
+                                        <input type="text"
+                                               class="form-control"
+                                               name="name"
+                                               required
+                                               placeholder="Your Name">
+
+                                    </div>
+
+                                </div>
+
+                                <!-- EMAIL -->
+                                <div class="col-sm-6">
+
+                                    <div class="input-block mb-24">
+
+                                        <input type="email"
+                                               class="form-control"
+                                               name="email"
+                                               required
+                                               placeholder="Your Email">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- BUTTON -->
+                            <button type="submit" class="cus-btn">
+
+                                <span class="btn-text">
+                                    Submit
+                                </span>
+
+                                <span>
+                                    Submit
+                                </span>
+
+                            </button>
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- Product Description End -->
+<!-- FEATURED PRODUCT START -->
+@Html.Partial("_RelatedProducts",
+    ViewBag.RelatedProducts as List<StationeryWebsite.Models.Product>)
+<!-- FEATURED PRODUCT END -->

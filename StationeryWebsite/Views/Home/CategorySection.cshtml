@@ -1,0 +1,53 @@
+﻿@model IEnumerable<StationeryWebsite.Models.Category>
+
+<!-- COLLECTION SECTION START -->
+<div class="collection-sec pt-80 pb-40">
+    <div class="container-2">
+
+        <div class="heading mb-48 text-center wow fadeInUp animated"
+             data-wow-delay="400ms">
+
+            <h2 class="medium-black fw-700 mb-16">
+                Shop By <span class="color-primary"> Categories</span>
+            </h2>
+
+            <p>
+                Explore our stationery categories
+            </p>
+
+        </div>
+
+        <div class="collection-wrapper">
+
+            @foreach (var item in Model)
+            {
+                <a href=@Url.Action("Category", "SanPham", new { id = item.category_id })
+                   class="collection-block w-100 wow fadeInUp animated">
+
+                    <div class="image-box mb-12">
+
+                        <img src="@Url.Content(item.image)"
+                             alt="@item.name" />
+
+                    </div>
+
+                    <div class="text-box">
+
+                        <h6 class="title-text fw-700 text-center">
+                            @item.name
+                        </h6>
+
+                        <p class="dark-gray">
+                            @(item.Products != null ? item.Products.Count : 0)
+                        </p>
+
+                    </div>
+
+                </a>
+            }
+
+        </div>
+
+    </div>
+</div>
+<!-- COLLECTION SECTION END -->

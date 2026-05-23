@@ -1,0 +1,178 @@
+﻿@model PagedList.IPagedList<StationeryWebsite.Models.Product>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = ViewBag.CategoryName;
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!-- TITLE -->
+<section class="title-banner bg-sec">
+    <div class="container-2">
+        <h1 class="fw-700 medium-black text-center">
+            @ViewBag.CategoryName
+        </h1>
+    </div>
+</section>
+
+
+
+<!-- PRODUCT LIST -->
+<section class="shop-section py-80">
+    <div class="container-2">
+        <div class="row row-gap-3 align-items-center justify-content-between mb-24">
+            <div class="col-xl-4 col-lg-5 col-md-5">
+                <div class="d-flex align-items-center gap-16">
+
+                    <p class="d-lg-block d-none">Showing 01 - 09 of 30 Results</p>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="d-flex align-items-center justify-content-end gap-24">
+                    <a href="javascript:;" class="visual-box filter-btn">
+                        <span class="fw-500">Show Filters</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M23.2969 16.1922H21.6894C21.3478 13.8526 19.3283 12.05 16.8953 12.05C14.4624 12.05 12.4428 13.8526 12.1012 16.1922H0.703125C0.314812 16.1922 0 16.507 0 16.8953C0 17.2836 0.314812 17.5985 0.703125 17.5985H12.1012C12.4428 19.9381 14.4624 21.7407 16.8953 21.7407C19.3283 21.7407 21.3478 19.9381 21.6894 17.5985H23.2969C23.6852 17.5985 24 17.2836 24 16.8953C24 16.507 23.6852 16.1922 23.2969 16.1922ZM16.8953 20.3344C14.999 20.3344 13.4563 18.7917 13.4563 16.8953C13.4563 14.999 14.999 13.4563 16.8953 13.4563C18.7916 13.4563 20.3344 14.999 20.3344 16.8953C20.3344 18.7917 18.7916 20.3344 16.8953 20.3344Z" fill="#141516"></path>
+                            <path d="M0.703125 7.80785H2.31056C2.65219 10.1475 4.67175 11.95 7.1047 11.95C9.53761 11.95 11.5572 10.1475 11.8988 7.80785H23.2969C23.6852 7.80785 24 7.49304 24 7.10473C24 6.71641 23.6852 6.4016 23.2969 6.4016H11.8988C11.5572 4.06193 9.53761 2.2594 7.1047 2.2594C4.67175 2.2594 2.65219 4.06193 2.31056 6.4016H0.703125C0.314812 6.4016 0 6.71641 0 7.10473C0 7.49304 0.314812 7.80785 0.703125 7.80785ZM7.1047 3.66565C9.00098 3.66565 10.5437 5.2084 10.5437 7.10473C10.5437 9.00101 9.00098 10.5438 7.1047 10.5438C5.20837 10.5438 3.66562 9.00101 3.66562 7.10473C3.66562 5.2084 5.20837 3.66565 7.1047 3.66565Z" fill="#141516"></path>
+                        </svg>
+                    </a>
+                    <div class="d-flex align-items-center justify-content-end gap-8">
+                        <p class="fw-500 medium-black">Short by:</p>
+                        <div class="drop-container">
+                            <div class="wrapper-dropdown" id="dropdown8">
+                                <span class="selected-display" id="destination8">high to low</span>
+                                <svg id="drp-arrow8" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow transition-all ml-auto rotate-180">
+                                    <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                                <ul class="topbar-dropdown bg-lightest-gray">
+                                    <li class="item dark-black">high to low</li>
+                                    <li class="item dark-black">low</li>
+                                    <li class="item dark-black">high</li>
+                                    <li class="item dark-black">discounted</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-gap-4 mb-48">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
+                     data-wow-delay="400ms">
+
+                    <div class="latest-product-card">
+
+                        <!-- IMAGE BOX -->
+                        <div class="image-box mb-16">
+
+                            @* SALE LABEL *@
+                            @if (item.is_sale == true)
+                            {
+                                <span class="sale-label subtitle fw-400 white">
+                                    Sale
+                                </span>
+                            }
+
+                            <!-- PRODUCT IMAGE -->
+                            <a href="@Url.Action("Details", "SanPham", new { id = item.product_id })"
+                               class="image">
+
+                                <img src="@Url.Content(item.image)"
+                                     class="product-image"
+                                     alt="@item.name" />
+                            </a>
+
+                            <!-- SIDE ICONS -->
+                            <div class="side-icons">
+                                <ul class="list-unstyled">
+
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa-light fa-heart"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="@Url.Action("Details", "SanPham", new { id = item.product_id })">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <!-- ADD CART -->
+                            <a href="@Url.Action("AddToCart", "GioHang", new { id = item.product_id })"
+                               class="cus-btn">
+
+                                <span class="btn-text">Add Cart</span>
+                                <span>Go to Cart</span>
+
+                            </a>
+
+                        </div>
+
+                        <!-- PRODUCT DESC -->
+                        <div class="product-desc">
+
+                            <div>
+
+                                <!-- NAME -->
+                                <a href="@Url.Action("Details", "SanPham", new { id = item.product_id })"
+                                   class="product-title h6 fw-700 mb-8">
+
+                                    @item.name
+
+                                </a>
+
+                                <!-- RATING (FIX CỨNG như template) -->
+                                <div class="d-flex align-items-center gap-8 justify-content-center mb-8">
+
+                                    <div class="rating-stars">
+                                        ★★★★★
+                                    </div>
+
+                                    <p class="fw-500">(02)</p>
+
+                                </div>
+
+                                <!-- PRICE -->
+                                @if (item.discount.HasValue && item.discount > 0)
+                                {
+                                    var newPrice = item.price - (item.price * item.discount.Value / 100);
+
+                                    <h5 class="medium-black fw-700 text-danger">
+                                        @String.Format("{0:N0}₫", newPrice)
+                                    </h5>
+
+                                }
+                                else
+                                {
+                                    <h5 class="medium-black fw-700">
+                                        @String.Format("{0:N0}₫", item.price)
+                                    </h5>
+                                }
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="pagination mt-48">
+            @Html.PagedListPager(Model, page =>
+                Url.Action("Category", new { id = ViewBag.CategoryId, page }))
+        </div>
+
+    </div>
+</section>

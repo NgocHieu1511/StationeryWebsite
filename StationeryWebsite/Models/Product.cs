@@ -17,8 +17,8 @@ namespace StationeryWebsite.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.Carts = new HashSet<Cart>();
             this.Order_detail = new HashSet<Order_detail>();
+            this.Carts = new HashSet<Cart>();
         }
     
         public int product_id { get; set; }
@@ -35,11 +35,14 @@ namespace StationeryWebsite.Models
         public string brand { get; set; }
         public bool status { get; set; }
         public System.DateTime created_at { get; set; }
+        public bool is_sale { get; set; }
+        public bool is_hot { get; set; }
+        public bool is_featured { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cart> Carts { get; set; }
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_detail> Order_detail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cart> Carts { get; set; }
     }
 }

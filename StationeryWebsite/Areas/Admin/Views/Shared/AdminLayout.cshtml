@@ -32,7 +32,7 @@
                     <li><a class="dropdown-item" href="/Assets/Admin/#!">Settings</a></li>
                     <li><a class="dropdown-item" href="/Assets/Admin/#!">Activity Log</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="/Assets/Admin/#!">Logout</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("Logout","Login", new { area = "" })">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -64,5 +64,11 @@
     <script src="/Assets/Admin/js/datatables-simple-demo.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    
+    <script src="~/Content/ckfinder/ckfinder.js"></script>
+
+
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

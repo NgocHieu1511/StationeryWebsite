@@ -5,203 +5,741 @@
 }
 
 <!-- Phần Content -->
-<section class="container">
-    <!-- Chỗ Banner -->
-    <div class="banner_dau">
-        <div id="banner" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="5000">
-                    <img src="~/Assets/Client/image/banner1.svg" alt="banner1" class="d-block" style="width: 100%" />
+<!-- Main Sections -->
+<section class="hero-banner">
+    <div class="container-2">
+        <div class="hero-banner-wrapper">
+            <img src="@Url.Content("~/Assets/Client/assets/media/banner/hero-element.png")"
+                 alt=""
+                 class="element-1" />
+            <img src="@Url.Content("~/Assets/Client/assets/media/banner/hero-element-2.png")"
+                 alt=""
+                 class="element-2" />
+            <img src="@Url.Content("~/Assets/Client/assets/media/banner/hero-element-3.png")"
+                 alt=""
+                 class="element-3" />
+            <div class="row align-items-center row-gap-4">
+                <div class="col-lg-6 col-md-6">
+                    <div class="hero-content-block">
+                        <h1 class="medium-black fw-700 mb-16 wow fadeInLeft animated"
+                            data-wow-delay="1900ms">
+                            <span class="color-primary"> Stationery </span> That
+                            <br class="d-lg-block d-none" />
+                            Inspires Productivity.
+                        </h1>
+                        <p class="mb-32 wow fadeInLeft animated"
+                           data-wow-delay="1900ms">
+                            Inspire your customers by illustrating a sophisticated
+                            <br class="d-lg-block d-none" />
+                            lifestyle made possible through their purchases.
+                        </p>
+                        <a href="@Url.Action("Index", "Home")" class="cus-btn">
+                            <span class="btn-text">Shop Now</span>
+                            <span>Go to Shop</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="carousel-item" data-bs-interval="5000">
-                    <img src="~/Assets/Client/image/banner2.svg" alt="banner2" class="d-block" style="width: 100%" />
-                </div>
-                <div class="carousel-item" data-bs-interval="5000">
-                    <img src="~/Assets/Client/image/banner3.svg" alt="banner3" class="d-block" style="width: 100%" />
-                </div>
-            </div>
-            <!--Nút qua phải và trái trong carousel-->
-            <button class="carousel-control-prev" type="button" data-bs-target="#banner" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#banner" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
-        </div>
-    </div>
-    <!-- Thông tin giao hàng nhanh,... -->
-    <div class="giaohangnhanh">
-        <div class="marquee">
-            <div class="marquee-track">
-                <div class="item">
-                    <img src="~/Assets/Client/image/bannergiaohang/ghn.svg" />
-                </div>
-                <div class="item">
-                    <img src="~/Assets/Client/image/bannergiaohang/gud.svg" />
-                </div>
-                <div class="item">
-                    <img src="~/Assets/Client/image/bannergiaohang/dtmp.svg" />
-                </div>
-                <div class="item">
-                    <img src="~/Assets/Client/image/bannergiaohang/ht247.svg" />
-                </div>
-
-                <!-- NHÂN ĐÔI ĐỂ xoay VÒNG TRÒN -->
-                <div class="item">
-                    <img src="~/Assets/Client/image/bannergiaohang/ghn.svg" />
-                </div>
-                <div class="item">
-                    <img src="~/Assets/Client/image/bannergiaohang/gud.svg" />
-                </div>
-                <div class="item">
-                    <img src="~/Assets/Client/image/bannergiaohang/dtmp.svg" />
-                </div>
-                <div class="item">
-                    <img src="~/Assets/Client/image/bannergiaohang/ht247.svg" />
+                <div class="col-lg-6 col-md-6">
+                    <div class="hero-image">
+                        <img src="@Url.Content("~/Assets/Client/assets/media/banner/hero-image.png")"
+                             alt=""
+                             class="w-100" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Sản phẩm nổi bậc -->
-    <div class="SanPhamNoiBac">
-        <div class="chuspnb">
-            <img src="~/Assets/Client/image/tenspnb.svg" class="tieude" alt="SẢN PHẨM NỔI BẬC" />
-        </div>
-        <div id="spnb" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-            <div class="carousel-inner">
-                <!-- tung trang san pham noi bac 1 -->
-
-                <div class="carousel-item active" data-bs-interval="3000">
-                    <section class="sanpham-noibat">
-                        <div class="hang-sp" id="spNoiBac1"></div>
-                    </section>
-                </div>
-                <!-- tung trang san pham noi bac 2 -->
-                <div class="carousel-item">
-                    <section class="sanpham-noibat">
-                        <div class="hang-sp" id="spNoiBac2"></div>
-                    </section>
-                </div>
-                <!-- tung trang san pham noi bac 3 -->
-                <div class="carousel-item">
-                    <section class="sanpham-noibat">
-                        <div class="hang-sp" id="spNoiBac3"></div>
-                    </section>
-                </div>
-            </div>
-            <!--Nút qua phải và trái trong carousel-->
-            <button class="carousel-control-prev" type="button" data-bs-target="#spnb" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#spnb" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
-        </div>
-    </div>
-
-    <!-- Danh mục sản phẩm -->
-    <section class="container khungdmsp">
-        <h3 class="text-center fw-bold mb-4 dmsp">DANH MỤC SẢN PHẨM</h3>
-
-        <div class="row g-4 justify-content-center">
-            <!-- Mục 1 -->
-            <div class="col-4 col-md-3 col-lg-2 text-center">
-                <a href="~~/Assets/Client/Client/Html/SPDungVoHocSinh.html" class="category-box d-block">
-                    <div class="thumb">
-                        <img src="~/Assets/Client/image/dmvohs.svg" alt="Vở học sinh" />
-                    </div>
-                    <p class="fw-semibold mt-2">Vở học sinh</p>
-                </a>
-            </div>
-
-            <!-- Mục 2 -->
-            <div class="col-4 col-md-3 col-lg-2 text-center">
-                <a href="~~/Assets/Client/Client/Html/TrangSanPham.html" class="category-box d-block">
-                    <div class="thumb">
-                        <img src="~/Assets/Client/image/dmvieths.svg" alt="Dụng cụ viết" />
-                    </div>
-                    <p class="fw-semibold mt-2">Dụng cụ viết</p>
-                </a>
-            </div>
-
-            <!-- Mục 3 -->
-            <div class="col-4 col-md-3 col-lg-2 text-center">
-                <a href="~~/Assets/Client/Client/Html/SPDungCuDo_TinhToan.html" class="category-box d-block">
-                    <div class="thumb">
-                        <img src="~/Assets/Client/image/dmdungcudo.svg" alt="Dụng cụ đo, tính toán" />
-                    </div>
-                    <p class="fw-semibold mt-2">Dụng cụ đo, tính toán</p>
-                </a>
-            </div>
-
-            <!-- Mục 4 -->
-            <div class="col-4 col-md-3 col-lg-2 text-center">
-                <a href="~~/Assets/Client/Client/Html/SPHoaPham.html" class="category-box d-block">
-                    <div class="thumb">
-                        <img src="~/Assets/Client/image/dmhospham.svg" alt="Họa phẩm" />
-                    </div>
-                    <p class="fw-semibold mt-2">Họa phẩm</p>
-                </a>
-            </div>
-
-            <!-- Mục 5 -->
-            <div class="col-4 col-md-3 col-lg-2 text-center">
-                <a href="~~/Assets/Client/Client/Html/SPBalo.html" class="category-box d-block">
-                    <div class="thumb">
-                        <img src="~/Assets/Client/image/dmbalo.svg" alt="Balo" />
-                    </div>
-                    <p class="fw-semibold mt-2">Balo</p>
-                </a>
-            </div>
-
-            <!-- Mục 6 -->
-            <div class="col-4 col-md-3 col-lg-2 text-center">
-                <a href="~~/Assets/Client/Client/Html/SPCacSanPhamKhac.html" class="category-box d-block">
-                    <div class="thumb">
-                        <img src="~/Assets/Client/image/dmkhac.svg" alt="Các sản phẩm khác" />
-                    </div>
-                    <p class="fw-semibold mt-2">Các sản phẩm khác</p>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Dụng cụ viết -->
-    <section class="dungcuviet">
-        <h2 class="tieude">DỤNG CỤ VIẾT</h2>
-        <div class="hang-sp" id="spDungCuViet"></div>
-        <a href="/SanPham/SanPham" class="nut-xemtatca">XEM TẤT CẢ</a>
-    </section>
-    <!-- Vở học sinh -->
-    <section class="vohocsinh">
-        <h2 class="tieude">VỞ HỌC SINH</h2>
-        <div class="hang-sp" id="spVoHocSinh"></div>
-        <a href="/SPVoHocSinh/SPVoHocSinh" class="nut-xemtatca">XEM TẤT CẢ</a>
-    </section>
-    <!-- Dụng cụ đo, tính toán -->
-    <section class="dungcudotinhtoan">
-        <h2 class="tieude">DỤNG CỤ ĐO, TÍNH TOÁN</h2>
-        <div class="hang-sp" id="spDoTinhToan"></div>
-        <a href="/SPDungCuDo_TinhToan/SPDungCuDo_TinhToan" class="nut-xemtatca">XEM TẤT CẢ</a>
-    </section>
-    <!-- Họa phẩm -->
-    <section class="hoapham">
-        <h2 class="tieude">HỌA PHẨM</h2>
-        <div class="hang-sp" id="spHoaPham"></div>
-        <a href="/HoaPham/HoaPham" class="nut-xemtatca">XEM TẤT CẢ</a>
-    </section>
-    <!-- Balo -->
-    <section class="balo">
-        <h2 class="tieude">BALO</h2>
-        <div class="hang-sp" id="spBalo"></div>
-        <a href="/SPBalo/SPBalo" class="nut-xemtatca">XEM TẤT CẢ</a>
-    </section>
-    <!-- Các sản phẩm khác -->
-    <section class="cacsanphamkhac">
-        <h2 class="tieude">CÁC SẢN PHẨM KHÁC</h2>
-        <div class="hang-sp" id="spKhac"></div>
-        <a href="/SPCacSanPhamKhac/SPCacSanPhamKhac" class="nut-xemtatca">XEM TẤT CẢ</a>
-    </section>
 </section>
+@*Phần category*@
+@Html.Action("CategorySection", "Home")
+@*hết phần category*@
+<!-- FEATURED PRODUCT START -->
+@Html.Action("FeaturedProducts", "Home")
+<!-- FEATURED PRODUCT END -->
+<!-- COLLECTION GRIDS START -->
+<section class="collection-grid-sec py-40">
 
+    <div class="container-2">
+
+        <div class="row row-gap-3">
+
+            <div class="col-lg-6">
+
+                <div class="collection-grid">
+
+                    <img src="@Url.Content("~/Assets/Client/assets/media/collection/main-col-1.png")"
+                         alt=""
+                         class="w-100" />
+
+                    <div class="col-lg-9">
+
+                        <div class="grid-content">
+
+                            <h2 class="title-text-1 fw-700 mb-8">
+                                School Stationery With Apple & Notebooks
+                            </h2>
+
+                            <p class="mb-16">
+                                Integer Turpis Tortor, Vehicula Vel Quam At, Aliquet
+                                Efficitur Arcu Nam Vestibulu Risus At Faucibus.
+                                their purchases on your website. Inspire.
+                            </p>
+
+                            <a href="@Url.Action("Index","Shop")"
+                               class="cus-btn-2">
+
+                                <span class="btn-text">
+                                    Shop Now
+                                </span>
+
+                                <span>
+                                    Go to Shop
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="collection-grid mb-24">
+
+                    <img src="@Url.Content("~/Assets/Client/assets/media/collection/main-col-2.png")"
+                         alt=""
+                         class="w-100" />
+
+                    <div class="col-lg-9">
+
+                        <div class="grid-content grid-2">
+
+                            <h4 class="title-text-2 fw-700 mb-8">
+                                Navneet Hq Pink Book A5 Size
+                            </h4>
+
+                            <p class="mb-16">
+                                Integer Turpis Tortor, Vehicula Vel Quam At,
+                                Aliquet Efficitur Arcu Nam Vestibulu Risus At Faucibus.
+                            </p>
+
+                            <a href="@Url.Action("Index","Shop")"
+                               class="cus-btn-2">
+
+                                <span class="btn-text">
+                                    Shop Now
+                                </span>
+
+                                <span>
+                                    Go to Shop
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="collection-grid">
+
+                    <img src="@Url.Content("~/Assets/Client/assets/media/collection/main-col-3.png")"
+                         alt=""
+                         class="w-100" />
+
+                    <div class="col-lg-9">
+
+                        <div class="grid-content grid-2">
+
+                            <h4 class="title-text-3 fw-700 mb-8">
+                                Lightweight, Stylish, and Built to Last
+                            </h4>
+
+                            <p class="mb-16">
+                                Integer Turpis Tortor, Vehicula Vel Quam At,
+                                Aliquet Efficitur Arcu Nam Vestibulu Risus At Faucibus.
+                            </p>
+
+                            <a href="@Url.Action("Index","Shop")"
+                               class="cus-btn-2">
+
+                                <span class="btn-text">
+                                    Shop Now
+                                </span>
+
+                                <span>
+                                    Go to Shop
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- COLLECTION GRIDS END -->
+<!-- INNER BANNER START -->
+<section class="inner-banner py-40 my-40">
+
+    <div class="container-2">
+
+        <div class="inner-wrapper">
+
+            <img src="@Url.Content("~/Assets/Client/assets/media/images/inner-banner-element.png")"
+                 alt=""
+                 class="element" />
+
+            <div class="row align-items-center row-gap-3">
+
+                <div class="col-lg-6 col-md-6">
+
+                    <h3 class="medium-black fw-700 mb-16">
+                        Creative Notebook Ideas
+                    </h3>
+
+                    <p class="text mb-16">
+                        Porta non pulvinar neque laoreet suspendisse interdum
+                        consectetur libero. Massa tempor nec feugiat nisl.
+                        Accumsan lacus vel facilisis volutpat. Viverra justo nec.
+                    </p>
+
+                    <a href="@Url.Action("Index","Shop")"
+                       class="cus-btn">
+
+                        <span class="btn-text">
+                            Shop Now
+                        </span>
+
+                        <span>
+                            Go to Shop
+                        </span>
+
+                    </a>
+
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+
+                    <div class="banner-image text-end">
+
+                        <img src="@Url.Content("~/Assets/Client/assets/media/images/inner-banner-image.png")"
+                             alt="" />
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- INNER BANNER END -->
+<!-- SALE START -->
+@Html.Action("SaleProducts", "Home")
+<!-- SALE SELLER END -->
+<!-- INNER BANNER 2 START -->
+<section class="inner-banner-2 mt-40 wow fadeInUp animated"
+         data-wow-delay="400ms">
+
+    <div class="container-2">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-5">
+
+                <div class="heading mb-48 text-center wow fadeInUp animated"
+                     data-wow-delay="400ms">
+
+                    <h2 class="medium-black fw-700 mb-16">
+                        <span class="color-primary"> Deal</span> Of The Day
+                    </h2>
+
+                    <p>
+                        Give thank to the most high
+                    </p>
+
+                </div>
+
+                <div class="coming-soon-wrapper mb-32">
+
+                    <ul class="unstyled countdown">
+
+                        <li>
+                            <h2>365</h2>
+                            <h6 class="fw-500">Days</h6>
+                        </li>
+
+                        <li>
+                            <h2>24</h2>
+                            <h6 class="fw-500">Hrs</h6>
+                        </li>
+
+                        <li>
+                            <h2>60</h2>
+                            <h6 class="fw-500">Min</h6>
+                        </li>
+
+                        <li>
+                            <h2>60</h2>
+                            <h6 class="fw-500">Secs</h6>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="text-center">
+
+                    <a href="@Url.Action("Index", "Shop")"
+                       class="cus-btn">
+
+                        <span class="btn-text">
+                            Shop Now
+                        </span>
+
+                        <span>
+                            Go to Shop
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- INNER BANNER 2 END -->
+<!-- BRAND SLIDER START -->
+<div class="brand-slider-wrapper py-80 wow fadeInUp animated"
+     data-wow-delay="400ms">
+
+    <div class="container-fluid">
+
+        <div class="brand-slider">
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-1.png")"
+                     alt="" />
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-2.png")"
+                     alt="" />
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-3.png")"
+                     alt="" />
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-4.png")"
+                     alt="" />
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-5.png")"
+                     alt="" />
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-1.png")"
+                     alt="" />
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-2.png")"
+                     alt="" />
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-3.png")"
+                     alt="" />
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-4.png")"
+                     alt="" />
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-5.png")"
+                     alt="" />
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- BRAND SLIDER END -->
+@*QUẢN LÝ PHẢN HỒI*@
+<!-- TESTIMONIALS SECTION START -->
+<section class="testimonials-sec pt-40 pb-80">
+
+    <div class="container-2">
+
+        <div class="heading mb-48 text-center wow fadeInUp animated"
+             data-wow-delay="400ms">
+
+            <h2 class="medium-black fw-700 mb-16">
+                Customer <span class="color-primary"> Reviews</span>
+            </h2>
+
+            <p>
+                Porta non pulvinar neque laoreet suspendisse interdum
+                consectetur libero. Massa tempor nec
+                <br class="d-lg-block d-none" />
+                feugiat nisl. Accumsan lacus vel facilisis volutpat.
+                Viverra justo nec.
+            </p>
+
+        </div>
+
+        <div class="row row-gap-sm-4 row-gap-3">
+
+            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
+                 data-wow-delay="200ms">
+
+                <div class="testimonials-block p-24 bg-sec br-12">
+
+                    <div class="rating-star mb-16">
+                        <h6 class="color-star">★★★★★</h6>
+                    </div>
+
+                    <p class="mb-24">
+                        Justo habitasse cubilia ridiculus pulvinar et consequat,
+                        donec sociosqu. Ullamcorper dignissim dolor adipiscing
+                        nulla, ligula dictum auctor iaculis nulla. Penatibus ipsum
+                        cras sollicitudin, vehicula phasellus litora. Rutrum
+                        ultrices phasellus adipiscing gravida diam erat.
+                    </p>
+
+                    <p class="fw-600 medium-black">
+                        - Charlie Quitzon
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
+                 data-wow-delay="300ms">
+
+                <div class="testimonials-block p-24 bg-sec br-12">
+
+                    <div class="rating-star mb-16">
+                        <h6 class="color-star">★★★★★</h6>
+                    </div>
+
+                    <p class="mb-24">
+                        Justo habitasse cubilia ridiculus pulvinar et consequat,
+                        donec sociosqu. Ullamcorper dignissim dolor adipiscing
+                        nulla, ligula dictum auctor iaculis nulla. Penatibus ipsum
+                        cras sollicitudin, vehicula phasellus litora.
+                    </p>
+
+                    <p class="fw-600 medium-black">
+                        - Yuki Japan
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
+                 data-wow-delay="400ms">
+
+                <div class="testimonials-block p-24 bg-sec br-12">
+
+                    <div class="rating-star mb-16">
+                        <h6 class="color-star">★★★★★</h6>
+                    </div>
+
+                    <p class="mb-24">
+                        Justo habitasse cubilia ridiculus pulvinar et consequat,
+                        donec sociosqu. Ullamcorper dignissim dolor adipiscing
+                        nulla, ligula dictum auctor iaculis nulla. Penatibus ipsum
+                        cras sollicitudin, vehicula phasellus litora.
+                    </p>
+
+                    <p class="fw-600 medium-black">
+                        - Mathew Aden
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
+                 data-wow-delay="500ms">
+
+                <div class="testimonials-block p-24 bg-sec br-12">
+
+                    <div class="rating-star mb-16">
+                        <h6 class="color-star">★★★★★</h6>
+                    </div>
+
+                    <p class="mb-24">
+                        Justo habitasse cubilia ridiculus pulvinar et consequat,
+                        donec sociosqu. Ullamcorper dignissim dolor adipiscing
+                        nulla, ligula dictum auctor iaculis nulla. Penatibus ipsum
+                        cras sollicitudin, vehicula phasellus litora.
+                    </p>
+
+                    <p class="fw-600 medium-black">
+                        - Eren Turkey
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
+                 data-wow-delay="600ms">
+
+                <div class="testimonials-block p-24 bg-sec br-12">
+
+                    <div class="rating-star mb-16">
+                        <h6 class="color-star">★★★★★</h6>
+                    </div>
+
+                    <p class="mb-24">
+                        Justo habitasse cubilia ridiculus pulvinar et consequat,
+                        donec sociosqu. Ullamcorper dignissim dolor adipiscing
+                        nulla, ligula dictum auctor iaculis nulla. Penatibus ipsum
+                        cras sollicitudin, vehicula phasellus litora.
+                    </p>
+
+                    <p class="fw-600 medium-black">
+                        - Kenny USA
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
+                 data-wow-delay="700ms">
+
+                <div class="testimonials-block p-24 bg-sec br-12">
+
+                    <div class="rating-star mb-16">
+                        <h6 class="color-star">★★★★★</h6>
+                    </div>
+
+                    <p class="mb-24">
+                        Justo habitasse cubilia ridiculus pulvinar et consequat,
+                        donec sociosqu. Ullamcorper dignissim dolor adipiscing
+                        nulla, ligula dictum auctor iaculis nulla. Penatibus ipsum
+                        cras sollicitudin, vehicula phasellus litora. Rutrum
+                        ultrices phasellus adipiscing gravida diam erat.
+                    </p>
+
+                    <p class="fw-600 medium-black">
+                        - John Smith
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- TESTIMONIALS SECTION END -->
+@*HẾT QYARN LÝ PHẢN HỒI-LÀM SAU*@
+<!-- BLOG SECTION START -->
+<section class="blog-section pt-80 pb-40">
+
+    <div class="container-2">
+
+        <div class="heading mb-48 text-center wow fadeInUp animated"
+             data-wow-delay="400ms">
+
+            <h2 class="medium-black fw-700 mb-16">
+                Latest <span class="color-primary"> Articles</span>
+            </h2>
+
+            <p>
+                Porta non pulvinar neque laoreet suspendisse interdum
+                consectetur libero. Massa tempor nec
+                <br class="d-lg-block d-none" />
+                feugiat nisl. Accumsan lacus vel facilisis volutpat.
+                Viverra justo nec.
+            </p>
+
+        </div>
+
+        <div class="row row-gap-4 mb-48">
+
+            <!-- BLOG 1 -->
+            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
+                 data-wow-delay="400ms">
+
+                <div class="blog-card">
+
+                    <a href="@Url.Action("BlogDetail", "Blog", new { id = 1 })"
+                       class="blog-image mb-8">
+
+                        <img src="@Url.Content("~/Assets/Client/assets/media/blogs/blog-1.png")"
+                             alt="" />
+
+                    </a>
+
+                    <div class="blog-text">
+
+                        <p class="subtitle mb-16 fw-500 light-gray">
+                            By Admin • 24 Jan, 2025
+                        </p>
+
+                        <a href="@Url.Action("BlogDetail", "Blog", new { id = 1 })"
+                           class="h5 fw-700 font-sec mb-8">
+
+                            Why Quality Stationery Matters:
+                            Elevate Your Workspace
+
+                        </a>
+
+                        <p class="mb-24">
+                            Lorem ipsum dolor sit amet consectetur.
+                            Velit mi vitae dolor curabitur duis sociis.
+                            Eget risus.
+                        </p>
+
+                        <a href="@Url.Action("BlogDetail", "Blog", new { id = 1 })"
+                           class="medium-black fw-700 font-sec text-decoration-underline">
+
+                            Read More
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- BLOG 2 -->
+            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
+                 data-wow-delay="500ms">
+
+                <div class="blog-card">
+
+                    <a href="@Url.Action("BlogDetail", "Blog", new { id = 2 })"
+                       class="blog-image mb-8">
+
+                        <img src="@Url.Content("~/Assets/Client/assets/media/blogs/blog-2.png")"
+                             alt="" />
+
+                    </a>
+
+                    <div class="blog-text">
+
+                        <p class="subtitle mb-16 fw-500 light-gray">
+                            By Admin • 24 Jan, 2025
+                        </p>
+
+                        <a href="@Url.Action("BlogDetail", "Blog", new { id = 2 })"
+                           class="h5 fw-700 font-sec mb-8">
+
+                            Minimalist vs. Aesthetic:
+                            Finding Your Stationery Style
+
+                        </a>
+
+                        <p class="mb-24">
+                            Lorem ipsum dolor sit amet consectetur.
+                            Velit mi vitae dolor curabitur duis sociis.
+                            Eget risus.
+                        </p>
+
+                        <a href="@Url.Action("BlogDetail", "Blog", new { id = 2 })"
+                           class="medium-black fw-700 font-sec text-decoration-underline">
+
+                            Read More
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- BLOG 3 -->
+            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
+                 data-wow-delay="600ms">
+
+                <div class="blog-card">
+
+                    <a href="@Url.Action("BlogDetail", "Blog", new { id = 3 })"
+                       class="blog-image mb-8">
+
+                        <img src="@Url.Content("~/Assets/Client/assets/media/blogs/blog-3.png")"
+                             alt="" />
+
+                    </a>
+
+                    <div class="blog-text">
+
+                        <p class="subtitle mb-16 fw-500 light-gray">
+                            By Admin • 24 Jan, 2025
+                        </p>
+
+                        <a href="@Url.Action("BlogDetail", "Blog", new { id = 3 })"
+                           class="h5 fw-700 font-sec mb-8">
+
+                            The Ultimate Guide to Choosing
+                            the Perfect Notebook
+
+                        </a>
+
+                        <p class="mb-24">
+                            Lorem ipsum dolor sit amet consectetur.
+                            Velit mi vitae dolor curabitur duis sociis.
+                            Eget risus.
+                        </p>
+
+                        <a href="@Url.Action("BlogDetail", "Blog", new { id = 3 })"
+                           class="medium-black fw-700 font-sec text-decoration-underline">
+
+                            Read More
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- BLOG SECTION END -->
