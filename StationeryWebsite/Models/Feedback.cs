@@ -21,5 +21,6 @@ namespace StationeryWebsite.Models
         public Nullable<int> vote { get; set; }
     
         public virtual User User { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

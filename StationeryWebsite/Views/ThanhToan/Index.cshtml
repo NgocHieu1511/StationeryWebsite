@@ -1,8 +1,12 @@
 ﻿@model List<StationeryWebsite.Models.Cart>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Checkout";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+    // Lấy thông tin user và địa chỉ từ ViewBag (nếu có)
+    var userInfo = ViewBag.UserInfo as StationeryWebsite.Models.User;
+    var latestAddress = ViewBag.LatestAddress as StationeryWebsite.Models.Address;
 }
 
 <!-- TITLE BANNER START -->
@@ -29,6 +33,18 @@
     </div>
 </section>
 <!-- TITLE BANNER END -->
+<!-- Messages -->
+@if (TempData["Error"] != null)
+{
+    <div class="container-2 mt-16">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    </div>
+}
+
 <!-- CHECKOUT FORM START -->
 @using (Html.BeginForm("PlaceOrder", "ThanhToan", FormMethod.Post, new { id = "checkoutForm" }))
 {
@@ -49,40 +65,86 @@
                         <div class="row">
 
                             <div class="col-md-6">
-                                <input type="text" name="first_name" class="form-control form-control-2 mb-16" placeholder="Họ">
+                                <label class="form-label fw-600">Họ</label>
+                                <input type="text"
+                                       name="first_name"
+                                       class="form-control form-control-2 mb-16"
+                                       placeholder="Nhập họ của bạn"
+                                       value="@(userInfo?.first_name)"
+                                       required>
                             </div>
 
                             <div class="col-md-6">
-                                <input type="text" name="last_name" class="form-control form-control-2 mb-16" placeholder="Tên">
+                                <label class="form-label fw-600">Tên</label>
+                                <input type="text"
+                                       name="last_name"
+                                       class="form-control form-control-2 mb-16"
+                                       placeholder="Nhập tên của bạn"
+                                       value="@(userInfo?.last_name)"
+                                       required>
                             </div>
 
                             <div class="col-md-6">
-                                <input type="email" name="email" class="form-control form-control-2 mb-16" placeholder="Email">
+                                <label class="form-label fw-600">Email</label>
+                                <input type="email"
+                                       name="email"
+                                       class="form-control form-control-2 mb-16"
+                                       placeholder="Nhập email"
+                                       value="@(userInfo?.email)"
+                                       required>
                             </div>
 
                             <div class="col-md-6">
-                                <input type="tel" name="phone" class="form-control form-control-2 mb-16" placeholder="Số điện thoại">
+                                <label class="form-label fw-600">Số điện thoại</label>
+                                <input type="tel"
+                                       name="phone"
+                                       class="form-control form-control-2 mb-16"
+                                       placeholder="Nhập số điện thoại"
+                                       value="@(userInfo?.phone)"
+                                       required>
                             </div>
 
                             <div class="col-md-12">
-                                <input type="text" name="address" class="form-control form-control-2 mb-16" placeholder="Số nhà, đường">
+                                <label class="form-label fw-600">Địa chỉ</label>
+                                <input type="text"
+                                       name="address"
+                                       class="form-control form-control-2 mb-16"
+                                       placeholder="Số nhà, tên đường"
+                                       value="@(latestAddress?.specific_address)"
+                                       required>
                             </div>
 
                             <div class="col-md-6">
-                                <input type="text" name="ward" class="form-control form-control-2 mb-16" placeholder="Phường/Xã">
+                                <label class="form-label fw-600">Phường/Xã</label>
+                                <input type="text"
+                                       name="ward"
+                                       class="form-control form-control-2 mb-16"
+                                       placeholder="Nhập phường/xã"
+                                       value="@(latestAddress?.ward_name)">
                             </div>
 
                             <div class="col-md-6">
-                                <input type="text" name="district" class="form-control form-control-2 mb-16" placeholder="Quận/Huyện">
+                                <label class="form-label fw-600">Quận/Huyện</label>
+                                <input type="text"
+                                       name="district"
+                                       class="form-control form-control-2 mb-16"
+                                       placeholder="Nhập quận/huyện"
+                                       value="@(latestAddress?.district_name)">
                             </div>
 
                             <div class="col-md-12">
-                                <select name="province" class="form-control form-control-2 mb-16">
+                                <label class="form-label fw-600">Tỉnh/Thành phố</label>
+                                <select name="province" class="form-control form-control-2 mb-16" required>
                                     <option value="">Chọn Tỉnh/Thành</option>
-                                    <option value="HN">Hà Nội</option>
-                                    <option value="HCM">Hồ Chí Minh</option>
-                                    <option value="DN">Đà Nẵng</option>
-                                    <option value="HP">Hải Phòng</option>
+                                    <option value="Hà Nội" @(latestAddress?.province_name == "Hà Nội" ? "selected" : "")>Hà Nội</option>
+                                    <option value="Hồ Chí Minh" @(latestAddress?.province_name == "Hồ Chí Minh" ? "selected" : "")>Hồ Chí Minh</option>
+                                    <option value="Đà Nẵng" @(latestAddress?.province_name == "Đà Nẵng" ? "selected" : "")>Đà Nẵng</option>
+                                    <option value="Hải Phòng" @(latestAddress?.province_name == "Hải Phòng" ? "selected" : "")>Hải Phòng</option>
+                                    <option value="Cần Thơ" @(latestAddress?.province_name == "Cần Thơ" ? "selected" : "")>Cần Thơ</option>
+                                    <option value="Bình Dương" @(latestAddress?.province_name == "Bình Dương" ? "selected" : "")>Bình Dương</option>
+                                    <option value="Đồng Nai" @(latestAddress?.province_name == "Đồng Nai" ? "selected" : "")>Đồng Nai</option>
+                                    <option value="Khánh Hòa" @(latestAddress?.province_name == "Khánh Hòa" ? "selected" : "")>Khánh Hòa</option>
+                                    <option value="Khác" @(latestAddress?.province_name == "Khác" ? "selected" : "")>Tỉnh/Thành khác</option>
                                 </select>
                             </div>
 
@@ -96,19 +158,31 @@
 
                     <div class="shipping-radio-container mb-40">
 
-                        <label>
+                        <label class="shipping-option">
                             <input type="radio" name="shipping_fee" value="15000" checked>
-                            Giao tiêu chuẩn - 15.000đ
-                        </label><br>
+                            <div class="shipping-info">
+                                <span class="fw-600">Giao tiêu chuẩn</span>
+                                <span class="text-danger fw-600">15.000đ</span>
+                                <small class="text-muted">Giao trong 3-5 ngày</small>
+                            </div>
+                        </label>
 
-                        <label>
+                        <label class="shipping-option">
                             <input type="radio" name="shipping_fee" value="35000">
-                            Giao nhanh - 35.000đ
-                        </label><br>
+                            <div class="shipping-info">
+                                <span class="fw-600">Giao nhanh</span>
+                                <span class="text-danger fw-600">35.000đ</span>
+                                <small class="text-muted">Giao trong 1-2 ngày</small>
+                            </div>
+                        </label>
 
-                        <label>
+                        <label class="shipping-option">
                             <input type="radio" name="shipping_fee" value="60000">
-                            Hỏa tốc - 60.000đ
+                            <div class="shipping-info">
+                                <span class="fw-600">Hỏa tốc</span>
+                                <span class="text-danger fw-600">60.000đ</span>
+                                <small class="text-muted">Giao trong 2-4 giờ</small>
+                            </div>
                         </label>
 
                     </div>
@@ -118,26 +192,63 @@
                         <h5 class="fw-600 medium-black">Payment Methods</h5>
                     </div>
 
-                    <div class="shipping-radio-container mb-40">
+                    <div class="payment-methods mb-40">
 
-                        <label><input type="radio" name="payment_method" value="card" checked> Thẻ tín dụng</label><br>
-                        <label><input type="radio" name="payment_method" value="paypal"> Paypal</label><br>
-                        <label><input type="radio" name="payment_method" value="bank"> Chuyển khoản</label><br>
-                        <label><input type="radio" name="payment_method" value="cod"> COD</label>
+                        <label class="payment-option active">
+                            <input type="radio" name="payment_method" value="cod" checked>
+                            <div class="payment-info">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <span class="fw-600">Thanh toán khi nhận hàng (COD)</span>
+                            </div>
+                        </label>
+
+                        <label class="payment-option">
+                            <input type="radio" name="payment_method" value="bank">
+                            <div class="payment-info">
+                                <i class="fas fa-university"></i>
+                                <span class="fw-600">Chuyển khoản ngân hàng</span>
+                            </div>
+                        </label>
+
+                        <label class="payment-option">
+                            <input type="radio" name="payment_method" value="card">
+                            <div class="payment-info">
+                                <i class="fas fa-credit-card"></i>
+                                <span class="fw-600">Thẻ tín dụng/Ghi nợ</span>
+                            </div>
+                        </label>
 
                     </div>
 
-                    <!-- CARD DETAILS -->
-                    <div>
+                    <!-- CARD DETAILS (Hidden by default, show when chọn thẻ) -->
+                    <div id="cardDetails" style="display: none;">
                         <h5 class="fw-600 medium-black mb-24">Payment Details</h5>
 
-                        <input type="text" name="card_number" class="form-control mb-16" placeholder="Số thẻ">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="form-label fw-600">Số thẻ</label>
+                                <input type="text" name="card_number" class="form-control mb-16"
+                                       placeholder="XXXX XXXX XXXX XXXX">
+                            </div>
 
-                        <input type="text" name="card_expiry" class="form-control mb-16" placeholder="MM/YY">
+                            <div class="col-md-6">
+                                <label class="form-label fw-600">Ngày hết hạn</label>
+                                <input type="text" name="card_expiry" class="form-control mb-16"
+                                       placeholder="MM/YY">
+                            </div>
 
-                        <input type="text" name="cvv" class="form-control mb-16" placeholder="CVV">
+                            <div class="col-md-6">
+                                <label class="form-label fw-600">CVV</label>
+                                <input type="text" name="cvv" class="form-control mb-16"
+                                       placeholder="123">
+                            </div>
 
-                        <input type="text" name="card_holder" class="form-control mb-16" placeholder="Tên chủ thẻ">
+                            <div class="col-md-12">
+                                <label class="form-label fw-600">Tên chủ thẻ</label>
+                                <input type="text" name="card_holder" class="form-control mb-16"
+                                       placeholder="Nhập tên trên thẻ">
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -149,52 +260,79 @@
                         <h5 class="fw-600 medium-black">Order Summary</h5>
                     </div>
 
-                    <div class="summary-container bg-white">
+                    <div class="summary-container bg-white br-10 p-24">
 
                         @foreach (var item in Model)
                         {
-                            <div class="item-container mb-16">
-                                <div>
-                                    <img src="@item.Product.image" style="width:60px">
-                                    <b>@item.Product.name</b> x @item.quantity
+                            <div class="item-container d-flex justify-content-between align-items-center mb-16">
+                                <div class="d-flex align-items-center">
+                                    <img src="@item.Product.image"
+                                         style="width:60px; height:60px; object-fit:cover; border-radius:8px; margin-right:12px;"
+                                         alt="@item.Product.name">
+                                    <div>
+                                        <b class="medium-black">@item.Product.name</b>
+                                        <br>
+                                        <small class="text-muted">x @item.quantity</small>
+                                    </div>
                                 </div>
-                                <div>
+                                <div class="fw-600 text-danger">
                                     @((item.quantity * item.Product.price).ToString("N0"))đ
                                 </div>
                             </div>
+                            if (item != Model.Last())
+                            {
+                                <hr class="my-8">
+                            }
                         }
 
-                        <hr />
+                        <hr class="my-16">
 
-                        <div class="d-flex justify-content-between">
-                            <span>Tạm tính</span>
-                            <span>
+                        <div class="d-flex justify-content-between mb-8">
+                            <span class="text-muted">Tạm tính</span>
+                            <span class="fw-600" id="subtotalDisplay">
                                 @((Model.Sum(c => c.quantity * c.Product.price)).ToString("N0"))đ
                             </span>
                         </div>
 
-                        <div class="d-flex justify-content-between">
-                            <span>Phí ship</span>
-                            <span>15.000đ</span>
+                        <div class="d-flex justify-content-between mb-8">
+                            <span class="text-muted">Phí ship</span>
+                            <span class="fw-600" id="shippingFeeDisplay">15.000đ</span>
                         </div>
 
-                        <hr />
+                        <hr class="my-16">
 
-                        <div class="d-flex justify-content-between">
-                            <b>Tổng cộng</b>
-                            <b>
+                        <div class="d-flex justify-content-between mb-16">
+                            <b class="medium-black" style="font-size:1.1rem;">Tổng cộng</b>
+                            <b class="text-danger" style="font-size:1.2rem;" id="totalDisplay">
                                 @((Model.Sum(c => c.quantity * c.Product.price) + 15000).ToString("N0"))đ
                             </b>
                         </div>
 
-                        <hr />
+                        <hr class="my-16">
 
-                        <input type="text" name="coupon" class="form-control mb-16" placeholder="Mã giảm giá">
+                        <div class="mb-16">
+                            <label class="form-label fw-600">Mã giảm giá</label>
+                            <div class="input-group">
+                                <input type="text" name="coupon" class="form-control"
+                                       placeholder="Nhập mã giảm giá">
+                                <button type="button" class="btn btn-outline-primary" id="applyCoupon">
+                                    Áp dụng
+                                </button>
+                            </div>
+                            <small id="couponMessage" class="text-success" style="display:none;"></small>
+                        </div>
 
                         <!-- SUBMIT -->
-                        <button type="submit" class="cus-btn border-0 w-100">
+                        <button type="submit" class="cus-btn border-0 w-100 py-12">
+                            <i class="fas fa-check-circle me-2"></i>
                             Đặt hàng ngay
                         </button>
+
+                        <div class="text-center mt-16">
+                            <a href="@Url.Action("Index", "GioHang")" class="text-decoration-none">
+                                <i class="fas fa-arrow-left me-2"></i>Quay lại giỏ hàng
+                            </a>
+                        </div>
 
                     </div>
 
@@ -205,3 +343,182 @@
     </section>
 }
 <!-- CHECKOUT FORM END -->
+
+<style>
+    /* Shipping Options */
+    .shipping-radio-container {
+        background: white;
+        border-radius: 10px;
+        padding: 16px;
+    }
+
+    .shipping-option {
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        margin-bottom: 8px;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+        .shipping-option:hover {
+            border-color: #FF6B35;
+            background: #FFF5F0;
+        }
+
+        .shipping-option input[type="radio"] {
+            margin-right: 16px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+            .shipping-option input[type="radio"]:checked + .shipping-info {
+                color: #FF6B35;
+            }
+
+    .shipping-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+        .shipping-info small {
+            font-size: 0.85rem;
+        }
+
+    /* Payment Options */
+    .payment-methods {
+        background: white;
+        border-radius: 10px;
+        padding: 16px;
+    }
+
+    .payment-option {
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        margin-bottom: 8px;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+        .payment-option:hover {
+            border-color: #FF6B35;
+            background: #FFF5F0;
+        }
+
+        .payment-option input[type="radio"] {
+            margin-right: 16px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+    .payment-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+        .payment-info i {
+            font-size: 1.5rem;
+            color: #FF6B35;
+            width: 30px;
+            text-align: center;
+        }
+
+    /* Summary */
+    .summary-container {
+        position: sticky;
+        top: 100px;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+
+    .item-container img {
+        border: 1px solid #eee;
+    }
+
+    /* Form */
+    .form-label {
+        margin-bottom: 4px;
+        font-size: 0.9rem;
+    }
+
+    .form-control-2 {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px 16px;
+    }
+
+        .form-control-2:focus {
+            border-color: #FF6B35;
+            box-shadow: 0 0 0 3px rgba(255,107,53,0.1);
+        }
+</style>
+
+<!-- JavaScript để cập nhật tổng tiền và hiển thị form thẻ -->
+<script>
+    $(document).ready(function() {
+        // Cập nhật tổng tiền khi chọn phí ship
+        $('input[name="shipping_fee"]').change(function() {
+            updateTotal();
+        });
+
+        // Hiển thị/ẩn form thẻ tín dụng
+        $('input[name="payment_method"]').change(function() {
+            if ($(this).val() === 'card') {
+                $('#cardDetails').slideDown();
+            } else {
+                $('#cardDetails').slideUp();
+            }
+        });
+
+        // Kiểm tra khi trang load (nếu đã chọn thẻ)
+        if ($('input[name="payment_method"]:checked').val() === 'card') {
+            $('#cardDetails').show();
+        }
+
+        // Validate form trước khi submit
+        $('#checkoutForm').submit(function(e) {
+            var paymentMethod = $('input[name="payment_method"]:checked').val();
+
+            if (paymentMethod === 'card') {
+                var cardNumber = $('input[name="card_number"]').val();
+                var cardExpiry = $('input[name="card_expiry"]').val();
+                var cvv = $('input[name="cvv"]').val();
+                var cardHolder = $('input[name="card_holder"]').val();
+
+                if (!cardNumber || !cardExpiry || !cvv || !cardHolder) {
+                    alert('Vui lòng điền đầy đủ thông tin thẻ!');
+                    e.preventDefault();
+                    return false;
+                }
+            }
+
+            // Disable nút submit để tránh double click
+            $(this).find('button[type="submit"]').prop('disabled', true).text('Đang xử lý...');
+        });
+
+        // Áp dụng mã giảm giá (demo)
+        $('#applyCoupon').click(function() {
+            var coupon = $('input[name="coupon"]').val();
+            if (coupon) {
+                $('#couponMessage').text('Mã giảm giá "' + coupon + '" đã được áp dụng!').show();
+            }
+        });
+    });
+
+    function updateTotal() {
+        var subtotal = @Model.Sum(c => c.quantity * c.Product.price);
+        var shippingFee = parseInt($('input[name="shipping_fee"]:checked').val());
+        var total = subtotal + shippingFee;
+
+        $('#shippingFeeDisplay').text(shippingFee.toLocaleString('vi-VN') + 'đ');
+        $('#totalDisplay').text(total.toLocaleString('vi-VN') + 'đ');
+    }
+</script>

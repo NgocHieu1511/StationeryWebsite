@@ -164,11 +164,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FeedbackAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LienHeController.cs" />
@@ -1336,6 +1339,8 @@
     <Content Include="Assets\Client\assets\css\webfonts\fa-v4compatibility.ttf" />
     <Content Include="Assets\Client\assets\css\webfonts\fa-v4compatibility.woff2" />
     <Content Include="Areas\Admin\Views\OrderAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\FeedbackAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderAdmin\ChiTietDonHang.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -1363,7 +1368,6 @@
     <Content Include="Views\LienHe\LienHe.cshtml" />
     <Content Include="Views\SanPham\SanPham.cshtml" />
     <Content Include="Views\SanPham\Details.cshtml" />
-    <Content Include="Views\ThongTinNguoiDung\ThongTinNguoiDung.cshtml" />
     <Content Include="Views\YeuThich\YeuThich.cshtml" />
     <Content Include="Views\GioHang\Index.cshtml" />
     <Content Include="Views\SanPhamChung\SanPhamChung.cshtml" />
@@ -1375,6 +1379,7 @@
     <Content Include="Views\SanPham\Category.cshtml" />
     <Content Include="Views\ThanhToan\Index.cshtml" />
     <Content Include="Views\ThanhToan\Success.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1382,6 +1387,7 @@
     <Folder Include="Areas\Admin\Views\Admin\" />
     <Folder Include="Content\ckfinder\userfiles\" />
     <Folder Include="Content\images\" />
+    <Folder Include="Views\Feedback\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

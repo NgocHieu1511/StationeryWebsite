@@ -396,174 +396,84 @@
 <!-- BRAND SLIDER END -->
 @*QUẢN LÝ PHẢN HỒI*@
 <!-- TESTIMONIALS SECTION START -->
+@{
+    var reviews = ViewBag.Reviews as List<StationeryWebsite.Models.Feedback>;
+}
+
 <section class="testimonials-sec pt-40 pb-80">
 
     <div class="container-2">
 
-        <div class="heading mb-48 text-center wow fadeInUp animated"
-             data-wow-delay="400ms">
+        <div class="heading mb-48 text-center wow fadeInUp animated">
 
             <h2 class="medium-black fw-700 mb-16">
                 Customer <span class="color-primary"> Reviews</span>
             </h2>
 
             <p>
-                Porta non pulvinar neque laoreet suspendisse interdum
-                consectetur libero. Massa tempor nec
-                <br class="d-lg-block d-none" />
-                feugiat nisl. Accumsan lacus vel facilisis volutpat.
-                Viverra justo nec.
+                Khách hàng nói gì về sản phẩm của chúng tôi
             </p>
 
         </div>
 
         <div class="row row-gap-sm-4 row-gap-3">
 
-            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
-                 data-wow-delay="200ms">
+            @if (reviews != null && reviews.Count > 0)
+            {
+                foreach (var item in reviews)
+                {
+                    <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated">
 
-                <div class="testimonials-block p-24 bg-sec br-12">
+                        <div class="testimonials-block p-24 bg-sec br-12 h-100">
 
-                    <div class="rating-star mb-16">
-                        <h6 class="color-star">★★★★★</h6>
+                            <!-- STAR -->
+                            <div class="rating-star mb-16">
+
+                                <h6 class="color-star">
+
+                                    @{
+                                        int vote = item.vote ?? 0;
+                                    }
+
+                                    @for (int i = 1; i <= vote; i++)
+                                    {
+                                        @:★
+                                    }
+
+                                </h6>
+
+                            </div>
+
+                            <!-- COMMENT -->
+                            <p class="mb-24">
+
+                                @item.comment
+
+                            </p>
+
+                            <!-- USER -->
+                            <p class="fw-600 medium-black mb-1">
+
+                                - @item.User.username
+
+                            </p>
+
+                            <!-- PRODUCT -->
+                            <small class="text-muted">
+
+                                @item.Product.name
+
+                            </small>
+
+                        </div>
+
                     </div>
-
-                    <p class="mb-24">
-                        Justo habitasse cubilia ridiculus pulvinar et consequat,
-                        donec sociosqu. Ullamcorper dignissim dolor adipiscing
-                        nulla, ligula dictum auctor iaculis nulla. Penatibus ipsum
-                        cras sollicitudin, vehicula phasellus litora. Rutrum
-                        ultrices phasellus adipiscing gravida diam erat.
-                    </p>
-
-                    <p class="fw-600 medium-black">
-                        - Charlie Quitzon
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
-                 data-wow-delay="300ms">
-
-                <div class="testimonials-block p-24 bg-sec br-12">
-
-                    <div class="rating-star mb-16">
-                        <h6 class="color-star">★★★★★</h6>
-                    </div>
-
-                    <p class="mb-24">
-                        Justo habitasse cubilia ridiculus pulvinar et consequat,
-                        donec sociosqu. Ullamcorper dignissim dolor adipiscing
-                        nulla, ligula dictum auctor iaculis nulla. Penatibus ipsum
-                        cras sollicitudin, vehicula phasellus litora.
-                    </p>
-
-                    <p class="fw-600 medium-black">
-                        - Yuki Japan
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
-                 data-wow-delay="400ms">
-
-                <div class="testimonials-block p-24 bg-sec br-12">
-
-                    <div class="rating-star mb-16">
-                        <h6 class="color-star">★★★★★</h6>
-                    </div>
-
-                    <p class="mb-24">
-                        Justo habitasse cubilia ridiculus pulvinar et consequat,
-                        donec sociosqu. Ullamcorper dignissim dolor adipiscing
-                        nulla, ligula dictum auctor iaculis nulla. Penatibus ipsum
-                        cras sollicitudin, vehicula phasellus litora.
-                    </p>
-
-                    <p class="fw-600 medium-black">
-                        - Mathew Aden
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
-                 data-wow-delay="500ms">
-
-                <div class="testimonials-block p-24 bg-sec br-12">
-
-                    <div class="rating-star mb-16">
-                        <h6 class="color-star">★★★★★</h6>
-                    </div>
-
-                    <p class="mb-24">
-                        Justo habitasse cubilia ridiculus pulvinar et consequat,
-                        donec sociosqu. Ullamcorper dignissim dolor adipiscing
-                        nulla, ligula dictum auctor iaculis nulla. Penatibus ipsum
-                        cras sollicitudin, vehicula phasellus litora.
-                    </p>
-
-                    <p class="fw-600 medium-black">
-                        - Eren Turkey
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
-                 data-wow-delay="600ms">
-
-                <div class="testimonials-block p-24 bg-sec br-12">
-
-                    <div class="rating-star mb-16">
-                        <h6 class="color-star">★★★★★</h6>
-                    </div>
-
-                    <p class="mb-24">
-                        Justo habitasse cubilia ridiculus pulvinar et consequat,
-                        donec sociosqu. Ullamcorper dignissim dolor adipiscing
-                        nulla, ligula dictum auctor iaculis nulla. Penatibus ipsum
-                        cras sollicitudin, vehicula phasellus litora.
-                    </p>
-
-                    <p class="fw-600 medium-black">
-                        - Kenny USA
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
-                 data-wow-delay="700ms">
-
-                <div class="testimonials-block p-24 bg-sec br-12">
-
-                    <div class="rating-star mb-16">
-                        <h6 class="color-star">★★★★★</h6>
-                    </div>
-
-                    <p class="mb-24">
-                        Justo habitasse cubilia ridiculus pulvinar et consequat,
-                        donec sociosqu. Ullamcorper dignissim dolor adipiscing
-                        nulla, ligula dictum auctor iaculis nulla. Penatibus ipsum
-                        cras sollicitudin, vehicula phasellus litora. Rutrum
-                        ultrices phasellus adipiscing gravida diam erat.
-                    </p>
-
-                    <p class="fw-600 medium-black">
-                        - John Smith
-                    </p>
-
-                </div>
-
-            </div>
+                }
+            }
+            else
+            {
+                <p>Chưa có đánh giá nào.</p>
+            }
 
         </div>
 

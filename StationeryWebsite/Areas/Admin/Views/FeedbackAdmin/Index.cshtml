@@ -1,0 +1,52 @@
+﻿@model List<StationeryWebsite.Models.Feedback>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>User</th>
+        <th>Product</th>
+        <th>Vote</th>
+        <th>Comment</th>
+        <th>Date</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>@item.User.username</td>
+
+            <td>@item.product_id</td>
+
+            <td>@item.vote ★</td>
+
+            <td>@item.comment</td>
+
+            <td>@item.date</td>
+
+            <td>
+
+                <a href="@Url.Action("Delete",
+                                     "FeedbackAdmin",
+                                     new {
+                                         productId = item.product_id,
+                                         userId = item.user_id
+                                     })"
+                   class="btn btn-danger">
+
+                    Xóa
+
+                </a>
+
+            </td>
+
+        </tr>
+    }
+
+</table>
+

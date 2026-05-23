@@ -1,63 +1,595 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "LienHe";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<!-- Phần Content -->
-<main class="LienHe">
-    <!-- Thông tin liên hệ -->
-    <section class="ThongTinLienHe">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-4">
-                    <i class="fa fa-phone fa-2x"></i>
-                    <h4>Hotline</h4>
-                    <p>076 299 0875</p>
+<!-- TITLE BANNER START -->
+<section class="title-banner bg-sec">
+
+    <div class="container-2">
+
+        <div class="title-wrapper">
+
+            <div class="row align-items-center justify-content-between">
+
+                <!-- TITLE -->
+                <div class="col-lg-6 col-md-6 col-sm-6">
+
+                    <h1 class="fw-700 medium-black text-sm-start text-center">
+                        Liên hệ
+                    </h1>
+
                 </div>
-                <div class="col-4">
-                    <i class="fa fa-envelope fa-2x"></i>
-                    <h4>Email</h4>
-                    <p>SchoolSuppliesStore@gmail.com</p>
+
+                <!-- BANNER IMAGE -->
+                <div class="col-lg-6 col-md-6 col-sm-6 d-sm-block d-none">
+
+                    <div class="text-end">
+
+                        <img src="@Url.Content("~/Assets/Client/assets/media/banner/title-banner-image.png")"
+                             alt="Contact Banner">
+
+                    </div>
+
                 </div>
-                <div class="col-4">
-                    <i class="fa fa-location-dot fa-2x"></i>
-                    <h4>Địa chỉ</h4>
-                    <p>Số 243 Trần Văn Giàu, Phường Hòa Thuận, Tỉnh Vĩnh Long</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- TITLE BANNER END -->
+<!-- CONTACT SECTION START -->
+<section class="contact-sec py-40 my-40">
+
+    <div class="container-2">
+
+        <div class="row row-gap-4 align-items-stretch">
+
+            <!-- FORM -->
+            <div class="col-xl-6 col-lg-7 wow fadeInUp animated"
+                 data-wow-delay="500ms">
+
+                <div class="contact-form-wrapper">
+
+                    <div class="heading mb-32">
+
+                        <h2 class="fw-700 medium-black mb-16">
+                            Get in Touch
+                        </h2>
+
+                        <p>
+                            Open Mon-Fri 10 AM-9 PM,
+                            Sat 10-6 PM, Closed on Sundays.
+                        </p>
+
+                    </div>
+
+                    <form method="post" class="contact-form">
+
+                        <div class="row row-gap-3">
+
+                            <!-- NAME -->
+                            <div class="col-lg-6 col-md-6">
+
+                                <label for="fname"
+                                       class="subtitle mb-8">
+                                    Your Name
+                                </label>
+
+                                <div class="input-block">
+
+                                    <input type="text"
+                                           class="form-control"
+                                           id="fname"
+                                           name="name"
+                                           required
+                                           placeholder="John Doe">
+
+                                </div>
+
+                            </div>
+
+                            <!-- EMAIL -->
+                            <div class="col-lg-6 col-md-6">
+
+                                <label for="eMail"
+                                       class="subtitle mb-8">
+                                    Your Email
+                                </label>
+
+                                <div class="input-block">
+
+                                    <input type="email"
+                                           class="form-control"
+                                           id="eMail"
+                                           name="email"
+                                           required
+                                           placeholder="exampleinfo@gmail.com">
+
+                                </div>
+
+                            </div>
+
+                            <!-- MESSAGE -->
+                            <div class="col-lg-12">
+
+                                <label for="comment"
+                                       class="subtitle mb-8">
+                                    Special Message
+                                </label>
+
+                                <textarea name="message"
+                                          id="comment"
+                                          class="form-control"
+                                          placeholder="Write your message here..."></textarea>
+
+                            </div>
+
+                            <!-- CHECKBOX -->
+                            <div class="col-lg-12">
+
+                                <div class="cus-checkBox mb-16">
+
+                                    <input type="checkbox" id="remember">
+
+                                    <label for="remember">
+                                        I consent to the collection
+                                        and storage of my data.
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                            <!-- BUTTON -->
+                            <div class="col-xl-4 col-lg-6">
+
+                                <button type="submit" class="cus-btn">
+
+                                    <span class="text-btn">
+                                        Send Message
+                                    </span>
+
+                                    <span>
+                                        Send Message
+                                    </span>
+
+                                </button>
+
+                                <div id="message"
+                                     class="alert-msg"></div>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <!-- GOOGLE MAP -->
+            <div class="col-xl-6 col-lg-5 wow fadeInLeft animated"
+                 data-wow-delay="400ms">
+
+                <div class="map-wrapper">
+
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.678039317082!2d105.84117107508177!3d21.02851108784161!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abecb6f529d7%3A0x8ff0b1b8e6e2f5d4!2zSOG7kyBHw7htLCBIw6AgTuG7mWk!5e0!3m2!1svi!2svn!4v1716550000000"
+                            class="google-map"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- CONTACT SECTION END -->
+<!-- COMPANY DETAIL START -->
+<section class="company-detail-sec bg-lightest-gray py-64">
+
+    <div class="container-2">
+
+        <div class="row row-gap-4">
+
+            <!-- LEFT -->
+            <div class="col-lg-6">
+
+                <h3 class="fw-600 medium-black mb-16">
+                    Central Office
+                </h3>
+
+                <p class="mb-32">
+                    Open Mon-Fri 10 AM-9 PM, Sat 10-6 PM, Closed on Sundays.
+                </p>
+
+                <!-- PHONE -->
+                <div class="info-block mb-24">
+
+                    <div class="icon">
+                        <!-- SVG -->
+                    </div>
+
+                    <h6 class="fw-700 medium-black">
+                        +1 212-555-6789
+                    </h6>
+
+                </div>
+
+                <!-- EMAIL -->
+                <div class="info-block mb-24">
+
+                    <div class="icon">
+                        <!-- SVG -->
+                    </div>
+
+                    <p>
+                        exampleinfo@gmail.com
+                    </p>
+
+                </div>
+
+                <!-- ADDRESS -->
+                <div class="info-block mb-32">
+
+                    <div class="icon">
+                        <!-- SVG -->
+                    </div>
+
+                    <p>
+                        456 Fifth Avenue, New York City, USA
+                    </p>
+
+                </div>
+
+                <!-- SOCIAL -->
+                <h6 class="fw-600 medium-black mb-24">
+                    Follow us!
+                </h6>
+
+                <ul class="list-unstyled mb-0 social-media-icon">
+
+                    <!-- INSTAGRAM -->
+                    <li>
+
+                        <a href="@Url.Action("Contact","Home")">
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 viewBox="0 0 24 24"
+                                 fill="none">
+
+                                <path d="M12.2362 23.9999C12.1567 23.9999 12.0773 23.9999 11.9973 23.9996..."
+                                      fill="#1E1F20" />
+
+                            </svg>
+
+                        </a>
+
+                    </li>
+
+                    <!-- X -->
+                    <li>
+
+                        <a href="@Url.Action("Contact","Home")">
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 viewBox="0 0 24 24"
+                                 fill="none">
+
+                                <path d="M14.2418 10.1624L22.9842 0H20.9125..."
+                                      fill="#1E1F20" />
+
+                            </svg>
+
+                        </a>
+
+                    </li>
+
+                    <!-- FACEBOOK -->
+                    <li>
+
+                        <a href="@Url.Action("Contact","Home")">
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 viewBox="0 0 24 24"
+                                 fill="none">
+
+                                <path d="M17.625 5.625C18.0131 5.625 18.3281 5.31..."
+                                      fill="#1E1F20" />
+
+                            </svg>
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <!-- RIGHT -->
+            <div class="col-lg-5">
+
+                <h3 class="fw-600 medium-black mb-16">
+                    Opening Hours
+                </h3>
+
+                <p class="mb-32">
+                    Your email address is safe with us.
+                    Required fields are noted with *
+                </p>
+
+                <!-- MONDAY -->
+                <div class="time-table mb-16">
+
+                    <div class="day medium-black">
+                        Monday:
+                    </div>
+
+                    <div class="hr-line"></div>
+
+                    <div class="time">
+                        10:00 AM – 9:00 PM
+                    </div>
+
+                </div>
+
+                <!-- TUESDAY -->
+                <div class="time-table mb-16">
+
+                    <div class="day medium-black">
+                        Tuesday:
+                    </div>
+
+                    <div class="hr-line"></div>
+
+                    <div class="time">
+                        10:00 AM – 9:00 PM
+                    </div>
+
+                </div>
+
+                <!-- WEDNESDAY -->
+                <div class="time-table mb-16">
+
+                    <div class="day medium-black">
+                        Wednesday:
+                    </div>
+
+                    <div class="hr-line"></div>
+
+                    <div class="time">
+                        10:00 AM – 9:00 PM
+                    </div>
+
+                </div>
+
+                <!-- THURSDAY -->
+                <div class="time-table mb-16">
+
+                    <div class="day medium-black">
+                        Thursday:
+                    </div>
+
+                    <div class="hr-line"></div>
+
+                    <div class="time">
+                        10:00 AM – 9:00 PM
+                    </div>
+
+                </div>
+
+                <!-- FRIDAY -->
+                <div class="time-table mb-16">
+
+                    <div class="day medium-black">
+                        Friday:
+                    </div>
+
+                    <div class="hr-line"></div>
+
+                    <div class="time">
+                        10:00 AM – 9:00 PM
+                    </div>
+
+                </div>
+
+                <!-- SATURDAY -->
+                <div class="time-table mb-16">
+
+                    <div class="day medium-black">
+                        Saturday:
+                    </div>
+
+                    <div class="hr-line"></div>
+
+                    <div class="time">
+                        10:00 AM – 9:00 PM
+                    </div>
+
+                </div>
+
+                <!-- SUNDAY -->
+                <div class="time-table mb-16">
+
+                    <div class="day medium-black">
+                        Sunday:
+                    </div>
+
+                    <div class="hr-line"></div>
+
+                    <div class="time color-primary">
+                        Closed
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- COMPANY DETAIL END -->
+<!-- COMPANY LOCATIONS START -->
+<section class="locations-sec py-80">
+    <div class="container-2">
+        <div class="heading text-center mb-48">
+            <h2 class="fw-700 mb-16 medium-black">
+                Global Store <span class="color-primary"> Locations</span>
+            </h2>
+            <p>
+                The company’s primary aim is to provide modern laundry and dry cleaning <br class="d-lg-block d-none"> services tailored to customers’ needs.
+            </p>
+        </div>
+        <div class="row row-gap-4">
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                <div class="location-card">
+                    <div class="img-box mb-16">
+                        <img src="@Url.Content("~/Assets/Client/assets/media/images/loc-1.png")"
+                             alt="Paris">
+                    </div>
+                    <div class="content-box">
+                        <h6 class="fw-600 medium-black mb-8">Paris, France</h6>
+                        <p class="mb-24">12 Rue de Paris, 75001 Paris, France</p>
+                        <div class="d-flex align-items-center gap-16">
+                            <div class="phone-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                     viewBox="0 0 20 20" fill="none">
+                                    <path d="M16.2509 15.5304L15.8338 14.8339C15.0836 13.5971 14.0484 12.1776 12.6904 12.1776C12.4389 12.1776 12.1897 12.2282 11.9431 12.3307L11.2142 12.6432C11.1477 12.6708 11.083 12.7022 11.0145 12.7355C10.828 12.8262 10.6165 12.929 10.3989 12.929C9.86217 12.929 9.2403 12.2305 8.64811 10.9623C8.06692 9.71762 8.10399 9.06508 8.23741 8.73673C8.38462 8.37447 8.72695 8.21959 9.09471 8.08041C9.14585 8.06101 9.19204 8.04342 9.23696 8.02493L9.97501 7.71418C11.8978 6.9101 11.1825 4.10014 10.948 3.17889L10.7491 2.3868C10.579 1.734 10.1282 0 8.63277 0C8.35594 0 8.06061 0.064496 7.75527 0.191774C7.55492 0.271334 4.79792 1.39672 3.79909 3.37382C2.60532 5.72716 2.82605 8.88296 4.45451 12.7515C6.07079 16.625 8.16669 18.9942 10.684 19.7933C11.1158 19.9305 11.6038 19.9999 12.1346 19.9999H12.1349C13.8721 19.9999 15.587 19.2608 15.7262 19.1994C16.3251 18.9457 16.7123 18.5601 16.8768 18.0532C17.1557 17.1937 16.6878 16.2519 16.2509 15.5304ZM15.5897 17.6356C15.5514 17.7534 15.4185 17.8609 15.1948 17.9551C15.1911 17.9567 15.1866 17.9586 15.1828 17.9603C15.1673 17.9672 13.615 18.647 12.1345 18.6469C11.7428 18.6469 11.3926 18.5988 11.0935 18.5037C8.97266 17.8305 7.1592 15.72 5.70231 12.2286C4.23459 8.7416 4.00006 5.96837 5.0062 3.98495C5.78746 2.43858 8.23335 1.45761 8.25734 1.44823C8.26221 1.44625 8.26699 1.44435 8.27177 1.44237C8.41105 1.38391 8.53589 1.35306 8.63277 1.35306C8.9309 1.35306 9.20223 1.81545 9.43803 2.72173L9.63602 3.51048C10.0632 5.18828 9.99819 6.23772 9.45129 6.46647L8.71675 6.77587C8.68753 6.78796 8.65334 6.80068 8.61563 6.81502C8.20989 6.96864 7.36558 7.28814 6.98375 8.22735C6.63727 9.0796 6.7807 10.1615 7.42178 11.535C8.28521 13.3835 9.25897 14.2821 10.3987 14.2821C10.9277 14.2821 11.3523 14.0757 11.6059 13.9525C11.6526 13.9298 11.6944 13.909 11.7393 13.8904L12.4693 13.5774C12.5446 13.546 12.6169 13.5307 12.6903 13.5307C13.0417 13.5307 13.6717 13.8786 14.6749 15.5325L15.0918 16.2285C15.6055 17.0767 15.6461 17.4618 15.5897 17.6356Z"
+                                          fill="white" />
+                                </svg>
+                            </div>
+                            <a href="tel:+33123456789" class="fw-600 medium-black h6">+33 1 23 45 67 89</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                <div class="location-card">
+                    <div class="img-box mb-16">
+                        <img src="@Url.Content("~/Assets/Client/assets/media/images/loc-2.png")"
+                             alt="Los Angeles">
+                    </div>
+                    <div class="content-box">
+                        <h6 class="fw-600 medium-black mb-8">Los Angeles</h6>
+                        <p class="mb-24">Sunset Blvd, LA, CA 90028, USA</p>
+                        <div class="d-flex align-items-center gap-16">
+                            <div class="phone-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                     viewBox="0 0 20 20" fill="none">
+                                    <path d="M16.2509 15.5304L15.8338 14.8339C15.0836 13.5971 14.0484 12.1776 12.6904 12.1776C12.4389 12.1776 12.1897 12.2282 11.9431 12.3307L11.2142 12.6432C11.1477 12.6708 11.083 12.7022 11.0145 12.7355C10.828 12.8262 10.6165 12.929 10.3989 12.929C9.86217 12.929 9.2403 12.2305 8.64811 10.9623C8.06692 9.71762 8.10399 9.06508 8.23741 8.73673C8.38462 8.37447 8.72695 8.21959 9.09471 8.08041C9.14585 8.06101 9.19204 8.04342 9.23696 8.02493L9.97501 7.71418C11.8978 6.9101 11.1825 4.10014 10.948 3.17889L10.7491 2.3868C10.579 1.734 10.1282 0 8.63277 0C8.35594 0 8.06061 0.064496 7.75527 0.191774C7.55492 0.271334 4.79792 1.39672 3.79909 3.37382C2.60532 5.72716 2.82605 8.88296 4.45451 12.7515C6.07079 16.625 8.16669 18.9942 10.684 19.7933C11.1158 19.9305 11.6038 19.9999 12.1346 19.9999H12.1349C13.8721 19.9999 15.587 19.2608 15.7262 19.1994C16.3251 18.9457 16.7123 18.5601 16.8768 18.0532C17.1557 17.1937 16.6878 16.2519 16.2509 15.5304ZM15.5897 17.6356C15.5514 17.7534 15.4185 17.8609 15.1948 17.9551C15.1911 17.9567 15.1866 17.9586 15.1828 17.9603C15.1673 17.9672 13.615 18.647 12.1345 18.6469C11.7428 18.6469 11.3926 18.5988 11.0935 18.5037C8.97266 17.8305 7.1592 15.72 5.70231 12.2286C4.23459 8.7416 4.00006 5.96837 5.0062 3.98495C5.78746 2.43858 8.23335 1.45761 8.25734 1.44823C8.26221 1.44625 8.26699 1.44435 8.27177 1.44237C8.41105 1.38391 8.53589 1.35306 8.63277 1.35306C8.9309 1.35306 9.20223 1.81545 9.43803 2.72173L9.63602 3.51048C10.0632 5.18828 9.99819 6.23772 9.45129 6.46647L8.71675 6.77587C8.68753 6.78796 8.65334 6.80068 8.61563 6.81502C8.20989 6.96864 7.36558 7.28814 6.98375 8.22735C6.63727 9.0796 6.7807 10.1615 7.42178 11.535C8.28521 13.3835 9.25897 14.2821 10.3987 14.2821C10.9277 14.2821 11.3523 14.0757 11.6059 13.9525C11.6526 13.9298 11.6944 13.909 11.7393 13.8904L12.4693 13.5774C12.5446 13.546 12.6169 13.5307 12.6903 13.5307C13.0417 13.5307 13.6717 13.8786 14.6749 15.5325L15.0918 16.2285C15.6055 17.0767 15.6461 17.4618 15.5897 17.6356Z"
+                                          fill="white" />
+                                </svg>
+                            </div>
+                            <a href="tel:+33123456789" class="fw-600 medium-black h6">+1 (213) 555-6789</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                <div class="location-card">
+                    <div class="img-box mb-16">
+                        <img src="@Url.Content("~/Assets/Client/assets/media/images/loc-3.png")"
+                             alt="Madrid">
+                    </div>
+                    <div class="content-box">
+                        <h6 class="fw-600 medium-black mb-8">Madrid, Spain</h6>
+                        <p class="mb-24">Calle Gran Vía, 28013 Madrid, Spain</p>
+                        <div class="d-flex align-items-center gap-16">
+                            <div class="phone-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                     viewBox="0 0 20 20" fill="none">
+                                    <path d="M16.2509 15.5304L15.8338 14.8339C15.0836 13.5971 14.0484 12.1776 12.6904 12.1776C12.4389 12.1776 12.1897 12.2282 11.9431 12.3307L11.2142 12.6432C11.1477 12.6708 11.083 12.7022 11.0145 12.7355C10.828 12.8262 10.6165 12.929 10.3989 12.929C9.86217 12.929 9.2403 12.2305 8.64811 10.9623C8.06692 9.71762 8.10399 9.06508 8.23741 8.73673C8.38462 8.37447 8.72695 8.21959 9.09471 8.08041C9.14585 8.06101 9.19204 8.04342 9.23696 8.02493L9.97501 7.71418C11.8978 6.9101 11.1825 4.10014 10.948 3.17889L10.7491 2.3868C10.579 1.734 10.1282 0 8.63277 0C8.35594 0 8.06061 0.064496 7.75527 0.191774C7.55492 0.271334 4.79792 1.39672 3.79909 3.37382C2.60532 5.72716 2.82605 8.88296 4.45451 12.7515C6.07079 16.625 8.16669 18.9942 10.684 19.7933C11.1158 19.9305 11.6038 19.9999 12.1346 19.9999H12.1349C13.8721 19.9999 15.587 19.2608 15.7262 19.1994C16.3251 18.9457 16.7123 18.5601 16.8768 18.0532C17.1557 17.1937 16.6878 16.2519 16.2509 15.5304ZM15.5897 17.6356C15.5514 17.7534 15.4185 17.8609 15.1948 17.9551C15.1911 17.9567 15.1866 17.9586 15.1828 17.9603C15.1673 17.9672 13.615 18.647 12.1345 18.6469C11.7428 18.6469 11.3926 18.5988 11.0935 18.5037C8.97266 17.8305 7.1592 15.72 5.70231 12.2286C4.23459 8.7416 4.00006 5.96837 5.0062 3.98495C5.78746 2.43858 8.23335 1.45761 8.25734 1.44823C8.26221 1.44625 8.26699 1.44435 8.27177 1.44237C8.41105 1.38391 8.53589 1.35306 8.63277 1.35306C8.9309 1.35306 9.20223 1.81545 9.43803 2.72173L9.63602 3.51048C10.0632 5.18828 9.99819 6.23772 9.45129 6.46647L8.71675 6.77587C8.68753 6.78796 8.65334 6.80068 8.61563 6.81502C8.20989 6.96864 7.36558 7.28814 6.98375 8.22735C6.63727 9.0796 6.7807 10.1615 7.42178 11.535C8.28521 13.3835 9.25897 14.2821 10.3987 14.2821C10.9277 14.2821 11.3523 14.0757 11.6059 13.9525C11.6526 13.9298 11.6944 13.909 11.7393 13.8904L12.4693 13.5774C12.5446 13.546 12.6169 13.5307 12.6903 13.5307C13.0417 13.5307 13.6717 13.8786 14.6749 15.5325L15.0918 16.2285C15.6055 17.0767 15.6461 17.4618 15.5897 17.6356Z"
+                                          fill="white" />
+                                </svg>
+                            </div>
+                            <a href="tel:+34912345678" class="fw-600 medium-black h6">+34 91 234 56 78</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                <div class="location-card">
+                    <div class="img-box mb-16">
+                        <img src="@Url.Content("~/Assets/Client/assets/media/images/loc-4.png")"
+                             alt="Berlin">
+                    </div>
+                    <div class="content-box">
+                        <h6 class="fw-600 medium-black mb-8">Berlin, Germany</h6>
+                        <p class="mb-24">Unter den Linden 10, Berlin</p>
+                        <div class="d-flex align-items-center gap-16">
+                            <div class="phone-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                     viewBox="0 0 20 20" fill="none">
+                                    <path d="M16.2509 15.5304L15.8338 14.8339C15.0836 13.5971 14.0484 12.1776 12.6904 12.1776C12.4389 12.1776 12.1897 12.2282 11.9431 12.3307L11.2142 12.6432C11.1477 12.6708 11.083 12.7022 11.0145 12.7355C10.828 12.8262 10.6165 12.929 10.3989 12.929C9.86217 12.929 9.2403 12.2305 8.64811 10.9623C8.06692 9.71762 8.10399 9.06508 8.23741 8.73673C8.38462 8.37447 8.72695 8.21959 9.09471 8.08041C9.14585 8.06101 9.19204 8.04342 9.23696 8.02493L9.97501 7.71418C11.8978 6.9101 11.1825 4.10014 10.948 3.17889L10.7491 2.3868C10.579 1.734 10.1282 0 8.63277 0C8.35594 0 8.06061 0.064496 7.75527 0.191774C7.55492 0.271334 4.79792 1.39672 3.79909 3.37382C2.60532 5.72716 2.82605 8.88296 4.45451 12.7515C6.07079 16.625 8.16669 18.9942 10.684 19.7933C11.1158 19.9305 11.6038 19.9999 12.1346 19.9999H12.1349C13.8721 19.9999 15.587 19.2608 15.7262 19.1994C16.3251 18.9457 16.7123 18.5601 16.8768 18.0532C17.1557 17.1937 16.6878 16.2519 16.2509 15.5304ZM15.5897 17.6356C15.5514 17.7534 15.4185 17.8609 15.1948 17.9551C15.1911 17.9567 15.1866 17.9586 15.1828 17.9603C15.1673 17.9672 13.615 18.647 12.1345 18.6469C11.7428 18.6469 11.3926 18.5988 11.0935 18.5037C8.97266 17.8305 7.1592 15.72 5.70231 12.2286C4.23459 8.7416 4.00006 5.96837 5.0062 3.98495C5.78746 2.43858 8.23335 1.45761 8.25734 1.44823C8.26221 1.44625 8.26699 1.44435 8.27177 1.44237C8.41105 1.38391 8.53589 1.35306 8.63277 1.35306C8.9309 1.35306 9.20223 1.81545 9.43803 2.72173L9.63602 3.51048C10.0632 5.18828 9.99819 6.23772 9.45129 6.46647L8.71675 6.77587C8.68753 6.78796 8.65334 6.80068 8.61563 6.81502C8.20989 6.96864 7.36558 7.28814 6.98375 8.22735C6.63727 9.0796 6.7807 10.1615 7.42178 11.535C8.28521 13.3835 9.25897 14.2821 10.3987 14.2821C10.9277 14.2821 11.3523 14.0757 11.6059 13.9525C11.6526 13.9298 11.6944 13.909 11.7393 13.8904L12.4693 13.5774C12.5446 13.546 12.6169 13.5307 12.6903 13.5307C13.0417 13.5307 13.6717 13.8786 14.6749 15.5325L15.0918 16.2285C15.6055 17.0767 15.6461 17.4618 15.5897 17.6356Z"
+                                          fill="white" />
+                                </svg>
+                            </div>
+                            <a href="tel:+493012345678" class="fw-600 medium-black h6">+49 30 12345678</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Form liên hệ -->
-    <section class="FormLienHe">
-        <hr class="hr" />
-        <div class="container">
-            <h2 class="text-center">GỬI THÔNG TIN</h2>
-            <p class="text-center">Bạn có bất kỳ khó khăn gì cần liên hệ vui lòng gửi qua form tại đây chúng tôi sẽ liên hệ bạn sau nhé!</p>
-            <form action="#" method="post" class="LienHeForm">
-                <div class="row">
-                    <div class="col-6">
-                        <label for="hoten">Họ và tên *</label>
-                        <input type="text" id="hoten" name="hoten" required />
-                    </div>
-                    <div class="col-6">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <label for="noidung">Nội dung *</label>
-                        <textarea id="noidung" name="noidung" rows="5" required></textarea>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn-gui">Gửi</button>
-                </div>
-            </form>
-        </div>
-        <hr class="hr" />
-        <p class="text-center camon">Cảm ơn bạn đã liên hệ. Chúng tôi sẽ phản hồi lại bạn ngay!</p>
-    </section>
-</main>
+    </div>
+</section>
+<!-- COMPANY LOCATIONS END -->
 
+<style>
+
+    /* ===== MAP ===== */
+
+    .map-wrapper {
+        width: 100%;
+        height: 100%;
+    }
+
+    .google-map {
+        width: 100%;
+        height: 100%;
+        min-height: 520px;
+        border: 0;
+        border-radius: 24px;
+        display: block;
+    }
+
+    /* ===== FORM ===== */
+
+    .contact-form-wrapper {
+        height: 100%;
+    }
+
+    #comment {
+        min-height: 230px;
+        resize: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+
+    @@media (max-width: 991px) {
+
+        .google-map {
+            min-height: 400px;
+            margin-top: 24px;
+        }
+    }
+</style>

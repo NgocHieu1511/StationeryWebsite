@@ -24,21 +24,29 @@ namespace StationeryWebsite.Areas.Admin.Controllers
         private ActionResult RedirectToLogin()
         {
             if (Session["UserId"] == null)
-                return RedirectToAction("Login", "Login"); // Về trang login chung
+                return RedirectToAction(
+                    "Login",
+                    "Login",
+                    new { area = "" }   // THÊM DÒNG NÀY
+                );
             else
-                return RedirectToAction("Index", "Home"); // User thường về trang chủ
+                return RedirectToAction(
+                    "Index",
+                    "Home",
+                    new { area = "" }   // nên thêm luôn
+                );
         }
 
         public ActionResult Index(string searchOrderId, int? statusFilter, DateTime? fromDate, DateTime? toDate)
         {
-            // Kiểm tra quyền Admin
             if (!IsAdmin())
                 return RedirectToLogin();
 
-            // Lấy tất cả đơn hàng
+            // Lấy tất cả đơn hàng và LOAD ĐẦY ĐỦ các bảng liên quan
             var orders = db.Orders
                 .Include("Order_status")
                 .Include("User")
+                .Include("Order_detail")
                 .Include("Order_detail.Product")
                 .AsQueryable();
 
@@ -67,20 +75,22 @@ namespace StationeryWebsite.Areas.Admin.Controllers
                 orders = orders.Where(o => o.date <= toDate.Value);
             }
 
-            // Sắp xếp mới nhất trước
+            // Sắp xếp
             orders = orders.OrderByDescending(o => o.date);
 
-            // Lưu các giá trị filter để hiển thị lại trên form
+            // QUAN TRỌNG: Load dữ liệu ra List trước
+            var orderList = orders.ToList();
+
+            // Lưu filter
             ViewBag.SearchOrderId = searchOrderId;
             ViewBag.StatusFilter = statusFilter;
             ViewBag.FromDate = fromDate?.ToString("yyyy-MM-dd");
             ViewBag.ToDate = toDate?.ToString("yyyy-MM-dd");
 
-            // Lấy danh sách trạng thái cho dropdown
+            // Lấy danh sách trạng thái
             ViewBag.OrderStatuses = db.Order_status.ToList();
 
             // Thống kê
-            var orderList = orders.ToList();
             ViewBag.TotalOrders = orderList.Count;
             ViewBag.TotalRevenue = orderList.Sum(o => o.total_price);
             ViewBag.PendingOrders = orderList.Count(o => o.status_id == 1);

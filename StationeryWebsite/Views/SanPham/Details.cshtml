@@ -324,6 +324,7 @@
                 </div>
 
                 <!-- REVIEW -->
+                <!-- REVIEW -->
                 <div class="tab-pane fade"
                      id="nav-review"
                      role="tabpanel">
@@ -335,42 +336,68 @@
                             Reviews
                         </h5>
 
-                        <!-- DEMO REVIEW -->
-                        <div class="comment-box mb-24">
+                        @{
+                            var reviews = ViewBag.Reviews as List<StationeryWebsite.Models.Feedback>;
+                        }
 
-                            <img src="@Url.Content("~/Assets/Client/assets/media/users/user-2.png")"
-                                 alt="User"
-                                 class="br-4">
+                        @if (reviews != null && reviews.Count > 0)
+                        {
+                            foreach (var item in reviews)
+                            {
+                                <div class="comment-box mb-24">
 
-                            <div class="block">
+                                    <img src="@Url.Content("~/Assets/Client/assets/media/users/user-2.png")"
+                                         alt="User"
+                                         class="br-4">
 
-                                <div class="top-row mb-16">
+                                    <div class="block">
 
-                                    <div class="info">
+                                        <div class="top-row mb-16">
 
-                                        <h6 class="fw-600 medium-black">
-                                            Nguyễn Văn A
-                                        </h6>
+                                            <div class="info">
 
-                                    </div>
+                                                <h6 class="fw-600 medium-black">
+                                                    @item.User.username
+                                                </h6>
 
-                                    <div class="rating-star mb-12">
+                                                <small>
+                                                    @item.date.ToString("dd/MM/yyyy")
+                                                </small>
 
-                                        <p class="color-star">
-                                            ★★★★★
+                                            </div>
+
+                                            <div class="rating-star mb-12">
+
+                                                <p class="color-star">
+
+                                                    @{
+                                                        int vote = item.vote ?? 0;
+                                                    }
+
+                                                    @for (int i = 1; i <= vote; i++)
+                                                    {
+                                                        @:★
+                                                    }
+
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+
+                                        <p>
+                                            @item.comment
                                         </p>
 
                                     </div>
 
                                 </div>
-
-                                <p>
-                                    Sản phẩm đẹp, đóng gói cẩn thận và giao hàng nhanh.
-                                </p>
-
-                            </div>
-
-                        </div>
+                            }
+                        }
+                        else
+                        {
+                            <p>Chưa có đánh giá nào.</p>
+                        }
 
                     </div>
 
@@ -385,34 +412,33 @@
                             Your email address will not be published.
                         </p>
 
-                        <!-- RATING -->
-                        <p class="mb-8">
-                            Your Rating
-                        </p>
-
-                        <div class="star-rating mb-32">
-
-                            <input type="radio" id="1-star" name="rating" value="1">
-                            <label for="1-star" class="star">&#9733;</label>
-
-                            <input type="radio" id="2-stars" name="rating" value="2">
-                            <label for="2-stars" class="star">&#9733;</label>
-
-                            <input type="radio" id="3-stars" name="rating" value="3">
-                            <label for="3-stars" class="star">&#9733;</label>
-
-                            <input type="radio" id="4-stars" name="rating" value="4">
-                            <label for="4-stars" class="star">&#9733;</label>
-
-                            <input type="radio" id="5-stars" name="rating" value="5">
-                            <label for="5-stars" class="star">&#9733;</label>
-
-                        </div>
-
-                        <!-- FORM -->
                         @using (Html.BeginForm("AddReview", "SanPham", FormMethod.Post))
                         {
                             @Html.Hidden("productId", Model.product_id)
+
+                            <!-- RATING -->
+                            <p class="mb-8">
+                                Your Rating
+                            </p>
+
+                            <div class="star-rating mb-32">
+
+                                <input type="radio" id="star5" name="rating" value="5">
+                                <label for="star5">★</label>
+
+                                <input type="radio" id="star4" name="rating" value="4">
+                                <label for="star4">★</label>
+
+                                <input type="radio" id="star3" name="rating" value="3">
+                                <label for="star3">★</label>
+
+                                <input type="radio" id="star2" name="rating" value="2">
+                                <label for="star2">★</label>
+
+                                <input type="radio" id="star1" name="rating" value="1" checked>
+                                <label for="star1">★</label>
+
+                            </div>
 
                             <div class="row">
 
@@ -424,37 +450,8 @@
                                         <textarea class="form-control"
                                                   name="message"
                                                   rows="4"
+                                                  required
                                                   placeholder="Write Your Review here..."></textarea>
-
-                                    </div>
-
-                                </div>
-
-                                <!-- NAME -->
-                                <div class="col-sm-6">
-
-                                    <div class="input-block mb-24">
-
-                                        <input type="text"
-                                               class="form-control"
-                                               name="name"
-                                               required
-                                               placeholder="Your Name">
-
-                                    </div>
-
-                                </div>
-
-                                <!-- EMAIL -->
-                                <div class="col-sm-6">
-
-                                    <div class="input-block mb-24">
-
-                                        <input type="email"
-                                               class="form-control"
-                                               name="email"
-                                               required
-                                               placeholder="Your Email">
 
                                     </div>
 

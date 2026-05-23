@@ -1,0 +1,623 @@
+﻿@model StationeryWebsite.Models.User
+
+@{
+    ViewBag.Title = "Tài khoản của tôi";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    .account-section {
+        padding: 60px 0;
+        background: #f5f5f5;
+        min-height: 80vh;
+    }
+
+    .account-layout {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        gap: 24px;
+    }
+
+    .account-sidebar,
+    .account-card {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .account-sidebar {
+        overflow: hidden;
+    }
+
+    .sidebar-avatar-box {
+        padding: 28px 20px 20px;
+        text-align: center;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .avatar-wrap {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 12px;
+        cursor: pointer;
+    }
+
+    .avatar-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: #EEEDFE;
+        border: 2px solid #CECBF6;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        font-weight: 600;
+        color: #534AB7;
+    }
+
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    .avatar-edit-btn {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: #534AB7;
+        color: #fff;
+        border: 2px solid #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+    }
+
+    .avatar-hint {
+        font-size: 11px;
+        color: #999;
+        margin-top: 6px;
+    }
+
+    .sidebar-name {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .sidebar-username {
+        font-size: 12px;
+        color: #888;
+    }
+
+    .sidebar-nav {
+        padding: 10px 0;
+    }
+
+    .sidebar-nav-item {
+        display: block;
+        padding: 12px 20px;
+        text-decoration: none;
+        color: #555;
+        border-left: 3px solid transparent;
+        transition: 0.2s;
+    }
+
+        .sidebar-nav-item:hover {
+            background: #f8f8f8;
+        }
+
+        .sidebar-nav-item.active {
+            background: #f3f2fd;
+            color: #534AB7;
+            border-left-color: #534AB7;
+            font-weight: 600;
+        }
+
+        .sidebar-nav-item.logout {
+            color: #c0392b;
+        }
+
+    .account-card {
+        padding: 28px;
+    }
+
+    .account-card-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .info-grid,
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .info-item {
+        background: #f8f8f8;
+        padding: 12px 14px;
+        border-radius: 8px;
+    }
+
+        .info-item.full,
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .info-item label,
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .form-group input {
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            background: #f8f8f8;
+            padding: 10px 12px;
+            outline: none;
+        }
+
+            .form-group input:focus {
+                background: #fff;
+                border-color: #534AB7;
+            }
+
+    .pw-section {
+        margin-top: 24px;
+        padding-top: 24px;
+        border-top: 1px solid #eee;
+    }
+
+    .form-footer,
+    .info-actions {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    .cus-btn {
+        padding: 10px 18px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        background: #fff;
+        cursor: pointer;
+    }
+
+        .cus-btn.primary {
+            background: #534AB7;
+            color: #fff;
+            border-color: #534AB7;
+        }
+
+            .cus-btn.primary:hover {
+                background: #3C3489;
+            }
+
+    .account-section-content {
+        display: none;
+    }
+
+        .account-section-content.active {
+            display: block;
+        }
+
+    .toast-msg {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: #534AB7;
+        color: #fff;
+        padding: 12px 18px;
+        border-radius: 8px;
+        opacity: 0;
+        transition: 0.3s;
+        z-index: 9999;
+    }
+
+        .toast-msg.show {
+            opacity: 1;
+        }
+
+    @@media(max-width:768px) {
+
+        .account-layout,
+        .info-grid,
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<section class="account-section">
+    <div class="container">
+
+        <div class="account-layout">
+
+            <!-- SIDEBAR -->
+            <div class="account-sidebar">
+
+                <div class="sidebar-avatar-box">
+
+                    <div class="avatar-wrap"
+                         onclick="document.getElementById('avatarInput').click()">
+
+                        <div class="avatar-circle">
+
+                            <span id="avatarInitials"
+                                  style="display:@(string.IsNullOrEmpty(Model.image) ? "flex" : "none")">
+                                @(Model.last_name?.Substring(0,1).ToUpper())@(Model.first_name?.Substring(0,1).ToUpper())
+                            </span>
+
+                            <img id="avatarImg"
+                                 src="@(string.IsNullOrEmpty(Model.image)
+                                        ? "/Content/images/default-avatar.png"
+                                        : Model.image)"
+                                 alt="Avatar">
+                        </div>
+
+                        <div class="avatar-edit-btn">
+                            ✎
+                        </div>
+                    </div>
+
+                    <div class="avatar-hint">
+                        Bấm vào ảnh để thay đổi
+                    </div>
+
+                    <div class="sidebar-name">
+                        @Model.last_name @Model.first_name
+                    </div>
+
+                    <div class="sidebar-username">
+                        @@Model.username
+                    </div>
+
+                </div>
+
+                <nav class="sidebar-nav">
+
+                    <a class="sidebar-nav-item active"
+                       href="javascript:void(0)"
+                       onclick="switchTab('info', this)">
+                        Thông tin cá nhân
+                    </a>
+
+                    <a class="sidebar-nav-item"
+                       href="javascript:void(0)"
+                       onclick="switchTab('edit', this)">
+                        Chỉnh sửa thông tin
+                    </a>
+
+                    <a class="sidebar-nav-item"
+                       href="javascript:void(0)"
+                       onclick="switchTab('orders', this)">
+                        Đơn hàng của tôi
+                    </a>
+
+                    <a class="sidebar-nav-item logout"
+                       href="@Url.Action("Logout", "Login")">
+                        Đăng xuất
+                    </a>
+
+                </nav>
+            </div>
+
+            <!-- CONTENT -->
+            <div>
+
+                <!-- INFO -->
+                <div class="account-card account-section-content active"
+                     id="sec-info">
+
+                    <div class="account-card-title">
+                        Thông tin cá nhân
+                    </div>
+
+                    <div class="info-grid">
+
+                        <div class="info-item">
+                            <label>Họ</label>
+                            <span>@Model.last_name</span>
+                        </div>
+
+                        <div class="info-item">
+                            <label>Tên</label>
+                            <span>@Model.first_name</span>
+                        </div>
+
+                        <div class="info-item full">
+                            <label>Tên đăng nhập</label>
+                            <span>@Model.username</span>
+                        </div>
+
+                    </div>
+
+                    <div class="info-actions">
+                        <button class="cus-btn primary"
+                                onclick="switchTab('edit', document.querySelectorAll('.sidebar-nav-item')[1])">
+                            Chỉnh sửa
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- EDIT -->
+                <div class="account-card account-section-content"
+                     id="sec-edit">
+
+                    <div class="account-card-title">
+                        Chỉnh sửa thông tin
+                    </div>
+
+                    @using (Html.BeginForm(
+                        "Edit",
+                        "Account",
+                        FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden"
+                               name="user_id"
+                               value="@Model.user_id" />
+
+                        <!-- INPUT FILE PHẢI NẰM TRONG FORM -->
+                        <input type="file"
+                               id="avatarInput"
+                               name="avatarFile"
+                               accept="image/*"
+                               style="display:none"
+                               onchange="previewAvatar(event)">
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label>Họ</label>
+
+                                <input type="text"
+                                       name="last_name"
+                                       value="@Model.last_name">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tên</label>
+
+                                <input type="text"
+                                       name="first_name"
+                                       value="@Model.first_name">
+                            </div>
+
+                        </div>
+
+                        <!-- PASSWORD -->
+                        <div class="pw-section">
+
+                            <div style="font-weight:600;margin-bottom:16px">
+                                Đổi mật khẩu
+                            </div>
+
+                            <div class="form-grid">
+
+                                <div class="form-group full">
+                                    <label>Mật khẩu hiện tại</label>
+
+                                    <input type="password"
+                                           name="old_password"
+                                           id="e-oldpw">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Mật khẩu mới</label>
+
+                                    <input type="password"
+                                           name="new_password"
+                                           id="e-newpw">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Xác nhận mật khẩu</label>
+
+                                    <input type="password"
+                                           name="confirm_password"
+                                           id="e-confirmpw">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-footer">
+
+                            <button type="button"
+                                    class="cus-btn"
+                                    onclick="switchTab('info', document.querySelectorAll('.sidebar-nav-item')[0])">
+                                Hủy
+                            </button>
+
+                            <button type="submit"
+                                    class="cus-btn primary"
+                                    onclick="return validateForm()">
+                                Lưu thay đổi
+                            </button>
+
+                        </div>
+                    }
+
+                </div>
+
+                <!-- ORDERS -->
+                <div class="account-card account-section-content"
+                     id="sec-orders">
+
+                    <div class="account-card-title">
+                        Đơn hàng của tôi
+                    </div>
+
+                    @if (Model.Orders == null || !Model.Orders.Any())
+                    {
+                        <p>Bạn chưa có đơn hàng nào.</p>
+                    }
+                    else
+                    {
+                        foreach (var order in Model.Orders.OrderByDescending(o => o.date))
+                        {
+                            <div style="padding:16px 0;border-bottom:1px solid #eee">
+
+                                <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+
+                                    <strong>#@order.order_id</strong>
+
+                                    <span>
+                                        @order.total_price.ToString("N0")đ
+                                    </span>
+
+                                </div>
+
+                                <div style="font-size:14px;color:#777;margin-bottom:8px">
+                                    @string.Join(" · ",
+                                    order.Order_detail.Select(d =>
+                                    d.Product.name + " x" + d.quantity))
+                                </div>
+
+                                <div style="font-size:12px;color:#aaa">
+                                    @order.date.ToString("dd/MM/yyyy")
+                                </div>
+
+                            </div>
+                        }
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="toast-msg" id="toastMsg"></div>
+
+<script>
+
+    function switchTab(tab, el) {
+
+        document.querySelectorAll('.sidebar-nav-item')
+            .forEach(function (n) {
+                n.classList.remove('active');
+            });
+
+        document.querySelectorAll('.account-section-content')
+            .forEach(function (s) {
+                s.classList.remove('active');
+            });
+
+        if (el) {
+            el.classList.add('active');
+        }
+
+        document.getElementById('sec-' + tab)
+            .classList.add('active');
+    }
+
+    function showToast(msg) {
+
+        var t = document.getElementById('toastMsg');
+
+        t.textContent = msg;
+
+        t.classList.add('show');
+
+        setTimeout(function () {
+            t.classList.remove('show');
+        }, 2500);
+    }
+
+    function previewAvatar(e) {
+
+        var file = e.target.files[0];
+
+        if (!file) return;
+
+        var reader = new FileReader();
+
+        reader.onload = function (ev) {
+
+            document.getElementById('avatarImg').src =
+                ev.target.result;
+
+            document.getElementById('avatarInitials')
+                .style.display = 'none';
+
+            showToast('Ảnh đại diện đã được chọn!');
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    function validateForm() {
+
+        var oldpw =
+            document.getElementById('e-oldpw').value;
+
+        var newpw =
+            document.getElementById('e-newpw').value;
+
+        var confirmpw =
+            document.getElementById('e-confirmpw').value;
+
+        // Không đổi password
+        if (!oldpw && !newpw && !confirmpw) {
+            return true;
+        }
+
+        if (!oldpw) {
+
+            showToast('Vui lòng nhập mật khẩu hiện tại!');
+            return false;
+        }
+
+        
+
+        if (newpw !== confirmpw) {
+
+            showToast('Mật khẩu xác nhận không khớp!');
+            return false;
+        }
+
+        return true;
+    }
+
+    @if (TempData["Success"] != null)
+    {
+        <text>
+            showToast('@TempData["Success"]');
+        </text>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <text>
+            showToast('@TempData["Error"]');
+        </text>
+    }
+
+</script>
