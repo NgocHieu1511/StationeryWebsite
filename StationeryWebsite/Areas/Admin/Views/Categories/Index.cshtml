@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<StationeryWebsite.Models.Category>
+﻿@model IEnumerable<StationeryWebsite.Models.Category>
 
 @{
     ViewBag.Title = "Quản lý danh mục";
@@ -9,109 +8,103 @@
 <main>
     <div class="container-fluid px-4">
         <h1 class="mt-4">Quản lý danh mục</h1>
-       
+
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home", new { area = "Admin" })">Trang chủ</a></li>
             <li class="breadcrumb-item active">Quản lý danh mục</li>
         </ol>
-        @*<div class="card mb-4">
-            <div class="card-body">
-                DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
-                <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                .
-            </div>
-        </div>*@
-    <div class="card mb-4">
-        <div class="card shadow-sm border-0 rounded-3">
-            <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
 
-                <!-- Tiêu đề -->
-                <h5 class="mb-0 fw-semibold">
-                    
-                    Danh sách danh mục
+        <div class="card shadow-sm border-0 rounded-3 mb-4">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 border-bottom">
+                <h5 class="mb-0 fw-semibold text-secondary">
+                    <i class="fa fa-list me-2"></i>Danh sách danh mục
                 </h5>
 
-                <!-- Nút thêm -->
                 <a href="@Url.Action("Create", "Categories", new { area = "Admin" })"
-                   class="btn btn-primary d-flex align-items-center gap-2 px-3">
-                    <i class="fa fa-plus"></i>
-                    <span>Thêm sản phẩm</span>
+                   class="btn btn-primary d-flex align-items-center gap-2 px-3 shadow-sm">
+                    <i class="fa fa-plus-circle"></i>
+                    <span>Thêm danh mục</span>
                 </a>
-
             </div>
-        </div>
-        
-        <div class="card-body">
-            <table id="datatablesSimple">
-                <thead>
-                    <tr>
-                        <th>
-                            Tên danh mục
-                        </th>
-                        <th>
-                            Hình ảnh
-                        </th>
-                        <th>
-                            Ghi chú
-                        </th>
-                        <th class="text-center" width="200px">Chức năng</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>
-                            Tên danh mục
-                        </th>
-                        <th>
-                            Hình ảnh
-                        </th>
-                        <th>
-                            Ghi chú
-                        </th>
-                        <th class="text-center" width="200px">Chức năng</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    @if (Model != null && Model.Any())
-                    {
-                        var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
-                        foreach (var item in Model)
+
+            <div class="card-body">
+                <table id="datatablesSimple" class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Tên danh mục</th>
+                            <th class="text-center" width="150px">Hình ảnh</th>
+                            <th>Ghi chú</th>
+                            <th class="text-center" width="180px">Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="fw-medium text-dark">
+                                        @Html.DisplayFor(modelItem => item.name)
+                                    </td>
+
+                                    <td class="text-center">
+                                        @if (!string.IsNullOrEmpty(item.image))
+                                        {
+                                            <img src="@item.image" alt="@item.name" style="max-height: 60px; max-width: 100px; object-fit: contain;" class="img-fluid rounded border p-1 bg-light" />
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted small"><i>Không có ảnh</i></span>
+                                        }
+                                    </td>
+
+                                    <td class="text-muted">
+                                        @if (string.IsNullOrEmpty(item.note))
+                                        {
+                                            <span class="text-light-emphasis small">---</span>
+                                        }
+                                        else
+                                        {
+                                            @Html.DisplayFor(modelItem => item.note)
+                                        }
+                                    </td>
+
+                                    <td class="text-center">
+                                        <div class="d-inline-flex gap-1.5">
+                                            <a href="@Url.Action("Edit", new { id = item.category_id })"
+                                               class="btn btn-outline-warning btn-sm p-2 d-flex align-items-center justify-content-center rounded-2"
+                                               title="Chỉnh sửa">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+
+                                            <a href="@Url.Action("Details", new { id = item.category_id })"
+                                               class="btn btn-outline-info btn-sm p-2 d-flex align-items-center justify-content-center rounded-2"
+                                               title="Chi tiết">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+
+                                            <a href="@Url.Action("Delete", new { id = item.category_id })"
+                                               class="btn btn-outline-danger btn-sm p-2 d-flex align-items-center justify-content-center rounded-2"
+                                               title="Xóa">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
                         {
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.name)
-                                </td>
-
-                                <td>
-                                    <img src="@item.image" width="100" class="img-thumbnail" />
-                                </td>
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.note)
-                                </td>
-
-                                <td class="text-center">
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.category_id }, new { @class = "btn btn-warning btn-sm" })
-                                    @Html.ActionLink("Details", "Details", new { id = item.category_id }, new { @class = "btn btn-info btn-sm" })
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.category_id }, new { @class = "btn btn-danger btn-sm" })
+                                <td colspan="4" class="text-center py-4 text-muted">
+                                    <i class="fa fa-box-open d-block mb-2 fs-3 text-black-50"></i>
+                                    Không có bản ghi nào
                                 </td>
                             </tr>
                         }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="4" class="text-center">Không có bản ghi nào </td>
-                        </tr>
-                    }
-
-
-
-
-                </tbody>
-            </table>
-
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
     </div>
 </main>

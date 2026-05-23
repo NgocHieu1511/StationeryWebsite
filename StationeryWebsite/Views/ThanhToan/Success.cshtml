@@ -1,0 +1,42 @@
+﻿@model StationeryWebsite.Models.Order
+
+@{
+    ViewBag.Title = "Đặt hàng thành công";
+}
+
+<div class="success-container">
+    <h2>🎉 Đặt hàng thành công!</h2>
+
+    <div class="order-info">
+        <p><strong>Mã đơn hàng:</strong> #@Model.order_id</p>
+        <p><strong>Ngày đặt:</strong> @Model.date.ToString("dd/MM/yyyy HH:mm")</p>
+        <p><strong>Tổng tiền:</strong> @String.Format("{0:N0}đ", Model.total_price)</p>
+        <p><strong>Trạng thái:</strong> @(Model.Order_status?.description ?? "Đang xử lý")</p>
+    </div>
+
+    <h3>Chi tiết đơn hàng:</h3>
+    <table class="table table-bordered">
+        <tr>
+            <th>Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+            <th>Thành tiền</th>
+        </tr>
+        @if (Model.Order_detail != null && Model.Order_detail.Any())
+        {
+            foreach (var detail in Model.Order_detail)
+            {
+                <tr>
+                    <td>@(detail.Product?.name ?? "Sản phẩm")</td>
+                    <td>@detail.quantity</td>
+                    <td>@String.Format("{0:N0}đ", detail.item_price)</td>
+                    <td>@String.Format("{0:N0}đ", detail.quantity * detail.item_price)</td>
+                </tr>
+            }
+        }
+    </table>
+
+    <div class="actions">
+        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Về trang chủ</a>
+    </div>
+</div>

@@ -62,13 +62,34 @@ namespace StationeryWebsite.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "product_id,name,description,image,price,specification,calculation_unit,discount,sold_quantity,quantity,category_id,brand,status,created_at")] Product product)
+        [ValidateInput(false)]
+
+        public ActionResult Create(Product product)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Products.Add(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    product.created_at = DateTime.Now;
+                    product.sold_quantity = 0;
+
+                    db.Products.Add(product);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        ModelState.AddModelError("",
+                            validationError.PropertyName + " : " +
+                            validationError.ErrorMessage);
+                    }
+                }
             }
 
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "name", product.category_id);
@@ -96,14 +117,40 @@ namespace StationeryWebsite.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "product_id,name,description,image,price,specification,calculation_unit,discount,sold_quantity,quantity,category_id,brand,status,created_at")] Product product)
+        [ValidateInput(false)]
+        public ActionResult Edit(Product product)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(product).State = EntityState.Modified;
+                var oldProduct = db.Products.Find(product.product_id);
+
+                if (oldProduct == null)
+                {
+                    return HttpNotFound();
+                }
+
+                oldProduct.name = product.name;
+                oldProduct.description = product.description;
+                oldProduct.image = product.image;
+                oldProduct.price = product.price;
+                oldProduct.specification = product.specification;
+                oldProduct.calculation_unit = product.calculation_unit;
+                oldProduct.discount = product.discount;
+               
+                oldProduct.quantity = product.quantity;
+                oldProduct.category_id = product.category_id;
+                oldProduct.brand = product.brand;
+                oldProduct.status = product.status;
+
+                // giữ nguyên ngày tạo
+                oldProduct.created_at = oldProduct.created_at;
+                oldProduct.sold_quantity = oldProduct.sold_quantity;
+
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
+
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "name", product.category_id);
             return View(product);
         }

@@ -1,0 +1,123 @@
+﻿@model IEnumerable<StationeryWebsite.Models.Product>
+
+<!-- FEATURED PRODUCT START -->
+<section class="featured-product-sec py-40">
+
+    <div class="container-2">
+
+        <div class="heading mb-48 text-center wow fadeInUp animated"
+             data-wow-delay="400ms">
+
+            <h2 class="medium-black fw-700 mb-16">
+                Featured <span class="color-primary"> Products</span>
+            </h2>
+
+            <p>
+                Explore our featured stationery products
+            </p>
+
+        </div>
+
+        <div class="featured-product-slider">
+
+            @foreach (var item in Model)
+            {
+                <div class="latest-product-card">
+
+                    <div class="image-box mb-16">
+
+                        @if (item.is_sale)
+                        {
+                            <span class="sale-label subtitle fw-400 white">
+                                Sale
+                            </span>
+                        }
+
+                        <a href="@Url.Action("Details", "SanPham", new { id = item.product_id })"
+                           class="image">
+
+                            <img src="@Url.Content(item.image)"
+                                 class="product-image"
+                                 alt="@item.name" />
+
+                        </a>
+
+                        <div class="side-icons">
+
+                            <ul class="list-unstyled">
+
+                                <a href="@Url.Action("AddToWishlist", "YeuThich", new { id = item.product_id })"
+                                   class="wishlist-btn">
+
+                                    <i class="fa-regular fa-heart"></i>
+
+                                </a>
+
+                                <li>
+                                    <a href="#"
+                                       class="btn"
+                                       data-bs-toggle="modal"
+                                       data-bs-target="#productQuickView">
+
+                                        <i class="fa-regular fa-eye"></i>
+
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                        <a href="@Url.Action("AddToCart", "GioHang", new { id = item.product_id })"
+                           class="cus-btn">
+
+                            <span class="btn-text">
+                                Add Cart
+                            </span>
+
+                            <span>
+                                Go to Cart
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                    <div class="product-desc">
+
+                        <div>
+
+                            <a href="@Url.Action("Details", "SanPham", new { id = item.product_id })"
+                               class="product-title h6 fw-700 mb-8">
+
+                                @item.name
+
+                            </a>
+
+                            <div class="d-flex align-items-center gap-8 justify-content-center mb-8">
+
+                                <p class="fw-500">
+                                    @item.brand
+                                </p>
+
+                            </div>
+
+                            <h5 class="medium-black fw-700">
+
+                                $@item.price
+
+                            </h5>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</section>
+<!-- FEATURED PRODUCT END -->

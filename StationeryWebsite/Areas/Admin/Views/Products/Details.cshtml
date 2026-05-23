@@ -1,123 +1,141 @@
 ﻿@model StationeryWebsite.Models.Product
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi tiết sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container-fluid mt-4">
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
+    <!-- Breadcrumb -->
+    <div class="header-sub-title mb-3">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a href="@Url.Action("Index","HomeAdmin", new { area = "Admin" })" class="breadcrumb-item">
+                <i class="anticon anticon-home m-r-5"></i> Trang chủ
+            </a>
 
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
+            <a href="@Url.Action("Index","Products")" class="breadcrumb-item">
+                Quản lý sản phẩm
+            </a>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
+            <span class="breadcrumb-item active">Chi tiết sản phẩm</span>
+        </nav>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.description)
-        </dd>
+    <div class="card shadow border-0">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.image)
-        </dt>
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0">
+                <i class="fa fa-eye"></i> Chi tiết sản phẩm
+            </h4>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.image)
-        </dd>
+        <div class="card-body">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.price)
-        </dt>
+            <div class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.price)
-        </dd>
+                <!-- Ảnh -->
+                <div class="col-md-4 text-center mb-4">
+                    <img src="@Url.Content( Model.image)"
+                         class="img-fluid rounded border p-2"
+                         style="max-height:300px;" />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.specification)
-        </dt>
+                    <h5 class="mt-3 fw-bold">@Model.name</h5>
 
-        <dd>
-            @Html.DisplayFor(model => model.specification)
-        </dd>
+                    @if (Model.status == true)
+                    {
+                        <span class="badge bg-success px-3 py-2">Đang bán</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger px-3 py-2">Ẩn</span>
+                    }
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.calculation_unit)
-        </dt>
+                <!-- Thông tin -->
+                <div class="col-md-8">
 
-        <dd>
-            @Html.DisplayFor(model => model.calculation_unit)
-        </dd>
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th width="220">Tên sản phẩm</th>
+                            <td>@Model.name</td>
+                        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.discount)
-        </dt>
+                        <tr>
+                            <th>Danh mục</th>
+                            <td>@Model.Category.name</td>
+                        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.discount)
-        </dd>
+                        <tr>
+                            <th>Giá bán</th>
+                            <td class="text-danger fw-bold">
+                                @String.Format("{0:N0} đ", Model.price)
+                            </td>
+                        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.sold_quantity)
-        </dt>
+                        <tr>
+                            <th>Giảm giá</th>
+                            <td>@Model.discount %</td>
+                        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.sold_quantity)
-        </dd>
+                        <tr>
+                            <th>Số lượng tồn</th>
+                            <td>@Model.quantity</td>
+                        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.quantity)
-        </dt>
+                        <tr>
+                            <th>Đã bán</th>
+                            <td>@Model.sold_quantity</td>
+                        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.quantity)
-        </dd>
+                        <tr>
+                            <th>Thương hiệu</th>
+                            <td>@Model.brand</td>
+                        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.brand)
-        </dt>
+                        <tr>
+                            <th>Đơn vị tính</th>
+                            <td>@Model.calculation_unit</td>
+                        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.brand)
-        </dd>
+                        <tr>
+                            <th>Ngày tạo</th>
+                            <td>@Model.created_at</td>
+                        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.status)
-        </dt>
+                        <tr>
+                            <th>Mô tả</th>
+                            <td>@Model.description</td>
+                        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.status)
-        </dd>
+                        <tr>
+                            <th>Thông số kỹ thuật</th>
+                            <td>@Model.specification</td>
+                        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.created_at)
-        </dt>
+                    </table>
 
-        <dd>
-            @Html.DisplayFor(model => model.created_at)
-        </dd>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.name)
-        </dt>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Category.name)
-        </dd>
+            <hr />
 
-    </dl>
+            <div class="d-flex justify-content-between">
+
+                <a href="@Url.Action("Index")" class="btn btn-secondary">
+                    <i class="fa fa-arrow-left"></i> Quay lại
+                </a>
+
+                <a href="@Url.Action("Edit", new { id = Model.product_id })"
+                   class="btn btn-warning">
+                    <i class="fa fa-edit"></i> Chỉnh sửa
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.product_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

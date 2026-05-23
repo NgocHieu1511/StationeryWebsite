@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="address_id" />
           </Key>
-          <Property Name="address_id" Type="int" Nullable="false" />
+          <Property Name="address_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ward_name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="district_name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="province_name" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -18,11 +18,11 @@
         </EntityType>
         <EntityType Name="Cart">
           <Key>
-            <PropertyRef Name="product_id" />
-            <PropertyRef Name="user_id" />
+            <PropertyRef Name="cart_id" />
           </Key>
+          <Property Name="cart_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="product_id" Type="int" Nullable="false" />
-          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="quantity" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
@@ -40,7 +40,7 @@
             <PropertyRef Name="product_id" />
           </Key>
           <Property Name="user_id" Type="int" Nullable="false" />
-          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="date" Type="date" Nullable="false" />
           <Property Name="comment" Type="nvarchar" MaxLength="2000" />
           <Property Name="vote" Type="int" />
@@ -90,6 +90,9 @@
           <Property Name="brand" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="status" Type="bit" Nullable="false" />
           <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="is_sale" Type="bit" Nullable="false" />
+          <Property Name="is_hot" Type="bit" Nullable="false" />
+          <Property Name="is_featured" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -117,19 +120,7 @@
           <Property Name="status" Type="bit" Nullable="false" />
           <Property Name="role" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Address_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Address" Type="Self.Address" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="Address">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cart_Product">
+        <Association Name="FK__Cart__product_id__58D1301D">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -141,7 +132,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Cart_Users">
+        <Association Name="FK__Cart__user_id__57DD0BE4">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -149,6 +140,18 @@
               <PropertyRef Name="user_id" />
             </Principal>
             <Dependent Role="Cart">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Address_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Address">
               <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -267,17 +270,17 @@
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Address_Users" Association="Self.FK_Address_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Address" EntitySet="Address" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cart_Product" Association="Self.FK_Cart_Product">
+          <AssociationSet Name="FK__Cart__product_id__58D1301D" Association="Self.FK__Cart__product_id__58D1301D">
             <End Role="Product" EntitySet="Product" />
             <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK_Cart_Users" Association="Self.FK_Cart_Users">
+          <AssociationSet Name="FK__Cart__user_id__57DD0BE4" Association="Self.FK__Cart__user_id__57DD0BE4">
             <End Role="Users" EntitySet="Users" />
             <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Address_Users" Association="Self.FK_Address_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Address" EntitySet="Address" />
           </AssociationSet>
           <AssociationSet Name="FK_Feedback_Users" Association="Self.FK_Feedback_Users">
             <End Role="Users" EntitySet="Users" />
@@ -319,17 +322,6 @@
           <Property Name="specific_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_Address_Users" FromRole="Address" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="Cart">
-          <Key>
-            <PropertyRef Name="product_id" />
-            <PropertyRef Name="user_id" />
-          </Key>
-          <Property Name="product_id" Type="Int32" Nullable="false" />
-          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Cart_Product" FromRole="Cart" ToRole="Product" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Cart_Users" FromRole="Cart" ToRole="Users" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -404,9 +396,12 @@
           <Property Name="brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="status" Type="Boolean" Nullable="false" />
           <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_Product" FromRole="Product" ToRole="Cart" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="Order_detail" Relationship="Self.FK_Order_detail_Product" FromRole="Product" ToRole="Order_detail" />
+          <Property Name="is_sale" Type="Boolean" Nullable="false" />
+          <Property Name="is_hot" Type="Boolean" Nullable="false" />
+          <Property Name="is_featured" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Carts" Relationship="QLBanDoDungHocTapModel.FK__Cart__product_id__58D1301D" FromRole="Product" ToRole="Cart" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -434,9 +429,9 @@
           <Property Name="status" Type="Boolean" Nullable="false" />
           <Property Name="role" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Addresses" Relationship="Self.FK_Address_Users" FromRole="Users" ToRole="Address" />
-          <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_Users" FromRole="Users" ToRole="Cart" />
           <NavigationProperty Name="Feedbacks" Relationship="Self.FK_Feedback_Users" FromRole="Users" ToRole="Feedback" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Users" FromRole="Users" ToRole="Order" />
+          <NavigationProperty Name="Carts" Relationship="QLBanDoDungHocTapModel.FK__Cart__user_id__57DD0BE4" FromRole="User" ToRole="Cart" />
         </EntityType>
         <Association Name="FK_Address_Users">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
@@ -446,30 +441,6 @@
               <PropertyRef Name="user_id" />
             </Principal>
             <Dependent Role="Address">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cart_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="product_id" />
-            </Principal>
-            <Dependent Role="Cart">
-              <PropertyRef Name="product_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cart_Users">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
-          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="Cart">
               <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -548,7 +519,6 @@
         </Association>
         <EntityContainer Name="QLBanDoDungHocTapEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Addresses" EntityType="Self.Address" />
-          <EntitySet Name="Carts" EntityType="Self.Cart" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
@@ -560,14 +530,6 @@
           <AssociationSet Name="FK_Address_Users" Association="Self.FK_Address_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Address" EntitySet="Addresses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cart_Product" Association="Self.FK_Cart_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Cart" EntitySet="Carts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cart_Users" Association="Self.FK_Cart_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Cart" EntitySet="Carts" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
             <End Role="Category" EntitySet="Categories" />
@@ -623,6 +585,15 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Carts" EntityType="QLBanDoDungHocTapModel.Cart" />
+          <AssociationSet Name="FK__Cart__product_id__58D1301D" Association="QLBanDoDungHocTapModel.FK__Cart__product_id__58D1301D">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cart__user_id__57DD0BE4" Association="QLBanDoDungHocTapModel.FK__Cart__user_id__57DD0BE4">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -635,6 +606,41 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="cart_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="QLBanDoDungHocTapModel.FK__Cart__product_id__58D1301D" FromRole="Cart" ToRole="Product" />
+          <NavigationProperty Name="User" Relationship="QLBanDoDungHocTapModel.FK__Cart__user_id__57DD0BE4" FromRole="Cart" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__Cart__product_id__58D1301D">
+          <End Type="QLBanDoDungHocTapModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="QLBanDoDungHocTapModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cart__user_id__57DD0BE4">
+          <End Type="QLBanDoDungHocTapModel.User" Role="User" Multiplicity="1" />
+          <End Type="QLBanDoDungHocTapModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -650,15 +656,6 @@
                 <ScalarProperty Name="province_name" ColumnName="province_name" />
                 <ScalarProperty Name="specific_address" ColumnName="specific_address" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Carts">
-            <EntityTypeMapping TypeName="QLBanDoDungHocTapModel.Cart">
-              <MappingFragment StoreEntitySet="Cart">
-                <ScalarProperty Name="product_id" ColumnName="product_id" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -715,6 +712,9 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="QLBanDoDungHocTapModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="is_featured" ColumnName="is_featured" />
+                <ScalarProperty Name="is_hot" ColumnName="is_hot" />
+                <ScalarProperty Name="is_sale" ColumnName="is_sale" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -784,6 +784,16 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QLBanDoDungHocTapModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QLBanDoDungHocTapModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="QLBanDoDungHocTapModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

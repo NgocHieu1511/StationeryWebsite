@@ -1,0 +1,310 @@
+﻿@model List<StationeryWebsite.Models.Cart>
+
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+    decimal subtotal = 0;
+}
+
+<!-- TITLE BANNER START -->
+<section class="title-banner bg-sec">
+    <div class="container-2">
+        <div class="title-wrapper">
+            <div class="row align-items-center justify-content-between">
+
+                <div class="col-lg-6">
+                    <h1 class="fw-700 medium-black text-sm-start text-center">
+                        Giỏ hàng
+                    </h1>
+                </div>
+
+                <div class="col-lg-6 d-sm-block d-none">
+                    <div class="text-end">
+                        <img src="@Url.Content("~/Assets/Client/assets/media/banner/title-banner-image.png")"
+                            
+                             alt="Cart Banner">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- TITLE BANNER END -->
+<!-- Cart Area Start -->
+<section class="cart py-40">
+
+    <div class="container-2">
+
+        <div class="row row-gap-4">
+
+            <!-- LEFT -->
+            <div class="col-xl-8">
+
+                <div class="d-lg-block d-none">
+
+                    <!-- TABLE HEADER -->
+                    <!--<table class="cart-table mb-16">
+                        <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th>Gía</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                        </thead>
+                    </table>-->
+
+                    <!-- PRODUCT LIST -->
+                    <!-- PRODUCT LIST -->
+                    <div class="table-responsive bg-white rounded-3 shadow-sm p-3">
+
+                        <table class="table align-middle mb-0">
+
+                            <thead class="border-bottom">
+
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th width="120">Giá</th>
+                                    <th width="170" class="text-center">Số lượng</th>
+                                    <th width="140">Thành tiền</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                @foreach (var item in Model)
+                                {
+                                    decimal thanhTien =
+                                        (decimal)(item.Product.price * item.quantity);
+
+                                    subtotal += thanhTien;
+
+                                    <tr>
+
+                                        <!-- PRODUCT -->
+                                        <td>
+
+                                            <div class="d-flex align-items-center gap-3">
+
+                                                <!-- REMOVE -->
+                                                <a href="@Url.Action("Delete", "GioHang",
+                               new { id = item.cart_id })"
+                                                   class="text-dark">
+
+                                                    <i class="fal fa-times"></i>
+
+                                                </a>
+
+                                                <!-- IMAGE -->
+                                                <a href="@Url.Action("Details", "SanPham",
+                               new { id = item.product_id })">
+
+                                                    <img src="@Url.Content(item.Product.image)"
+                                                         alt="@item.Product.name"
+                                                         class="rounded"
+                                                         style="width: 80px;
+                                            height: 80px;
+                                            object-fit: cover;">
+
+                                                </a>
+
+                                                <!-- NAME -->
+                                                <div>
+
+                                                    <a href="@Url.Action("Details", "SanPham",
+                                   new { id = item.product_id })"
+                                                       class="fw-600 text-dark text-decoration-none">
+
+                                                        @item.Product.name
+
+                                                    </a>
+
+                                                </div>
+
+                                            </div>
+
+                                        </td>
+
+                                        <!-- PRICE -->
+                                        <td>
+
+                                            <span class="fw-500">
+                                                $@item.Product.price
+                                            </span>
+
+                                        </td>
+
+                                        <!-- QUANTITY -->
+                                        <td>
+
+                                            <div class="d-flex justify-content-center">
+
+                                                <div class="d-flex align-items-center border rounded-pill px-2 py-1">
+
+                                                    <!-- GIẢM -->
+                                                    <a href="@Url.Action("DecreaseQuantity",
+                                   "GioHang",
+                                   new { id = item.cart_id })"
+                                                       class="btn btn-sm">
+
+                                                        -
+
+                                                    </a>
+
+                                                    <!-- SỐ LƯỢNG -->
+                                                    <input type="text"
+                                                           value="@item.quantity"
+                                                           readonly
+                                                           class="border-0 text-center fw-bold"
+                                                           style="width:40px;
+                                              background:transparent;">
+
+                                                    <!-- TĂNG -->
+                                                    <a href="@Url.Action("IncreaseQuantity",
+                                   "GioHang",
+                                   new { id = item.cart_id })"
+                                                       class="btn btn-sm">
+
+                                                        +
+
+                                                    </a>
+
+                                                </div>
+
+                                            </div>
+
+                                        </td>
+
+                                        <!-- SUBTOTAL -->
+                                        <td>
+
+                                            <span class="fw-600">
+                                                $@thanhTien
+                                            </span>
+
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <!-- CONTINUE SHOPPING -->
+                <div class="table-bottom-row bg-white">
+
+                    <a href="@Url.Action("SanPham", "SanPham")"
+                       class="cus-btn">
+
+                        <span class="text-btn">
+                            Continue Shopping
+                        </span>
+
+                        <span>
+                            Continue Shopping
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+            <div class="col-xl-4">
+
+                <div class="checkout-box bg-semi-white">
+
+                    <div class="checkout-title mb-16">
+
+                        <h6 class="fw-500 font-primary medium-black">
+                            Cart Total
+                        </h6>
+
+                    </div>
+
+                    <div class="bottom-box">
+
+                        <!-- SUBTOTAL -->
+                        <div class="title-price mb-16">
+
+                            <h6 class="font-sec fw-600 medium-black">
+                                Subtotal
+                            </h6>
+
+                            <p class="light-gray">
+                                $@subtotal
+                            </p>
+
+                        </div>
+
+                        <div class="hr-line mb-16"></div>
+
+                        <!-- DELIVERY -->
+                        <div class="title-price mb-16">
+
+                            <h6 class="font-sec fw-600 medium-black">
+                                Delivery
+                            </h6>
+
+                            <p class="light-gray">
+                                $5
+                            </p>
+
+                        </div>
+
+                        <div class="hr-line mb-16"></div>
+
+                        <!-- TOTAL -->
+                        <div class="title-price mb-16">
+
+                            <h6 class="fw-600 color-primary">
+                                TOTAL
+                            </h6>
+
+                            <h6 class="fw-600 color-primary">
+                                $@(subtotal + 5)
+                            </h6>
+
+                        </div>
+
+                        <div class="hr-line mb-32"></div>
+
+                        <!-- CHECKOUT -->
+                        <div class="text-end">
+
+                            <a href="@Url.Action("Index", "ThanhToan")"
+                               class="cus-btn active-btn">
+
+                                <span class="text-btn">
+                                    PROCEED TO CHECKOUT
+                                </span>
+
+                                <span>
+                                    PROCEED TO CHECKOUT
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- Cart Area End -->
