@@ -13,6 +13,15 @@ namespace StationeryWebsite.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            // lấy review mới nhất
+            var reviews = db.Feedbacks
+                            .Include("User")
+                            .Include("Product")
+                            .OrderByDescending(x => x.date)
+                            .Take(6)
+                            .ToList();
+
+            ViewBag.Reviews = reviews;
             return View();
         }
         public ActionResult CategorySection()

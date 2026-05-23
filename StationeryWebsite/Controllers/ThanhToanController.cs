@@ -26,13 +26,24 @@ namespace StationeryWebsite.Controllers
             if (!cart.Any())
                 return RedirectToAction("Index", "GioHang");
 
+            // Lấy thông tin user để hiển thị sẵn lên form
+            var user = db.Users.Find(userId);
+            ViewBag.UserInfo = user;
+
+            // Lấy địa chỉ gần nhất của user (nếu có)
+            var latestAddress = db.Addresses
+                .Where(a => a.user_id == userId)
+                .OrderByDescending(a => a.address_id)
+                .FirstOrDefault();
+            ViewBag.LatestAddress = latestAddress;
+
             return View(cart);
         }
 
         // DAT HANG
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PlaceOrder()
+        public ActionResult PlaceOrder(FormCollection form)
         {
             if (Session["UserId"] == null)
                 return RedirectToAction("Login", "Login");
@@ -51,7 +62,38 @@ namespace StationeryWebsite.Controllers
             {
                 try
                 {
-                    // ===== CHECK TỒN KHO =====
+                    // ===== 1. LƯU THÔNG TIN GIAO HÀNG VÀO BẢNG ADDRESS =====
+                    string specificAddress = form["address"];
+                    string ward = form["ward"];
+                    string district = form["district"];
+                    string province = form["province"];
+
+                    // Chỉ lưu địa chỉ nếu có nhập đầy đủ
+                    if (!string.IsNullOrEmpty(specificAddress) && !string.IsNullOrEmpty(province))
+                    {
+                        Address newAddress = new Address
+                        {
+                            user_id = userId,
+                            specific_address = specificAddress,
+                            ward_name = ward ?? "",
+                            district_name = district ?? "",
+                            province_name = province
+                        };
+
+                        db.Addresses.Add(newAddress);
+                    }
+
+                    // ===== 2. LẤY THÔNG TIN PHÍ SHIP =====
+                    decimal shippingFee = 15000; // Mặc định
+                    if (!string.IsNullOrEmpty(form["shipping_fee"]))
+                    {
+                        decimal.TryParse(form["shipping_fee"], out shippingFee);
+                    }
+
+                    // ===== 3. LẤY PHƯƠNG THỨC THANH TOÁN =====
+                    string paymentMethod = form["payment_method"] ?? "cod";
+
+                    // ===== 4. CHECK TỒN KHO =====
                     foreach (var item in cart)
                     {
                         if (item.Product == null)
@@ -68,23 +110,23 @@ namespace StationeryWebsite.Controllers
                         }
                     }
 
-                    // ===== TÍNH TỔNG TIỀN =====
-                    decimal total = cart.Sum(c =>
-                        c.quantity * (c.Product?.price ?? 0));
+                    // ===== 5. TÍNH TỔNG TIỀN (Đã bao gồm phí ship) =====
+                    decimal subtotal = cart.Sum(c => c.quantity * (c.Product?.price ?? 0));
+                    decimal total = subtotal + shippingFee;
 
-                    // ===== TẠO ORDER =====
+                    // ===== 6. TẠO ORDER =====
                     Order order = new Order
                     {
                         date = DateTime.Now,
                         total_price = total,
                         user_id = userId,
-                        status_id = 1 // Pending
+                        status_id = 1 // Chờ xác nhận
                     };
 
                     db.Orders.Add(order);
-                    db.SaveChanges(); // lấy order_id
+                    db.SaveChanges(); // Lấy order_id
 
-                    // ===== TẠO ORDER DETAIL + UPDATE STOCK =====
+                    // ===== 7. TẠO ORDER DETAIL + UPDATE STOCK =====
                     foreach (var item in cart)
                     {
                         if (item.Product == null)
@@ -100,19 +142,22 @@ namespace StationeryWebsite.Controllers
 
                         db.Order_detail.Add(detail);
 
-                        // update tồn kho
+                        // Cập nhật tồn kho
                         item.Product.quantity -= item.quantity;
                         item.Product.sold_quantity =
                             (item.Product.sold_quantity ?? 0) + item.quantity;
                     }
 
-                    // ===== XÓA CART =====
+                    // ===== 8. XÓA CART =====
                     db.Carts.RemoveRange(cart);
 
                     db.SaveChanges();
                     transaction.Commit();
 
+                    // ===== 9. LƯU THÔNG BÁO + CHUYỂN HƯỚNG =====
                     TempData["OrderId"] = order.order_id;
+                    TempData["ShippingFee"] = shippingFee;
+                    TempData["PaymentMethod"] = paymentMethod;
                     TempData["Success"] = "Đặt hàng thành công!";
 
                     return RedirectToAction("Success");
@@ -120,12 +165,24 @@ namespace StationeryWebsite.Controllers
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    TempData["Error"] = "Có lỗi xảy ra: " + ex.Message;
+
+                    // Lấy lỗi chi tiết từ Inner Exception
+                    string errorMessage = ex.Message;
+                    Exception innerEx = ex.InnerException;
+
+                    while (innerEx != null)
+                    {
+                        errorMessage += " | Inner: " + innerEx.Message;
+                        innerEx = innerEx.InnerException;
+                    }
+
+                    TempData["Error"] = "Có lỗi xảy ra: " + errorMessage;
                     return RedirectToAction("Index");
                 }
             }
         }
 
+        // THANH CONG
         // THANH CONG
         public ActionResult Success()
         {
@@ -134,14 +191,36 @@ namespace StationeryWebsite.Controllers
 
             int orderId = (int)TempData["OrderId"];
 
+            // SỬA: Dùng Include dạng string cho EF6
             var order = db.Orders
-                .Include(o => o.Order_detail.Select(d => d.Product))
+                .Include("Order_status")
+                .Include("Order_detail")
+                .Include("Order_detail.Product")
                 .FirstOrDefault(o => o.order_id == orderId);
 
             if (order == null)
                 return RedirectToAction("Index", "Home");
 
+            // Lấy địa chỉ gần nhất của user
+            var shippingAddress = db.Addresses
+                .Where(a => a.user_id == order.user_id)
+                .OrderByDescending(a => a.address_id)
+                .FirstOrDefault();
+
+            ViewBag.ShippingAddress = shippingAddress;
+            ViewBag.ShippingFee = TempData["ShippingFee"] ?? 15000;
+            ViewBag.PaymentMethod = TempData["PaymentMethod"] ?? "cod";
+
             return View(order);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

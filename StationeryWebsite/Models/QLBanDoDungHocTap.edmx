@@ -40,7 +40,7 @@
             <PropertyRef Name="product_id" />
           </Key>
           <Property Name="user_id" Type="int" Nullable="false" />
-          <Property Name="product_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="int" Nullable="false" />
           <Property Name="date" Type="date" Nullable="false" />
           <Property Name="comment" Type="nvarchar" MaxLength="2000" />
           <Property Name="vote" Type="int" />
@@ -153,6 +153,18 @@
             </Principal>
             <Dependent Role="Address">
               <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="product_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -282,6 +294,10 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Address" EntitySet="Address" />
           </AssociationSet>
+          <AssociationSet Name="FK_Feedback_Product" Association="Self.FK_Feedback_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
           <AssociationSet Name="FK_Feedback_Users" Association="Self.FK_Feedback_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Feedback" EntitySet="Feedback" />
@@ -344,6 +360,7 @@
           <Property Name="comment" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="vote" Type="Int32" />
           <NavigationProperty Name="User" Relationship="Self.FK_Feedback_Users" FromRole="Feedback" ToRole="Users" />
+          <NavigationProperty Name="Product" Relationship="QLBanDoDungHocTapModel.FK_Feedback_Product" FromRole="Feedback" ToRole="Product" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -402,6 +419,7 @@
           <Property Name="is_hot" Type="Boolean" Nullable="false" />
           <Property Name="is_featured" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Carts" Relationship="QLBanDoDungHocTapModel.FK__Cart__product_id__58D1301D" FromRole="Product" ToRole="Cart" />
+          <NavigationProperty Name="Feedbacks" Relationship="QLBanDoDungHocTapModel.FK_Feedback_Product" FromRole="Product" ToRole="Feedback" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -594,6 +612,10 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Cart" EntitySet="Carts" />
           </AssociationSet>
+          <AssociationSet Name="FK_Feedback_Product" Association="QLBanDoDungHocTapModel.FK_Feedback_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Feedback" EntitySet="Feedbacks" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -638,6 +660,18 @@
             </Principal>
             <Dependent Role="Cart">
               <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_Product">
+          <End Type="QLBanDoDungHocTapModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="QLBanDoDungHocTapModel.Feedback" Role="Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="product_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

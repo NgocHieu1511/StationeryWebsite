@@ -36,6 +36,10 @@ namespace StationeryWebsite.Controllers
                                     .ToList();
 
             ViewBag.RelatedProducts = relatedProducts;
+            ViewBag.Reviews = db.Feedbacks
+                       .Where(x => x.product_id == id)
+                       .OrderByDescending(x => x.date)
+                       .ToList();
 
             return View(product);
         }
@@ -72,6 +76,48 @@ namespace StationeryWebsite.Controllers
             ViewBag.CategoryId = id;
 
             return View(products);
+        }
+        [HttpPost]
+        public ActionResult AddReview(int productId, int rating, string message)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            int userId = Convert.ToInt32(Session["UserId"]);
+
+            // kiểm tra đã review chưa
+            var feedback = db.Feedbacks
+                             .FirstOrDefault(f =>
+                                 f.user_id == userId &&
+                                 f.product_id == productId);
+
+            if (feedback != null)
+            {
+                // UPDATE
+                feedback.comment = message;
+                feedback.vote = rating;
+                feedback.date = DateTime.Now;
+            }
+            else
+            {
+                // INSERT
+                Feedback fb = new Feedback()
+                {
+                    user_id = userId,
+                    product_id = productId,
+                    comment = message,
+                    vote = rating,
+                    date = DateTime.Now
+                };
+
+                db.Feedbacks.Add(fb);
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("Details", new { id = productId });
         }
     }
 }

@@ -1,42 +1,86 @@
 ﻿@model StationeryWebsite.Models.Order
-
 @{
-    ViewBag.Title = "Đặt hàng thành công";
+    ViewBag.Title = "Đặt Hàng Thành Công";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+    var shippingAddress = ViewBag.ShippingAddress as StationeryWebsite.Models.Address;
 }
 
-<div class="success-container">
-    <h2>🎉 Đặt hàng thành công!</h2>
+<section class="success-section py-80">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-40">
+                    <i class="fas fa-check-circle text-success" style="font-size: 80px;"></i>
+                    <h2 class="fw-700 mt-16">Đặt Hàng Thành Công!</h2>
+                    <p class="text-muted">Cảm ơn bạn đã mua hàng. Đơn hàng của bạn đang được xử lý.</p>
+                </div>
 
-    <div class="order-info">
-        <p><strong>Mã đơn hàng:</strong> #@Model.order_id</p>
-        <p><strong>Ngày đặt:</strong> @Model.date.ToString("dd/MM/yyyy HH:mm")</p>
-        <p><strong>Tổng tiền:</strong> @String.Format("{0:N0}đ", Model.total_price)</p>
-        <p><strong>Trạng thái:</strong> @(Model.Order_status?.description ?? "Đang xử lý")</p>
+                <div class="card br-10 mb-24">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Thông Tin Đơn Hàng #@Model.order_id</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Ngày đặt:</strong> @Model.date.ToString("dd/MM/yyyy HH:mm")</p>
+                        <p><strong>Trạng thái:</strong> @Model.Order_status.description</p>
+                        <p><strong>Phương thức thanh toán:</strong> @ViewBag.PaymentMethod</p>
+
+                        @if (shippingAddress != null)
+                        {
+                            <p><strong>Địa chỉ giao hàng:</strong></p>
+                            <p>
+                                @shippingAddress.specific_address<br>
+                                @shippingAddress.ward_name, @shippingAddress.district_name<br>
+                                @shippingAddress.province_name
+                            </p>
+                        }
+
+                        <hr>
+
+                        <h6>Sản phẩm đã đặt:</h6>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Đơn giá</th>
+                                    <th>Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var detail in Model.Order_detail)
+                                {
+                                    <tr>
+                                        <td>@detail.Product.name</td>
+                                        <td>@detail.quantity</td>
+                                        <td>@detail.item_price.ToString("N0")đ</td>
+                                        <td>@((detail.quantity * detail.item_price).ToString("N0"))đ</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-end"><strong>Phí ship:</strong></td>
+                                    <td>@(((decimal)ViewBag.ShippingFee).ToString("N0"))đ</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-end"><strong>Tổng cộng:</strong></td>
+                                    <td><strong class="text-danger">@Model.total_price.ToString("N0")đ</strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="@Url.Action("Index", "Home")" class="cus-btn me-2">
+                        <i class="fas fa-home me-2"></i>Về Trang Chủ
+                    </a>
+                    <a href="@Url.Action("Index", "QuanLyDonHang")" class="cus-btn cus-btn-2">
+                        <i class="fas fa-list me-2"></i>Xem Đơn Hàng
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <h3>Chi tiết đơn hàng:</h3>
-    <table class="table table-bordered">
-        <tr>
-            <th>Sản phẩm</th>
-            <th>Số lượng</th>
-            <th>Đơn giá</th>
-            <th>Thành tiền</th>
-        </tr>
-        @if (Model.Order_detail != null && Model.Order_detail.Any())
-        {
-            foreach (var detail in Model.Order_detail)
-            {
-                <tr>
-                    <td>@(detail.Product?.name ?? "Sản phẩm")</td>
-                    <td>@detail.quantity</td>
-                    <td>@String.Format("{0:N0}đ", detail.item_price)</td>
-                    <td>@String.Format("{0:N0}đ", detail.quantity * detail.item_price)</td>
-                </tr>
-            }
-        }
-    </table>
-
-    <div class="actions">
-        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Về trang chủ</a>
-    </div>
-</div>
+</section>

@@ -19,6 +19,7 @@ namespace StationeryWebsite.Models
         {
             this.Order_detail = new HashSet<Order_detail>();
             this.Carts = new HashSet<Cart>();
+            this.Feedbacks = new HashSet<Feedback>();
         }
     
         public int product_id { get; set; }
@@ -44,5 +45,7 @@ namespace StationeryWebsite.Models
         public virtual ICollection<Order_detail> Order_detail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Carts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Feedback> Feedbacks { get; set; }
     }
 }

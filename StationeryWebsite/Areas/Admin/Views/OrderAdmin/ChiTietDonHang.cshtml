@@ -1,0 +1,40 @@
+﻿@model StationeryWebsite.Models.Order
+@{
+    ViewBag.Title = "ChiTietDonHang";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Chi tiết đơn hàng #@Model.order_id</h2>
+
+<p>
+    Khách hàng:
+    @(Model.User.last_name + " " + Model.User.first_name)
+</p>
+
+<p>Ngày đặt: @Model.date</p>
+
+<p>Tổng tiền: @Model.total_price.ToString("N0")đ</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sản phẩm</th>
+            <th>Giá</th>
+            <th>SL</th>
+            <th>Thành tiền</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.Order_detail)
+        {
+            <tr>
+                <td>@item.Product.name</td>
+                <td>@item.item_price.ToString("N0")đ</td>
+                <td>@item.quantity</td>
+                <td>@((item.item_price * item.quantity).ToString("N0"))đ</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
