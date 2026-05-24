@@ -168,14 +168,17 @@
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LienHeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Controllers\ThanhToanController.cs" />
@@ -202,6 +205,9 @@
       <DependentUpon>QLBanDoDungHocTap.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order_status.cs">
+      <DependentUpon>QLBanDoDungHocTap.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Post.cs">
       <DependentUpon>QLBanDoDungHocTap.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
@@ -1341,6 +1347,9 @@
     <Content Include="Areas\Admin\Views\OrderAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\FeedbackAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\OrderAdmin\ChiTietDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\PostAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PostAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PostAdmin\Edit.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -1380,6 +1389,9 @@
     <Content Include="Views\ThanhToan\Index.cshtml" />
     <Content Include="Views\ThanhToan\Success.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Post\Index.cshtml" />
+    <Content Include="Views\Post\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

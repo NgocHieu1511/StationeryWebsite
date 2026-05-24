@@ -1,0 +1,228 @@
+﻿@model List<StationeryWebsite.Models.Post>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+
+
+<!-- TITLE BANNER START -->
+<section class="title-banner bg-sec">
+
+    <div class="container-2">
+
+        <div class="title-wrapper">
+
+            <div class="row align-items-center justify-content-between">
+
+                <!-- TITLE -->
+                <div class="col-lg-6 col-md-6 col-sm-6">
+
+                    <h1 class="fw-700 medium-black text-sm-start text-center">
+                        Bài viết
+                    </h1>
+
+                </div>
+
+                <!-- BANNER IMAGE -->
+                <div class="col-lg-6 col-md-6 col-sm-6 d-sm-block d-none">
+
+                    <div class="text-end">
+
+                        <img src="@Url.Content("~/Assets/Client/assets/media/banner/title-banner-image.png")"
+                             alt="Blog Banner">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- TITLE BANNER END -->
+<!-- BLOG SECTION START -->
+<section class="blog-sec pt-80 pb-80">
+
+    <div class="container-2">
+
+        <!-- HEADING -->
+        <div class="heading text-center mb-48 wow fadeInUp animated">
+
+            <h2 class="fw-700 medium-black mb-16">
+                 <span class="color-primary">Bài viết </span> mới nhất
+            </h2>
+
+            <p>
+                Cập nhật những bài viết mới nhất về văn phòng phẩm,
+                học tập và mẹo hữu ích dành cho bạn.
+            </p>
+
+        </div>
+
+        <div class="row row-gap-4">
+
+            @if (Model != null && Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6 wow fadeInUp animated">
+
+                        <div class="blog-card bg-white br-24 overflow-hidden h-100">
+
+                            <!-- IMAGE -->
+                            <div class="blog-image">
+
+                                <a href="@Url.Action("Detail", "Post", new { id = item.post_id })">
+
+                                    <img src="@(string.IsNullOrEmpty(item.image)
+                                            ? Url.Content("~/Content/images/no-image.png")
+                                            : Url.Content(item.image))"
+                                         alt="@item.title"
+                                         class="w-100">
+
+                                </a>
+
+                            </div>
+
+                            <!-- CONTENT -->
+                            <div class="p-24">
+
+                                <!-- DATE -->
+                                <div class="mb-12 text-muted small">
+
+                                    <i class="fas fa-calendar-alt me-2"></i>
+
+                                    @(item.created_at.HasValue
+                                        ? item.created_at.Value.ToString("dd/MM/yyyy")
+                                        : "")
+
+                                </div>
+
+                                <!-- TITLE -->
+                                <h4 class="fw-700 medium-black mb-16">
+
+                                    <a href="@Url.Action("Detail", "Post", new { id = item.post_id })"
+                                       class="text-decoration-none medium-black">
+
+                                        @item.title
+
+                                    </a>
+
+                                </h4>
+
+                                <!-- DESCRIPTION -->
+                                <p class="mb-24 text-muted">
+
+                                    @(item.summary != null
+                                        ? item.summary.Length > 100
+                                            ? item.summary.Substring(0, 100) + "..."
+                                            : item.summary
+                                        : "")
+
+                                </p>
+
+                                <!-- BUTTON -->
+                                <a href="@Url.Action("Detail", "Post", new { id = item.post_id })"
+                                   class="cus-btn">
+
+                                    <span class="btn-text">
+                                        Read More
+                                    </span>
+
+                                    <span>
+                                        Chi tiết
+                                    </span>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center">
+
+                    <p>
+                        Chưa có bài viết nào.
+                    </p>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</section>
+<!-- BLOG SECTION END -->
+<!-- BRAND SLIDER START -->
+<div class="brand-slider-wrapper py-40 wow fadeInUp animated" data-wow-delay="400ms">
+
+    <div class="container-fluid">
+
+        <div class="brand-slider">
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-1.png")" alt="Brand 1">
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-2.png")" alt="Brand 2">
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-3.png")" alt="Brand 3">
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-4.png")" alt="Brand 4">
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-5.png")" alt="Brand 5">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- BRAND SLIDER END -->
+
+<style>
+
+    .blog-card {
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        transition: 0.3s;
+    }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+    .blog-image {
+        height: 240px;
+        overflow: hidden;
+    }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+
+    .blog-card:hover img {
+        transform: scale(1.05);
+    }
+</style>
+

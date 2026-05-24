@@ -72,6 +72,21 @@
           <Property Name="status_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="post_id" />
+          </Key>
+          <Property Name="post_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="255" />
+          <Property Name="slug" Type="nvarchar" MaxLength="255" />
+          <Property Name="summary" Type="nvarchar" MaxLength="500" />
+          <Property Name="content" Type="nvarchar(max)" />
+          <Property Name="image" Type="nvarchar" MaxLength="500" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="product_id" />
@@ -140,6 +155,18 @@
               <PropertyRef Name="user_id" />
             </Principal>
             <Dependent Role="Cart">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Posts__user_id__5E8A0973">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Posts">
               <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -279,6 +306,7 @@
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order_detail" EntityType="Self.Order_detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order_status" EntityType="Self.Order_status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -289,6 +317,10 @@
           <AssociationSet Name="FK__Cart__user_id__57DD0BE4" Association="Self.FK__Cart__user_id__57DD0BE4">
             <End Role="Users" EntitySet="Users" />
             <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Posts__user_id__5E8A0973" Association="Self.FK__Posts__user_id__5E8A0973">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Posts" EntitySet="Posts" />
           </AssociationSet>
           <AssociationSet Name="FK_Address_Users" Association="Self.FK_Address_Users">
             <End Role="Users" EntitySet="Users" />
@@ -450,6 +482,7 @@
           <NavigationProperty Name="Feedbacks" Relationship="Self.FK_Feedback_Users" FromRole="Users" ToRole="Feedback" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Users" FromRole="Users" ToRole="Order" />
           <NavigationProperty Name="Carts" Relationship="QLBanDoDungHocTapModel.FK__Cart__user_id__57DD0BE4" FromRole="User" ToRole="Cart" />
+          <NavigationProperty Name="Posts" Relationship="QLBanDoDungHocTapModel.FK__Posts__user_id__5E8A0973" FromRole="User" ToRole="Post" />
         </EntityType>
         <Association Name="FK_Address_Users">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
@@ -616,6 +649,11 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="Feedback" EntitySet="Feedbacks" />
           </AssociationSet>
+          <EntitySet Name="Posts" EntityType="QLBanDoDungHocTapModel.Post" />
+          <AssociationSet Name="FK__Posts__user_id__5E8A0973" Association="QLBanDoDungHocTapModel.FK__Posts__user_id__5E8A0973">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -672,6 +710,34 @@
             </Principal>
             <Dependent Role="Feedback">
               <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="post_id" />
+          </Key>
+          <Property Name="post_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="slug" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="summary" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="QLBanDoDungHocTapModel.FK__Posts__user_id__5E8A0973" FromRole="Post" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__Posts__user_id__5E8A0973">
+          <End Type="QLBanDoDungHocTapModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="QLBanDoDungHocTapModel.Post" Role="Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -825,6 +891,22 @@
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="QLBanDoDungHocTapModel.Post">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+                <ScalarProperty Name="slug" ColumnName="slug" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="post_id" ColumnName="post_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
