@@ -22,6 +22,13 @@ namespace StationeryWebsite.Controllers
                             .ToList();
 
             ViewBag.Reviews = reviews;
+            // ===== THÊM PHẦN NÀY: Lấy 3 bài viết mới nhất =====
+            ViewBag.LatestPosts = db.Posts
+                .Where(p => p.is_active == true)
+                .OrderByDescending(p => p.created_at)
+                .Take(3)
+                .ToList();
+            // =============================================
             return View();
         }
         public ActionResult CategorySection()

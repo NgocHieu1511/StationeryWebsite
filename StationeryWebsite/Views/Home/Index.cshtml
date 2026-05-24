@@ -5,6 +5,28 @@
 }
 
 <!-- Phần Content -->
+<!-- Preloader -->
+<div id="preloader">
+    <div class="loading loading07">
+        <span data-text="S">S</span>
+        <span data-text="t">t</span>
+        <span data-text="a">a</span>
+        <span data-text="t">t</span>
+        <span data-text="i">i</span>
+        <span data-text="o">o</span>
+        <span data-text="n">n</span>
+        <span data-text="e">e</span>
+        <span data-text="r">r</span>
+        <span data-text="y">y</span>
+        <span data-text="&nbsp;">&nbsp;</span>
+        <span data-text="T">T</span>
+        <span data-text="a">a</span>
+        <span data-text="l">l</span>
+        <span data-text="e">e</span>
+        <span data-text="s">s</span>
+    </div>
+</div>
+<!-- Preloader -->
 <!-- Main Sections -->
 <section class="hero-banner">
     <div class="container-2">
@@ -491,162 +513,94 @@
              data-wow-delay="400ms">
 
             <h2 class="medium-black fw-700 mb-16">
-                Latest <span class="color-primary"> Articles</span>
+                Bài Viết <span class="color-primary">Mới Nhất</span>
             </h2>
 
             <p>
-                Porta non pulvinar neque laoreet suspendisse interdum
-                consectetur libero. Massa tempor nec
+                Khám phá những bài viết hữu ích về đồ dùng học tập,
                 <br class="d-lg-block d-none" />
-                feugiat nisl. Accumsan lacus vel facilisis volutpat.
-                Viverra justo nec.
+                mẹo học tập hiệu quả và cách tổ chức góc học tập khoa học.
             </p>
 
         </div>
 
         <div class="row row-gap-4 mb-48">
 
-            <!-- BLOG 1 -->
-            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
-                 data-wow-delay="400ms">
+            @if (ViewBag.LatestPosts != null && ((List<StationeryWebsite.Models.Post>)ViewBag.LatestPosts).Any())
+            {
+                int delay = 400;
+                foreach (var post in (List<StationeryWebsite.Models.Post>)ViewBag.LatestPosts)
+                {
+                    <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
+                         data-wow-delay="@(delay)ms"
+                         style="visibility: visible; animation-delay: @(delay)ms; animation-name: fadeInUp;">
 
-                <div class="blog-card">
+                        <div class="blog-card">
 
-                    <a href="@Url.Action("BlogDetail", "Blog", new { id = 1 })"
-                       class="blog-image mb-8">
+                            <!-- Ảnh -->
+                            <a href="@Url.Action("Detail", "Post", new { slug = post.slug, id = post.post_id })"
+                               class="blog-image mb-8">
 
-                        <img src="@Url.Content("~/Assets/Client/assets/media/blogs/blog-1.png")"
-                             alt="" />
+                                <img src="@(string.IsNullOrEmpty(post.image) ? Url.Content("~/Assets/Client/assets/media/blogs/blog-default.png") : post.image)"
+                                     alt="@post.title"
+                                     onerror="this.src='@Url.Content("~/Assets/Client/assets/media/blogs/blog-default.png")'" />
 
-                    </a>
+                            </a>
 
-                    <div class="blog-text">
+                            <!-- Nội dung -->
+                            <div class="blog-text">
 
-                        <p class="subtitle mb-16 fw-500 light-gray">
-                            By Admin • 24 Jan, 2025
-                        </p>
+                                <!-- Meta -->
+                                <p class="subtitle mb-16 fw-500 light-gray">
+                                    By Admin • @(post.created_at?.ToString("dd MMM, yyyy") ?? "N/A")
+                                </p>
 
-                        <a href="@Url.Action("BlogDetail", "Blog", new { id = 1 })"
-                           class="h5 fw-700 font-sec mb-8">
+                                <!-- Tiêu đề -->
+                                <a href="@Url.Action("Detail", "Post", new { slug = post.slug, id = post.post_id })"
+                                   class="h5 fw-700 font-sec mb-8 text-decoration-none medium-black">
 
-                            Why Quality Stationery Matters:
-                            Elevate Your Workspace
+                                    @post.title
 
-                        </a>
+                                </a>
 
-                        <p class="mb-24">
-                            Lorem ipsum dolor sit amet consectetur.
-                            Velit mi vitae dolor curabitur duis sociis.
-                            Eget risus.
-                        </p>
+                                <!-- Tóm tắt -->
+                                <p class="mb-24">
+                                    @(string.IsNullOrEmpty(post.summary)
+                                        ? (post.content?.Length > 120 ? post.content.Substring(0, 120) + "..." : post.content)
+                                        : (post.summary.Length > 120 ? post.summary.Substring(0, 120) + "..." : post.summary))
+                                </p>
 
-                        <a href="@Url.Action("BlogDetail", "Blog", new { id = 1 })"
-                           class="medium-black fw-700 font-sec text-decoration-underline">
+                                <!-- Read More -->
+                                <a href="@Url.Action("Detail", "Post", new { slug = post.slug, id = post.post_id })"
+                                   class="medium-black fw-700 font-sec text-decoration-underline">
 
-                            Read More
+                                    Read More
 
-                        </a>
+                                </a>
 
-                    </div>
+                            </div>
 
-                </div>
-
-            </div>
-
-            <!-- BLOG 2 -->
-            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
-                 data-wow-delay="500ms">
-
-                <div class="blog-card">
-
-                    <a href="@Url.Action("BlogDetail", "Blog", new { id = 2 })"
-                       class="blog-image mb-8">
-
-                        <img src="@Url.Content("~/Assets/Client/assets/media/blogs/blog-2.png")"
-                             alt="" />
-
-                    </a>
-
-                    <div class="blog-text">
-
-                        <p class="subtitle mb-16 fw-500 light-gray">
-                            By Admin • 24 Jan, 2025
-                        </p>
-
-                        <a href="@Url.Action("BlogDetail", "Blog", new { id = 2 })"
-                           class="h5 fw-700 font-sec mb-8">
-
-                            Minimalist vs. Aesthetic:
-                            Finding Your Stationery Style
-
-                        </a>
-
-                        <p class="mb-24">
-                            Lorem ipsum dolor sit amet consectetur.
-                            Velit mi vitae dolor curabitur duis sociis.
-                            Eget risus.
-                        </p>
-
-                        <a href="@Url.Action("BlogDetail", "Blog", new { id = 2 })"
-                           class="medium-black fw-700 font-sec text-decoration-underline">
-
-                            Read More
-
-                        </a>
+                        </div>
 
                     </div>
 
+                    delay += 100;
+                }
+            }
+            else
+            {
+                <!-- Fallback nếu không có bài viết -->
+                <div class="col-12 text-center py-40">
+                    <p class="text-muted">Chưa có bài viết nào. Quay lại sau nhé!</p>
                 </div>
+            }
+        </div>
 
-            </div>
-
-            <!-- BLOG 3 -->
-            <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated"
-                 data-wow-delay="600ms">
-
-                <div class="blog-card">
-
-                    <a href="@Url.Action("BlogDetail", "Blog", new { id = 3 })"
-                       class="blog-image mb-8">
-
-                        <img src="@Url.Content("~/Assets/Client/assets/media/blogs/blog-3.png")"
-                             alt="" />
-
-                    </a>
-
-                    <div class="blog-text">
-
-                        <p class="subtitle mb-16 fw-500 light-gray">
-                            By Admin • 24 Jan, 2025
-                        </p>
-
-                        <a href="@Url.Action("BlogDetail", "Blog", new { id = 3 })"
-                           class="h5 fw-700 font-sec mb-8">
-
-                            The Ultimate Guide to Choosing
-                            the Perfect Notebook
-
-                        </a>
-
-                        <p class="mb-24">
-                            Lorem ipsum dolor sit amet consectetur.
-                            Velit mi vitae dolor curabitur duis sociis.
-                            Eget risus.
-                        </p>
-
-                        <a href="@Url.Action("BlogDetail", "Blog", new { id = 3 })"
-                           class="medium-black fw-700 font-sec text-decoration-underline">
-
-                            Read More
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+        <!-- Nút xem tất cả -->
+        <div class="text-center mt-16 mb-40">
+            <a href="@Url.Action("Index", "Post")" class="cus-btn">
+                Xem tất cả bài viết <i class="fas fa-arrow-right ms-2"></i>
+            </a>
         </div>
 
     </div>

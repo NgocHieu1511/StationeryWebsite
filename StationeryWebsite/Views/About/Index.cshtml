@@ -1,0 +1,378 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!-- TITLE BANNER START -->
+<section class="title-banner bg-sec">
+
+    <div class="container-2">
+
+        <div class="title-wrapper">
+
+            <div class="row align-items-center justify-content-between">
+
+                <!-- TITLE -->
+                <div class="col-lg-6 col-md-6 col-sm-6">
+
+                    <h1 class="fw-700 medium-black text-sm-start text-center">
+                        About Us
+                    </h1>
+
+                </div>
+
+                <!-- BANNER IMAGE -->
+                <div class="col-lg-6 col-md-6 col-sm-6 d-sm-block d-none">
+
+                    <div class="text-end">
+
+                        <img src="@Url.Content("~/Assets/Client/assets/media/banner/title-banner-image.png")"
+                             alt="About Banner">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- TITLE BANNER END -->
+<!-- ABOUT SECTION START -->
+<section class="about-sec pt-80 pb-40">
+
+    <div class="container-2">
+
+        <div class="row align-items-center row-gap-4">
+
+            <!-- CONTENT -->
+            <div class="col-lg-6">
+
+                <h2 class="medium-black fw-700 mb-16">
+                    <span class="color-primary">Stationery </span> Tools
+                </h2>
+
+                <p class="mb-24">
+                    Office supplies, also known as stationery, are a broad category
+                    of materials and equipment used in offices, businesses, and
+                    educational institutions to facilitate work, organization,
+                    and communication. These items can range from basic necessities
+                    like pens and paper to more specialized tools such as printers,
+                    shredders, and ergonomic office furniture.
+                </p>
+
+                <p class="mb-12">
+                    <span class="fw-500 medium-black">
+                        Pens and Pencils:
+                    </span>
+                    These are essential writing instruments used for note-taking,
+                    document signing, and other writing tasks.
+                </p>
+
+                <p class="mb-12">
+                    <span class="fw-500 medium-black">
+                        Paper:
+                    </span>
+                    Various types of paper are used, including printer paper,
+                    notepads, sticky notes, and specialized paper products.
+                </p>
+
+                <p class="mb-32">
+                    <span class="fw-500 medium-black">
+                        Staplers and Paper Clips:
+                    </span>
+                    These tools are used to bind sheets of paper together.
+                </p>
+
+                <a href="@Url.Action("About","Home")"
+                   class="cus-btn">
+
+                    <span class="btn-text">
+                        About Us
+                    </span>
+
+                    <span>
+                        More Us
+                    </span>
+
+                </a>
+
+            </div>
+
+            <!-- IMAGES -->
+            <div class="col-lg-6">
+
+                <div class="row row-gap-3">
+
+                    <div class="col-sm-6">
+
+                        <div class="about-image">
+
+                            <img src="@Url.Content("~/Assets/Client/assets/media/about/about-1.png")"
+                                 alt="About Image 1"
+                                 class="br-24 w-100">
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-6">
+
+                        <div class="about-image">
+
+                            <img src="@Url.Content("~/Assets/Client/assets/media/about/about-2.png")"
+                                 alt="About Image 2"
+                                 class="br-24 w-100 mb-24">
+
+                        </div>
+
+                        <div class="about-image">
+
+                            <img src="@Url.Content("~/Assets/Client/assets/media/about/about-3.png")"
+                                 alt="About Image 3"
+                                 class="br-24 w-100">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ABOUT SECTION END -->
+<!-- BENEFITS SECTION START -->
+<section class="benefits-sec pt-40 pb-80">
+    <div class="container-2">
+        <div class="row row-gap-4">
+
+            <!-- Benefit Item -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="benefit-block">
+                    <div class="icon-box mb-16">
+                        <!-- SVG giữ nguyên -->
+                    </div>
+
+                    <h5 class="fw-700 medium-black mb-16">Rapid Shipping</h5>
+
+                    <p class="mb-24">
+                        Upload your artwork or files quickly and get your stationery delivered fast and safely.
+                    </p>
+
+                    <a href="@Url.Action("About", "Home")" class="cus-btn-2">
+                        <span class="btn-text">Read More</span>
+                        <span>About Us</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Benefit Item -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="benefit-block">
+                    <div class="icon-box mb-16">
+                        <!-- SVG giữ nguyên -->
+                    </div>
+
+                    <h5 class="fw-700 medium-black mb-16">24/7 Support</h5>
+
+                    <p class="mb-24">
+                        Our support team is always ready to help you with orders, products, and services.
+                    </p>
+
+                    <a href="@Url.Action("About", "Home")" class="cus-btn-2">
+                        <span class="btn-text">Read More</span>
+                        <span>About Us</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Benefit Item -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="benefit-block">
+                    <div class="icon-box mb-16">
+                        <!-- SVG giữ nguyên -->
+                    </div>
+
+                    <h5 class="fw-700 medium-black mb-16">Quality Products</h5>
+
+                    <p class="mb-24">
+                        We provide high-quality stationery products suitable for students and offices.
+                    </p>
+
+                    <a href="@Url.Action("About", "Home")" class="cus-btn-2">
+                        <span class="btn-text">Read More</span>
+                        <span>About Us</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Benefit Item -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="benefit-block">
+                    <div class="icon-box mb-16">
+                        <!-- SVG giữ nguyên -->
+                    </div>
+
+                    <h5 class="fw-700 medium-black mb-16">Secure Payment</h5>
+
+                    <p class="mb-24">
+                        Enjoy safe and secure payment methods with reliable transaction protection.
+                    </p>
+
+                    <a href="@Url.Action("About", "Home")" class="cus-btn-2">
+                        <span class="btn-text">Read More</span>
+                        <span>About Us</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- BENEFITS SECTION END -->
+<!-- TESTIMONIALS SECTION START -->
+<!-- TESTIMONIALS SECTION START -->
+@{
+    var reviews = ViewBag.Reviews as List<StationeryWebsite.Models.Feedback>;
+}
+
+<section class="testimonials-sec pt-40 pb-80">
+
+    <div class="container-2">
+
+        <div class="heading mb-48 text-center wow fadeInUp animated">
+
+            <h2 class="medium-black fw-700 mb-16">
+                Customer <span class="color-primary"> Reviews</span>
+            </h2>
+
+            <p>
+                Khách hàng nói gì về sản phẩm của chúng tôi
+            </p>
+
+        </div>
+
+        <div class="row row-gap-sm-4 row-gap-3">
+
+            @if (reviews != null && reviews.Count > 0)
+            {
+                foreach (var item in reviews)
+                {
+                    <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp animated">
+
+                        <div class="testimonials-block p-24 bg-sec br-12 h-100">
+
+                            <!-- STAR -->
+                            <div class="rating-star mb-16">
+
+                                <h6 class="color-star">
+
+                                    @{
+                                        int vote = item.vote ?? 0;
+                                    }
+
+                                    @for (int i = 1; i <= vote; i++)
+                                    {
+                                        @:★
+                                    }
+
+                                </h6>
+
+                            </div>
+
+                            <!-- COMMENT -->
+                            <p class="mb-24">
+
+                                @item.comment
+
+                            </p>
+
+                            <!-- USER -->
+                            <p class="fw-600 medium-black mb-1">
+
+                                - @item.User.username
+
+                            </p>
+
+                            <!-- PRODUCT -->
+                            <small class="text-muted">
+
+                                @item.Product.name
+
+                            </small>
+
+                        </div>
+
+                    </div>
+                }
+            }
+            else
+            {
+                <p>Chưa có đánh giá nào.</p>
+            }
+
+        </div>
+
+    </div>
+
+</section>
+<!-- TESTIMONIALS SECTION END -->
+<!-- TESTIMONIALS SECTION END -->
+<!-- BRAND SLIDER START -->
+<div class="brand-slider-wrapper py-40 wow fadeInUp animated" data-wow-delay="400ms">
+    <div class="container-fluid">
+        <div class="brand-slider">
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-1.png")" alt="Brand 1">
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-2.png")" alt="Brand 2">
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-3.png")" alt="Brand 3">
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-4.png")" alt="Brand 4">
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-5.png")" alt="Brand 5">
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-1.png")" alt="Brand 1">
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-2.png")" alt="Brand 2">
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-3.png")" alt="Brand 3">
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-4.png")" alt="Brand 4">
+            </div>
+
+            <div class="brand-image">
+                <img src="@Url.Content("~/Assets/Client/assets/media/brands/brand-5.png")" alt="Brand 5">
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- BRAND SLIDER END -->

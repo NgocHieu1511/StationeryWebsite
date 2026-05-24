@@ -1,0 +1,194 @@
+﻿@model StationeryWebsite.Models.Post
+@{
+    ViewBag.Title = "Thêm bài viết mới";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container-fluid mt-4">
+
+    <!-- Breadcrumb -->
+    <div class="header-sub-title mb-3">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a href="@Url.Action("Index","HomeAdmin", new { area = "Admin" })" class="breadcrumb-item">
+                <i class="anticon anticon-home m-r-5"></i> Trang chủ
+            </a>
+            <a href="@Url.Action("Index","PostAdmin")" class="breadcrumb-item">
+                Quản lý bài viết
+            </a>
+            <span class="breadcrumb-item active">Thêm bài viết</span>
+        </nav>
+    </div>
+
+    <div class="card shadow border-0">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">
+                <i class="fa fa-plus-circle"></i> Thêm bài viết mới
+            </h4>
+        </div>
+
+        <div class="card-body">
+
+            @using (Html.BeginForm("Create", "PostAdmin", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+                <div class="row">
+
+                    <!-- Tiêu đề -->
+                    <div class="col-md-8 mb-3">
+                        <label class="form-label fw-bold">
+                            Tiêu đề <span class="text-danger">*</span>
+                        </label>
+                        @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control form-control-lg", placeholder = "Nhập tiêu đề bài viết", required = "required" } })
+                        <small class="text-muted">Tiêu đề sẽ được dùng để tạo slug tự động</small>
+                    </div>
+
+                    <!-- Trạng thái -->
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold d-block">Trạng thái</label>
+                        <div class="mt-2">
+                            <select name="is_active" class="form-select">
+                                <option value="true" selected>🟢 Hiển thị</option>
+                                <option value="false">🔴 Ẩn / Nháp</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Tóm tắt -->
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label fw-bold">Tóm tắt</label>
+                        @Html.TextAreaFor(model => model.summary, new { @class = "form-control", rows = 3, placeholder = "Nhập tóm tắt ngắn cho bài viết (hiển thị ở trang danh sách)" })
+                        <small class="text-muted">Giới hạn khoảng 300 ký tự</small>
+                    </div>
+
+                    <!-- Ảnh đại diện -->
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label fw-bold">Ảnh đại diện</label>
+
+                        <div class="input-group">
+                            @Html.TextBoxFor(model => model.image,
+                                new { @class = "form-control", id = "txtImage", placeholder = "URL ảnh đại diện" })
+
+                            <button type="button"
+                                    class="btn btn-primary"
+                                    onclick="BrowseServer('txtImage', 'previewImage');">
+                                <i class="fa fa-image me-1"></i> Chọn ảnh
+                            </button>
+                        </div>
+
+                        <img id="previewImage"
+                             src=""
+                             style="margin-top:10px; max-width:250px; max-height:200px; border-radius:8px; display:none;"
+                             alt="Preview" />
+                    </div>
+
+                    <!-- Nội dung -->
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label fw-bold">
+                            Nội dung <span class="text-danger">*</span>
+                        </label>
+
+                        @Html.TextAreaFor(model => model.content,
+                            new
+                            {
+                                @class = "form-control",
+                                id = "inputContent",
+                                rows = 20
+                            })
+                    </div>
+
+                </div>
+
+                <hr />
+
+                <div class="d-flex justify-content-between">
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Quay lại
+                    </a>
+
+                    <div>
+                        <button type="button" class="btn btn-outline-warning px-4 me-2" id="btnSaveDraft">
+                            <i class="fa fa-file-alt me-1"></i> Lưu nháp
+                        </button>
+                        <button type="submit" class="btn btn-primary px-4">
+                            <i class="fa fa-save"></i> Đăng bài viết
+                        </button>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script>
+        window.onload = function () {
+            // Khởi tạo CKEditor cho nội dung
+            CKEDITOR.replace('inputContent', {
+                height: 500,
+                language: 'vi',
+
+                // Cấu hình toolbar đầy đủ
+                toolbar: [
+                    { name: 'document', items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print'] },
+                    { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                    { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
+                    { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                    { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
+                    { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                    { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'] },
+                    { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
+                    { name: 'colors', items: ['TextColor', 'BGColor'] },
+                    { name: 'tools', items: ['Maximize', 'ShowBlocks'] }
+                ],
+
+                // Cho phép nhúng iframe (video YouTube, v.v.)
+                extraAllowedContent: 'iframe[*]; div(*); span(*); p(*); a(*); img(*); table(*); tr(*); td(*); th(*);',
+
+                // Tự động loại bỏ định dạng khi paste từ Word
+                pasteFromWordRemoveFontStyles: true,
+                pasteFromWordRemoveStyles: true
+            });
+
+            // Xử lý preview ảnh đại diện khi nhập URL
+            document.getElementById("txtImage").addEventListener("input", function () {
+                var url = this.value;
+                var preview = document.getElementById("previewImage");
+                if (url) {
+                    preview.src = url;
+                    preview.style.display = "block";
+                } else {
+                    preview.style.display = "none";
+                }
+            });
+
+            // Nút lưu nháp
+            document.getElementById("btnSaveDraft").addEventListener("click", function () {
+                // Đổi trạng thái thành ẩn/nháp
+                document.querySelector('select[name="is_active"]').value = "false";
+                // Submit form
+                document.querySelector('form').submit();
+            });
+        };
+
+        // Hàm mở CKFinder để chọn ảnh
+        function BrowseServer(inputId, previewId) {
+            var finder = new CKFinder();
+
+            finder.selectActionFunction = function (url) {
+                // Set URL vào input
+                document.getElementById(inputId).value = url;
+
+                // Hiển thị preview
+                var preview = document.getElementById(previewId);
+                preview.src = url;
+                preview.style.display = "block";
+            };
+
+            finder.popup();
+        }
+    </script>
+}

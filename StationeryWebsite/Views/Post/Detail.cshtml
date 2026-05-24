@@ -1,0 +1,302 @@
+﻿
+@model StationeryWebsite.Models.Post
+
+
+
+@{
+    ViewBag.Title = Model.title;
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<!-- TITLE BANNER START -->
+<section class="title-banner bg-sec">
+
+    <div class="container-2">
+
+        <div class="title-wrapper">
+
+            <div class="row align-items-center justify-content-between">
+
+                <!-- TITLE -->
+                <div class="col-lg-6 col-md-6 col-sm-6">
+
+                    <h1 class="fw-700 medium-black text-sm-start text-center">
+                        Blog Detail
+                    </h1>
+
+                </div>
+
+                <!-- BANNER IMAGE -->
+                <div class="col-lg-6 col-md-6 col-sm-6 d-sm-block d-none">
+
+                    <div class="text-end">
+
+                        <img src="@Url.Content("~/Assets/Client/assets/media/banner/title-banner-image.png")"
+                             alt="Blog Detail Banner">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- TITLE BANNER END -->
+
+<section class="blog-detail-sec py-80">
+    <div class="container-2">
+        <div class="row row-gap-4">
+
+            <!-- MAIN CONTENT -->
+            <div class="col-lg-9">
+                <div class="blog-detail-wrapper">
+
+                    <!-- Ảnh đại diện -->
+                    @if (!string.IsNullOrEmpty(Model.image))
+                    {
+                        <div class="main-image mb-24">
+                            <img src="@Model.image" alt="@Model.title" class="w-100 br-10">
+                        </div>
+                    }
+
+                    <!-- Meta -->
+                    <div class="mb-16">
+                        <span class="color-primary fw-600">
+                            <i class="far fa-calendar me-2"></i>
+                            @(Model.created_at?.ToString("dd MMM, yyyy") ?? "N/A")
+                        </span>
+                        <span class="mx-3">|</span>
+                        <span class="text-muted">
+                            <i class="far fa-user me-2"></i>Admin
+                        </span>
+                        <span class="mx-3">|</span>
+                        
+                    </div>
+
+                    <!-- Tiêu đề -->
+                    <h4 class="fw-700 medium-black mb-16">@Model.title</h4>
+
+                    <!-- Tóm tắt (nếu có) -->
+                    @if (!string.IsNullOrEmpty(Model.summary))
+                    {
+                        <div class="qoutes mb-24 wow fadeInUp animated" data-wow-delay="200ms"
+                             style="visibility: visible; animation-delay: 200ms; animation-name: fadeInUp;">
+                            <svg class="mb-24" xmlns="http://www.w3.org/2000/svg" width="37" height="24" viewBox="0 0 37 24" fill="none">
+                                <path d="M12.4163 23.8314H0L10.5138 0H18.5244L12.4163 23.8314ZM30.4401 23.8314H18.0237L28.5375 0H36.5481L30.4401 23.8314Z" fill="#E85F3E"></path>
+                            </svg>
+                            <h6 class="fw-600 font-primary medium-black mb-24">
+                                @Model.summary
+                            </h6>
+                            <p class="color-primary font-primary fw-500">Admin</p>
+                        </div>
+                    }
+
+                    <!-- Nội dung bài viết từ CKEditor -->
+                    <div class="post-content wow fadeInUp animated" data-wow-delay="300ms"
+                         style="visibility: visible; animation-delay: 300ms; animation-name: fadeInUp;">
+                        @Html.Raw(Model.content)
+                    </div>
+
+                    <!-- Chia sẻ -->
+                    <div class="d-flex align-items-center gap-8 mt-32 pt-24" style="border-top: 1px solid #eee;">
+                        <span class="fw-600 me-8">Chia sẻ:</span>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=@Url.Action("Detail", "Post", new { slug = Model.slug, id = Model.post_id }, Request.Url.Scheme)"
+                           class="btn btn-sm" style="background:#1877F2;color:white;" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url=@Url.Action("Detail", "Post", new { slug = Model.slug, id = Model.post_id }, Request.Url.Scheme)&text=@Model.title"
+                           class="btn btn-sm" style="background:#1DA1F2;color:white;" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="col-lg-3">
+                <div class="sidebar">
+
+                    <!-- Tìm kiếm -->
+                    <form action="@Url.Action("Index")" method="get" class="search-bar-container mb-24">
+                        <div class="search-input-block">
+                            <input type="text" name="search" placeholder="Tìm kiếm...">
+                        </div>
+                        <button type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M9.74062 0C15.1116 0 19.4812 4.36964 19.4812 9.74063C19.4812 12.1734 18.5847 14.4008 17.1047 16.1097L23.7941 22.7997C24.0687 23.0743 24.0686 23.5195 23.794 23.7941C23.5194 24.0687 23.0743 24.0686 22.7997 23.7941L16.1104 17.1041C14.4014 18.5845 12.1738 19.4813 9.74062 19.4813C4.36964 19.4813 0 15.1116 0 9.74063C0 4.36964 4.36964 0 9.74062 0ZM9.74062 18.075C14.3362 18.075 18.075 14.3362 18.075 9.74063C18.075 5.14505 14.3362 1.40625 9.74062 1.40625C5.14505 1.40625 1.40625 5.14505 1.40625 9.74063C1.40625 14.3362 5.14505 18.075 9.74062 18.075Z" fill="white"></path>
+                            </svg>
+                        </button>
+                    </form>
+
+                    <!-- Bài viết mới nhất -->
+                    @if (ViewBag.RecentPosts != null)
+                    {
+                        <div class="category-block box-2 mb-32 wow fadeInUp animated" data-wow-delay="200ms"
+                             style="visibility: visible; animation-delay: 200ms; animation-name: fadeInUp;">
+                            <div class="title" data-count="2">
+                                <h6 class="fw-500 font-primary medium-black">Bài viết mới nhất</h6>
+                                <span>
+                                    <i class="fa-light fa-chevron-up"></i>
+                                </span>
+                            </div>
+                            <div class="content-block mt-24">
+                                @foreach (var recentPost in (List<StationeryWebsite.Models.Post>)ViewBag.RecentPosts)
+                                {
+                                    <a href="@Url.Action("Detail", new { slug = recentPost.slug, id = recentPost.post_id })"
+                                       class="recent-blogs d-flex gap-12 align-items-center mb-16">
+                                        <div class="image-box d-flex flex-shrink-0">
+                                            <img src="@(string.IsNullOrEmpty(recentPost.image) ? Url.Content("~/Assets/Client/assets/media/blogs/blog-thumb.jpg") : recentPost.image)"
+                                                 alt="@recentPost.title" class="br-5">
+                                        </div>
+                                        <div>
+                                            <p class="text mb-8">@recentPost.title</p>
+                                            <p class="subtitle fw-500 light-gray">
+                                                @(recentPost.created_at?.ToString("dd MMM, yyyy"))
+                                            </p>
+                                        </div>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                    <div class="hr-line line-2 mb-24"></div>
+
+                    <!-- Danh mục sản phẩm -->
+                    <div class="category-block box-1 mb-32 wow fadeInUp animated" data-wow-delay="300ms"
+                         style="visibility: visible; animation-delay: 300ms; animation-name: fadeInUp;">
+                        <div class="title" data-count="1">
+                            <h6 class="fw-500 font-primary medium-black">Danh mục sản phẩm</h6>
+                            <span>
+                                <i class="fa-light fa-chevron-up"></i>
+                            </span>
+                        </div>
+                        <div class="content-block mt-24">
+                            <a href="@Url.Action("Index", "Home")" class="d-block mb-16">Bút viết</a>
+                            <a href="@Url.Action("Index", "Home")" class="d-block mb-16">Sổ tay</a>
+                            <a href="@Url.Action("Index", "Home")" class="d-block mb-16">Thước kẻ</a>
+                            <a href="@Url.Action("Index", "Home")" class="d-block mb-16">Hộp bút</a>
+                            <a href="@Url.Action("Index", "Home")" class="d-block mb-16">Giấy vẽ</a>
+                            <a href="@Url.Action("Index", "Home")" class="d-block">Phụ kiện khác</a>
+                        </div>
+                    </div>
+
+                    <div class="hr-line line-2 mb-24"></div>
+
+                    <!-- Tags -->
+                    <div class="category-block box-4 mb-24 wow fadeInUp animated" data-wow-delay="400ms"
+                         style="visibility: visible; animation-delay: 400ms; animation-name: fadeInUp;">
+                        <div class="title" data-count="4">
+                            <h6 class="fw-500 font-primary medium-black">Tags</h6>
+                            <span>
+                                <i class="fa-light fa-chevron-up"></i>
+                            </span>
+                        </div>
+                        <div class="content-block mt-24">
+                            <div class="tags-wrapper">
+                                <a href="@Url.Action("Index")" class="tag"><p>Học tập</p></a>
+                                <a href="@Url.Action("Index")" class="tag"><p>Văn phòng</p></a>
+                                <a href="@Url.Action("Index")" class="tag"><p>Mỹ thuật</p></a>
+                                <a href="@Url.Action("Index")" class="tag"><p>Khuyến mãi</p></a>
+                                <a href="@Url.Action("Index")" class="tag"><p>Mẹo hay</p></a>
+                                <a href="@Url.Action("Index")" class="tag"><p>Sản phẩm mới</p></a>
+                                <a href="@Url.Action("Index")" class="tag"><p>Hướng dẫn</p></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Banner -->
+                    <div class="sidebar-promotional-image w-100 h-100 object-fit-cover wow fadeInUp animated" data-wow-delay="500ms">
+                        <img src="@Url.Content("~/Assets/Client/assets/media/images/sidebar-image.png")"
+                             alt="Promotion" class="w-100 h-100 object-fit-cover br-12">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Style cho nội dung từ CKEditor */
+    .post-content h2 {
+        font-size: 24px;
+        font-weight: 700;
+        margin: 24px 0 16px;
+        color: #333;
+    }
+
+    .post-content h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin: 20px 0 12px;
+        color: #444;
+    }
+
+    .post-content h4 {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 16px 0 10px;
+    }
+
+    .post-content p {
+        margin-bottom: 16px;
+        line-height: 1.8;
+        color: #555;
+    }
+
+    .post-content img {
+        max-width: 100%;
+        border-radius: 8px;
+        margin: 16px 0;
+    }
+
+    .post-content ul,
+    .post-content ol {
+        margin: 16px 0;
+        padding-left: 24px;
+    }
+
+    .post-content li {
+        margin-bottom: 8px;
+    }
+
+    .post-content blockquote {
+        background: #f8f9fa;
+        padding: 16px 20px;
+        border-left: 4px solid #E85F3E;
+        margin: 16px 0;
+        border-radius: 4px;
+    }
+
+    .post-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 16px 0;
+    }
+
+        .post-content table th,
+        .post-content table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .post-content table th {
+            background: #534AB7;
+            color: white;
+        }
+
+    .post-content a {
+        color: #E85F3E;
+    }
+
+        .post-content a:hover {
+            text-decoration: underline;
+        }
+</style>
