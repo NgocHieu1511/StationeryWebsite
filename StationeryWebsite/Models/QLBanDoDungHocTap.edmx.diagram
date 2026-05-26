@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="632e0dcfbd4f4cdcb016e75379e88ead" Name="Diagram1" ZoomLevel="101">
-        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Address" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Category" Width="1.5" PointX="3.75" PointY="15.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Feedback" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Order" Width="1.5" PointX="6" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Order_detail" Width="1.5" PointX="8.25" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Order_status" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Product" Width="1.5" PointX="6" PointY="13.875" IsExpanded="true" />
+      <Diagram DiagramId="632e0dcfbd4f4cdcb016e75379e88ead" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Address" Width="1.5" PointX="6.625" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Category" Width="1.5" PointX="14.625" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Feedback" Width="1.5" PointX="6.625" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Order" Width="1.5" PointX="8.375" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Order_detail" Width="1.5" PointX="10.875" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Order_status" Width="1.5" PointX="10.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Product" Width="1.5" PointX="16.625" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBanDoDungHocTapModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.User" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.User" Width="1.5" PointX="4.5" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="QLBanDoDungHocTapModel.FK_Address_Users" ManuallyRouted="false" />
         <AssociationConnector Association="QLBanDoDungHocTapModel.FK_Product_Category" ManuallyRouted="false" />
         <AssociationConnector Association="QLBanDoDungHocTapModel.FK_Feedback_Users" ManuallyRouted="false" />
@@ -21,11 +21,11 @@
         <AssociationConnector Association="QLBanDoDungHocTapModel.FK_Order_Order_status" ManuallyRouted="false" />
         <AssociationConnector Association="QLBanDoDungHocTapModel.FK_Order_Users" ManuallyRouted="false" />
         <AssociationConnector Association="QLBanDoDungHocTapModel.FK_Order_detail_Product" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Cart" Width="1.5" PointX="8.25" PointY="10.875" />
+        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Cart" Width="1.5" PointX="9.125" PointY="7.625" />
         <AssociationConnector Association="QLBanDoDungHocTapModel.FK__Cart__product_id__58D1301D" />
         <AssociationConnector Association="QLBanDoDungHocTapModel.FK__Cart__user_id__57DD0BE4" />
         <AssociationConnector Association="QLBanDoDungHocTapModel.FK_Feedback_Product" />
-        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Post" Width="1.5" PointX="3" PointY="18.625" />
+        <EntityTypeShape EntityType="QLBanDoDungHocTapModel.Post" Width="1.5" PointX="12.75" PointY="5.625" />
         <AssociationConnector Association="QLBanDoDungHocTapModel.FK__Posts__user_id__5E8A0973" />
       </Diagram>
     </edmx:Diagrams>

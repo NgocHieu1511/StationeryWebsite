@@ -178,7 +178,8 @@
 
                         <div class="col-sm-6">
 
-                            <a href="@Url.Action("Checkout", "Cart")"
+                            <a href="@Url.Action("BuyNow", "GioHang",
+        new { id = Model.product_id })"
                                class="w-100 text-center cus-btn">
 
                                 <span class="btn-text">
