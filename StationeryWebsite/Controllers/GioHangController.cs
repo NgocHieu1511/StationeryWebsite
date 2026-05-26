@@ -1,13 +1,15 @@
-﻿using System;
+﻿using StationeryWebsite.Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using StationeryWebsite.Models;
 
 namespace StationeryWebsite.Controllers
 {
     public class GioHangController : Controller
     {
         QLBanDoDungHocTapEntities1 db = new QLBanDoDungHocTapEntities1();
+    
 
         // =========================
         // HIỂN THỊ GIỎ HÀNG
@@ -115,6 +117,39 @@ namespace StationeryWebsite.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+        public ActionResult BuyNow(int id)
+        {
+            if (Session["UserId"] == null)
+                return RedirectToAction("Login", "Login");
+
+            int userId = (int)Session["UserId"];
+
+            // kiểm tra sản phẩm đã có trong giỏ chưa
+            var item = db.Carts.FirstOrDefault(c =>
+                c.product_id == id &&
+                c.user_id == userId);
+
+            if (item == null)
+            {
+                Cart cart = new Cart()
+                {
+                    product_id = id,
+                    user_id = userId,
+                    quantity = 1
+                };
+
+                db.Carts.Add(cart);
+            }
+            else
+            {
+                item.quantity += 1;
+            }
+
+            db.SaveChanges();
+
+            // chuyển sang thanh toán
+            return RedirectToAction("Index", "ThanhToan");
         }
     }
 }

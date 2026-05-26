@@ -1,52 +1,346 @@
 ﻿@model List<StationeryWebsite.Models.Feedback>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quản Lý Phản Hồi";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 
-<table class="table table-bordered">
+<div class="mb-4 mt-4">
+    <h1 class="h3 mb-0 text-gray-800">
+        <i class="fas fa-comments me-2 ms-2"></i>Quản Lý Phản Hồi
+    </h1>
+    <div class="container-fluid mt-4">
 
-    <tr>
-        <th>User</th>
-        <th>Product</th>
-        <th>Vote</th>
-        <th>Comment</th>
-        <th>Date</th>
-        <th>Action</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-
-            <td>@item.User.username</td>
-
-            <td>@item.product_id</td>
-
-            <td>@item.vote ★</td>
-
-            <td>@item.comment</td>
-
-            <td>@item.date</td>
-
-            <td>
-
-                <a href="@Url.Action("Delete",
-                                     "FeedbackAdmin",
-                                     new {
-                                         productId = item.product_id,
-                                         userId = item.user_id
-                                     })"
-                   class="btn btn-danger">
-
-                    Xóa
-
+        <!-- Breadcrumb -->
+        <div class="header-sub-title mb-3">
+            <nav class="breadcrumb breadcrumb-dash">
+                <a href="@Url.Action("Index","HomeAdmin", new { area = "Admin" })" class="breadcrumb-item">
+                    <i class="anticon anticon-home m-r-5"></i> Trang chủ
                 </a>
+                <span class="breadcrumb-item active">Quản lý phản hồi</span>
+            </nav>
+        </div>
 
-            </td>
+        <div class="card shadow border-0">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">
+                    <i class="fa fa-comments"></i> Danh sách phản hồi
+                </h4>
+                <div>
+                    <span class="badge bg-light text-dark me-2">
+                        <i class="fa fa-star text-warning"></i> Tổng: @Model.Count phản hồi
+                    </span>
+                </div>
+            </div>
 
-        </tr>
+            <div class="card-body">
+                <!-- Messages -->
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <i class="fa fa-check-circle"></i> @TempData["Success"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <i class="fa fa-exclamation-circle"></i> @TempData["Error"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+
+                <!-- Search và Filter -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        @using (Html.BeginForm("Index", "FeedbackAdmin", FormMethod.Get))
+                        {
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control"
+                                       placeholder="Tìm kiếm theo tên người dùng hoặc sản phẩm..." value="@ViewBag.Search">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-3">
+                        <select name="voteFilter" class="form-select" onchange="this.form.submit()">
+                            <option value="">Tất cả số sao</option>
+                            <option value="5" @(ViewBag.VoteFilter == "5" ? "selected" : "")>5 sao ★★★★★</option>
+                            <option value="4" @(ViewBag.VoteFilter == "4" ? "selected" : "")>4 sao ★★★★☆</option>
+                            <option value="3" @(ViewBag.VoteFilter == "3" ? "selected" : "")>3 sao ★★★☆☆</option>
+                            <option value="2" @(ViewBag.VoteFilter == "2" ? "selected" : "")>2 sao ★★☆☆☆</option>
+                            <option value="1" @(ViewBag.VoteFilter == "1" ? "selected" : "")>1 sao ★☆☆☆☆</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="5%">STT</th>
+                                <th width="15%">Người dùng</th>
+                                <th width="15%">Sản phẩm</th>
+                                <th width="10%">Đánh giá</th>
+                                <th width="30%">Bình luận</th>
+                                <th width="15%">Ngày đánh giá</th>
+                                <th width="10%">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (!Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="7" class="text-center py-4 text-muted">
+                                        <i class="fa fa-comments fa-2x mb-2"></i>
+                                        <p>Chưa có phản hồi nào</p>
+                                        <p class="small">Khách hàng sẽ để lại đánh giá khi mua sản phẩm</p>
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                int stt = 1;
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <span class="fw-bold">@stt</span>@{
+                                                stt++;
+                                            }
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="avatar-circle me-2">
+                                                    @{
+                                                        string initials = "??";
+                                                        if (item.User?.username != null && item.User.username.Length > 0)
+                                                        {
+                                                            initials = item.User.username.Substring(0, Math.Min(2, item.User.username.Length));
+                                                        }
+                                                    }
+                                                    <span class="initials">@initials</span>
+                                                </div>
+                                                <div>
+                                                    <strong>@item.User.username</strong>
+                                                    <br>
+                                                    <small class="text-muted">ID: @item.user_id</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <span class="badge bg-info">SP-@item.product_id</span>
+                                                @if (item.Product != null)
+                                                {
+                                                    <br>
+                                                    <small class="text-muted">@item.Product.name</small>
+                                                }
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="star-rating">
+                                                @for (int i = 1; i <= 5; i++)
+                                                {
+                                                    if (i <= item.vote)
+                                                    {
+                                                        <i class="fa fa-star text-warning"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-star-o text-secondary"></i>
+                                                    }
+                                                }
+                                                <span class="ms-1 fw-bold">(@item.vote)</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="comment-text" style="max-width: 300px;">
+                                                @if (!string.IsNullOrEmpty(item.comment))
+                                                {
+                                                    <p class="mb-0">@item.comment</p>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted fst-italic">Không có bình luận</span>
+                                                }
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <small class="text-muted">
+                                                <i class="fa fa-calendar-alt me-1"></i>
+                                                @{
+                                                    string formattedDate = "Chưa cập nhật";
+                                                    if (item.date != null)
+                                                    {
+                                                        try
+                                                        {
+                                                            DateTime dt = Convert.ToDateTime(item.date);
+                                                            formattedDate = dt.ToString("dd/MM/yyyy HH:mm");
+                                                        }
+                                                        catch
+                                                        {
+                                                            formattedDate = item.date.ToString();
+                                                        }
+                                                    }
+                                                }
+                                                @formattedDate
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <button class="btn btn-danger btn-sm"
+                                                        onclick="deleteFeedback(@item.product_id, @item.user_id, '@item.User?.username')"
+                                                        title="Xóa phản hồi">
+                                                    <i class="fa fa-trash"></i> Xóa
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Thống kê nhanh -->
+                @if (Model.Any())
+                {
+                    var avgVote = Model.Average(x => x.vote);
+                    var totalFeedbacks = Model.Count;
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <div class="alert alert-info">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <i class="fa fa-chart-line"></i> <strong>Điểm đánh giá trung bình:</strong>
+                                        <span class="badge bg-warning text-dark ms-2">
+                                            @{
+                                                // Sửa lỗi ToString với format
+                                                string avgVoteText = "0.0";
+                                                if (avgVote != null)
+                                                {
+                                                    try
+                                                    {
+                                                        double avgValue = Convert.ToDouble(avgVote);
+                                                        avgVoteText = avgValue.ToString("0.0");
+                                                    }
+                                                    catch
+                                                    {
+                                                        avgVoteText = avgVote.ToString();
+                                                    }
+                                                }
+                                            }
+                                            @avgVoteText / 5.0 ★
+                                        </span>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <i class="fa fa-comments"></i> <strong>Tổng số phản hồi:</strong>
+                                        <span class="badge bg-primary ms-2">@totalFeedbacks</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <i class="fa fa-star-half-alt"></i> <strong>Phản hồi có bình luận:</strong>
+                                        <span class="badge bg-success ms-2">@Model.Count(x => !string.IsNullOrEmpty(x.comment))</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Form xóa ẩn -->
+@using (Html.BeginForm("Delete", "FeedbackAdmin", FormMethod.Post, new { id = "deleteForm" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="productId" id="deleteProductId" />
+    <input type="hidden" name="userId" id="deleteUserId" />
+}
+
+<style>
+    /* Avatar circle style */
+    .avatar-circle {
+        width: 35px;
+        height: 35px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-</table>
+    .initials {
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+    }
 
+    /* Star rating style */
+    .star-rating {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+    }
+
+        .star-rating i {
+            font-size: 14px;
+        }
+
+    /* Comment text style */
+    .comment-text {
+        word-wrap: break-word;
+        white-space: normal;
+    }
+
+    /* Table hover effect */
+    .table-hover tbody tr:hover {
+        background-color: #f8f9fa;
+        transition: all 0.3s ease;
+    }
+
+    /* Responsive table */
+    @@media (max-width: 768px) {
+        .table-responsive {
+            font-size: 13px;
+        }
+
+        .btn-group-sm .btn {
+            padding: 0.2rem 0.4rem;
+            font-size: 0.75rem;
+        }
+
+        .avatar-circle {
+            width: 28px;
+            height: 28px;
+        }
+
+        .initials {
+            font-size: 11px;
+        }
+    }
+</style>
+
+@section Scripts {
+    <script>
+        function deleteFeedback(productId, userId, username) {
+            if (confirm(`Bạn có chắc muốn xóa phản hồi của người dùng "${username}" (ID: ${userId}) cho sản phẩm #${productId}?\n\nHành động này không thể hoàn tác!`)) {
+                document.getElementById('deleteProductId').value = productId;
+                document.getElementById('deleteUserId').value = userId;
+                document.getElementById('deleteForm').submit();
+            }
+        }
+
+        // Tự động ẩn alert sau 3 giây
+        $(document).ready(function () {
+            setTimeout(function () {
+                $(".alert").fadeOut('slow');
+            }, 3000);
+        });
+    </script>
+}
