@@ -46,8 +46,9 @@
 
                             <ul class="list-unstyled">
 
-                                <a href="@Url.Action("AddToWishlist", "YeuThich", new { id = item.product_id })"
-                                   class="wishlist-btn">
+                                <a href="javascript:void(0)"
+                                   class="wishlist-btn"
+                                   data-id="@item.product_id">
 
                                     <i class="fa-regular fa-heart"></i>
 
@@ -104,7 +105,7 @@
 
                             <h5 class="medium-black fw-700">
 
-                                @item.price đ
+                                @String.Format("{0:N0} đ", item.price)
 
                             </h5>
 
@@ -121,3 +122,29 @@
 
 </section>
 <!-- FEATURED PRODUCT END -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(".wishlist-btn").click(function () {
+
+        let button = $(this);
+        let productId = button.data("id");
+
+        $.ajax({
+            url: '/YeuThich/AddToWishlist',
+            type: 'POST',
+            data: { id: productId },
+
+            success: function (response) {
+
+                if (response.success) {
+
+                    // đổi màu tim
+                    button.find("i").css("color", "red");
+
+                }
+            }
+        });
+
+    });
+</script>

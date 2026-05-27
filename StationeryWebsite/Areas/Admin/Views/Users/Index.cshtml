@@ -76,7 +76,7 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
+                        <tr data-role="@(item.role ? "Admin" : "User")">
                             <td>@item.username</td>
                             <td>@item.password</td>
                             <td>@item.first_name</td>
@@ -113,14 +113,23 @@
                             </td>
 
                             <td class="text-center">
-                                @Html.ActionLink("Edit", "Edit", new { id = item.user_id },
-                                new { @class = "btn btn-warning btn-sm" })
+                                <a href="@Url.Action("Edit", new { id = item.user_id })"
+                                   class="btn btn-warning btn-sm"
+                                   title="Sửa">
+                                    <i class="fa fa-edit"></i>
+                                </a>
 
-                                @Html.ActionLink("Details", "Details", new { id = item.user_id },
-                                new { @class = "btn btn-info btn-sm" })
+                                <a href="@Url.Action("Details", new { id = item.user_id })"
+                                   class="btn btn-info btn-sm"
+                                   title="Chi tiết">
+                                    <i class="fa fa-eye"></i>
+                                </a>
 
-                                @Html.ActionLink("Delete", "Delete", new { id = item.user_id },
-                                new { @class = "btn btn-danger btn-sm" })
+                                <a href="@Url.Action("Delete", new { id = item.user_id })"
+                                   class="btn btn-danger btn-sm"
+                                   title="Xóa">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                     }
@@ -130,3 +139,21 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById("filterRole").addEventListener("change", function () {
+
+        let selectedRole = this.value;
+        let rows = document.querySelectorAll("tbody tr");
+
+        rows.forEach(function (row) {
+
+            let role = row.getAttribute("data-role");
+
+            if (selectedRole === "" || role === selectedRole) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    });
+</script>
