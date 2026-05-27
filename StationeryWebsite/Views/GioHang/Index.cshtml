@@ -15,7 +15,7 @@
 
                 <div class="col-lg-6">
                     <h1 class="fw-700 medium-black text-sm-start text-center">
-                        Giỏ hàng
+                        Cart
                     </h1>
                 </div>
 
@@ -132,7 +132,7 @@
                                         <td>
 
                                             <span class="fw-500">
-                                                $@item.Product.price
+                                                @String.Format("{0:N0} đ", item.Product.price)
                                             </span>
 
                                         </td>
@@ -182,7 +182,7 @@
                                         <td>
 
                                             <span class="fw-600">
-                                                $@thanhTien
+                                                @String.Format("{0:N0} đ", thanhTien)
                                             </span>
 
                                         </td>
@@ -241,7 +241,7 @@
                             </h6>
 
                             <p class="light-gray">
-                                $@subtotal
+                                @String.Format("{0:N0} đ", subtotal)
                             </p>
 
                         </div>
@@ -256,7 +256,7 @@
                             </h6>
 
                             <p class="light-gray">
-                                $5
+                                @String.Format("{0:N0} đ", 5000)
                             </p>
 
                         </div>
@@ -271,7 +271,7 @@
                             </h6>
 
                             <h6 class="fw-600 color-primary">
-                                $@(subtotal + 5)
+                                @String.Format("{0:N0} đ", subtotal + 5000)
                             </h6>
 
                         </div>

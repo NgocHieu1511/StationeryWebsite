@@ -53,8 +53,12 @@
                                 <ul class="list-unstyled">
 
                                     <li>
-                                        <a href="#">
-                                            <i class="fa-light fa-heart"></i>
+                                        <a href="javascript:void(0)"
+                                           class="wishlist-btn"
+                                           data-id="@item.product_id">
+
+                                            <i class="fa-regular fa-heart"></i>
+
                                         </a>
                                     </li>
 
@@ -101,7 +105,7 @@
 
                                 <h5 class="medium-black fw-700">
 
-                                    @item.price đ
+                                    @String.Format("{0:N0} đ", item.price)
 
                                 </h5>
 
@@ -120,3 +124,39 @@
 
 </section>
 <!-- SALE END -->
+<script>
+    $(document).ready(function () {
+
+        $(".wishlist-btn").click(function (e) {
+
+            e.preventDefault();
+
+            let button = $(this);
+            let productId = button.data("id");
+
+            $.ajax({
+                url: '/YeuThich/AddToWishlist',
+                type: 'POST',
+                data: { id: productId },
+
+                success: function (response) {
+
+                    if (response.success) {
+
+                        // đổi icon sang đỏ
+                        button.find("i")
+                              .removeClass("fa-regular")
+                              .addClass("fa-solid")
+                              .css("color", "red");
+                    }
+                },
+
+                error: function () {
+                    alert("Có lỗi xảy ra!");
+                }
+            });
+
+        });
+
+    });
+</script>

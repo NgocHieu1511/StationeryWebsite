@@ -108,7 +108,7 @@
                    data-bs-toggle="collapse"
                    data-bs-target="#collapseSystem">
                     <div class="sb-nav-link-icon"><i class="fas fa-cogs"></i></div>
-                    Quản lý hệ thống
+                    Quản lý danh mục
                     <div class="sb-sidenav-collapse-arrow">
                         <i class="fas fa-angle-down"></i>
                     </div>
@@ -142,7 +142,7 @@
                 </div>
 
                 @* ========== THỐNG KÊ ========== *@
-                <a class="nav-link collapsed" href="#"
+                @*<a class="nav-link collapsed" href="#"
                    data-bs-toggle="collapse"
                    data-bs-target="#collapseRevenue">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
@@ -164,14 +164,14 @@
                             <i class="fas fa-chart-bar me-2"></i>Báo cáo doanh thu
                         </a>
                     </nav>
-                </div>
+                </div>*@
 
             </div>
         </div>
 
         <div class="sb-sidenav-footer">
             <div class="small">Đăng nhập với tư cách:</div>
-            @Session["FullName"]
+            @Session["Username"]
         </div>
 
     </nav>

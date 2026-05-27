@@ -23,7 +23,8 @@ namespace StationeryWebsite.Controllers
         }
 
         // ADD TO WISHLIST
-        public ActionResult AddToWishlist(int id)
+        [HttpPost]
+        public JsonResult AddToWishlist(int id)
         {
             List<WishlistItem> wishlist = Session["Wishlist"] as List<WishlistItem>;
 
@@ -45,14 +46,17 @@ namespace StationeryWebsite.Controllers
                         ProductID = product.product_id,
                         ProductName = product.name,
                         Image = product.image,
-                        Price = product.price 
+                        Price = product.price
                     });
                 }
             }
 
             Session["Wishlist"] = wishlist;
 
-            return RedirectToAction("YeuThich");
+            return Json(new
+            {
+                success = true
+            });
         }
 
         // REMOVE
